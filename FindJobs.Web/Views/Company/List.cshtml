@@ -1,0 +1,93 @@
+﻿@using FindJobs.Domain.Dtos
+@model PaginationDto<ApplicantDto>
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/pagination/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    }
+
+@{
+    var listUrl = Url.Action("List", "Company");
+    var ajaxSearchUrl = Url.Action("AjaxSearch", "Company");
+}
+<div class="container">
+    @if (Model.Data is not null)
+    {
+        <div id="applicant-searchbox">
+
+            @await Html.PartialAsync("_AjaxSearch.cshtml",Model)
+        </div>
+
+        <div class="pagination">
+            <span>@Model.ItemsCount</span>
+            <span>Items</span>
+            <input type="button" value="<<" id="start" />
+            <input type="button" value="<" id="back" />
+            <span id="pagenumber">1</span>
+            <span>of</span>
+            <span>@Model.PageCount</span>
+            <input type="button" value=">" id="next" />
+            <input type="button" value=">>" id="end" />
+
+
+        </div>
+    }
+</div>
+
+@section Script{
+    <script>
+        //*****************************Search**********************
+        var keyword = document.getElementById('searchbox_keyword');
+        var application_location = document.getElementById('searchbox_location');
+        document.getElementById('searchbox_button').onclick = function () {
+            var url = "@listUrl" + "?key=" + keyword.value + "&location=" + application_location.value;
+            window.open(url, '_self');
+
+        }
+        //*****************************Search**********************
+
+
+        //*****************************paging**********************
+        var pagenumber = document.getElementById('pagenumber');
+
+
+
+        document.getElementById('next').onclick = function () {
+            var currentpage = parseInt(pagenumber.innerText);
+            pagenumber.innerText = Math.min(currentpage + 1, @Model.PageCount);
+            refresh();
+        }
+
+        document.getElementById('back').onclick = function () {
+            var currentpage = parseInt(pagenumber.innerText);
+            pagenumber.innerText = Math.max(currentpage - 1, 1);
+            refresh();
+        }
+
+        document.getElementById('end').onclick = function () {
+            pagenumber.innerText = @Model.PageCount;
+            refresh();
+        }
+
+        document.getElementById('start').onclick = function () {
+            pagenumber.innerText = 1;
+            refresh();
+        }
+
+
+        function refresh() {
+            var url = "@ajaxSearchUrl" + "?key=" + keyword.value + "&location=" + application_location.value + "&currentPage=" + pagenumber.innerText;
+            fetch(url).then((data) => { return data.text() })
+                .then((data) => {
+                    var searchbox = document.getElementById('applicant-searchbox');
+                    if (data != null) {
+                        searchbox.innerHTML = data;
+                    } else {
+                        searchbox.innerHTML = "";
+                    }
+
+                });
+        }
+
+    </script>
+}

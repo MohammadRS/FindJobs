@@ -1,0 +1,32 @@
+﻿@using FindJobs.Domain.Dtos
+
+@model IEnumerable<ApplicantDocumentsDto>
+
+<table class="applicantProfiletable">
+
+    <tbody>
+        @if (Model.Count() < 1)
+        {
+            <tr>
+                <td colspan="2">@Res.ApplicantProfile.ThereIsNoDocumentUploaded</td>
+
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+              
+                <td class="linkColumn">
+
+                    <a href="@item.DocumentFileBase64" download="@item.CreateDate.ToString("yyyy-MM-dd")-@item.Type">@item.CreateDate.ToString("yyyy-MM-dd")-@item.Type</a>
+                </td>
+                <td>
+                    <img onclick="deleteEntity(@item.Id,'DeleteApplicantDocument','Document','documentList','documentModal')" class="ApplicantProfileIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAt0lEQVRYhe2XUQqEMAxEBxEPJXo+67l0j6LX2P2JWGqrTbatoHkQhJQmwwQ0AgqfBsAIYAXwpVgAGDrLjrEau2FKCFioWWvlOuxOJMFnszRE4zmzWRqs8fhsliIaz6Y6FcF6dcTFrFSB/Jyh18S9kGoMp3VCDhSDI+CDo42xORGudT4rY3LPGYEKUAEqQAVk4WofsJlxfKXG5kTc/jle6dn90bx3arFIuRkPEgENidg25GL/BO/iBw2XhNDZRIpPAAAAAElFTkSuQmCC">
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+

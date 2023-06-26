@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+    xmlns:themes="clr-namespace:FindJobs.App.Themes"
+    xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources"
+    x:Class="FindJobs.App.Pages.ApplicantPages.AdditionalSectionPage">
+    <ContentPage.Content>
+
+        <ScrollView>
+            
+        <StackLayout Padding="20">
+
+            <Label Text="{x:Static res:ApplicantProfile.Driving}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                <CheckBox CheckedChanged="ChboxDriving_CheckedChanged" x:Name="chboxdriving"/>
+                <Label Text="{x:Static res:ApplicantProfile.Drivinglicense}" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent" IsVisible="false" x:Name="licnesbox" >
+                <Label Text="{x:Static res:ApplicantProfile.ChoiceTheLicence}"/>
+                <power:PowerPicker BorderRadius="5" />
+            </power:PowerLayout>
+
+
+            <Label Text="{x:Static res:ApplicantProfile.Work_Permit}"/>
+
+
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.EuropeanUnion}" VerticalOptions="Center"/>
+
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.Switzerland}" VerticalOptions="Center"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.UnitedStates}" VerticalOptions="Center"/>
+            </StackLayout>
+
+
+
+            <Label Text="{x:Static res:ApplicantProfile.Rate}"/>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <CheckBox CheckedChanged="Chboxrate_CheckedChanged" x:Name="chboxEnterRange"></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.EnterRange}" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" x:Name="rateboxnotrenged">
+                
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.Average}"/>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.Average}"/>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent"  >
+                    <Label Text="{x:Static res:ApplicantProfile.Currency}"/>
+                    <power:PowerPicker BorderRadius="5" />
+                </power:PowerLayout>
+
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.RateType}"/>
+                    <power:PowerPicker BorderRadius="5" />
+                </power:PowerLayout>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Vertical" x:Name="rateboxrenged" IsVisible="false">
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.From}"/>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.From}"/>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.To}"/>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.To}"/>
+                </power:PowerLayout>
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent"  >
+                    <Label Text="{x:Static res:ApplicantProfile.RateType}"/>
+                    <power:PowerPicker BorderRadius="5" />
+                </power:PowerLayout>
+
+
+                <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.Currency}"/>
+                    <power:PowerPicker BorderRadius="5" />
+                </power:PowerLayout>
+            </StackLayout>
+
+
+
+
+            <Label Text="{x:Static res:ApplicantProfile.Prefered_place_of_work}"/>
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.OnSite}" VerticalOptions="Center"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.WorkFromHome}" VerticalOptions="Center"/>
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.Hybrid}" VerticalOptions="Center"/>
+            </StackLayout>
+
+
+
+            <Label Text="{x:Static res:ApplicantProfile.Prefered_type_of_work}"/>
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.Internship}" VerticalOptions="Center"/>
+                <CheckBox></CheckBox>
+                <Label Text="{x:Static res:ApplicantProfile.Part_time}" VerticalOptions="Center"/>
+            </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox ></CheckBox>
+                    <Label Text="{x:Static res:ApplicantProfile.Internship}" VerticalOptions="Center"/>
+                    <CheckBox></CheckBox>
+                    <Label Text="{x:Static res:ApplicantProfile.Freelancer}" VerticalOptions="Center"/>
+                </StackLayout>
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Button Text="{x:Static res:ApplicantProfile.Save}"></Button>
+                </power:PowerLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</themes:MainTheme>

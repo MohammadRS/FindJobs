@@ -1,0 +1,56 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantWorkExperienceDto
+
+
+<form onsubmit="return saveEntity(this,'InsertOrUpdateWorkExperience','workExperienceTable','@Res.ApplicantProfile.WorkExperienceAddSuccessfully','WorkExperienceModal','@Res.ApplicantProfile.SaveSuccessfully','@Res.ApplicantProfile.NotSaveSuccessfully')">
+    <div class="profile-flex-container">
+
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="box">
+            <label>@Res.ApplicantProfile.JobTitle</label>
+
+
+            <input class="JobTitle" type="text" required asp-for="JobTitle" value="@Model.JobTitle" />
+        </div>
+        <div class="box">
+            <label>@Res.ApplicantProfile.Employer</label>
+
+            <input class="Employer" type="text" asp-for="JobPosition" value="@Model.JobPosition" />
+        </div>
+        <div class="box">
+            <label>@Res.ApplicantProfile.From</label>
+
+            @if (Model.Id > 0)
+            {
+                <input class="StartWorkDate" asp-for="StartWork" type="month" value="@Model.StartWork.Value.ToString("yyyy-MM")" />
+            }
+            else
+            {
+                <input class="StartWorkDate" asp-for="StartWork" type="month" value="" />
+            }
+        </div>
+        <div class="box" id="workExperienceEndWorkDate">
+
+            <label>@Res.ApplicantProfile.To</label>
+
+            @if (Model.EndWork != null)
+            {
+                <input class="EndOfWorkDate" asp-for="EndWork" type="month" value=@Model.EndWork.Value.ToString("yyyy-MM") />
+            }
+            else
+            {
+                <input class="EndOfWorkDate" asp-for="EndWork" type="month" value="" />
+            }
+        </div>
+
+       
+            <label>
+                <input class="IsCurrentlyWork" asp-for="IsCurrentlyWorking" type="checkbox" checked="@Model.IsCurrentlyWorking">
+                @Res.ApplicantProfile.Icurrentlyworkhere
+            </label>
+      
+    </div>
+    <input type="submit" id="btnSaveForm" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+
+</form>
+

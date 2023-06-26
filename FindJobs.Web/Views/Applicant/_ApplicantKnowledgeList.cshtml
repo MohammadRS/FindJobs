@@ -1,0 +1,34 @@
+﻿@using FindJobs.Domain.Dtos
+@model IEnumerable<ApplicantKnowledgeDto>
+
+
+
+<table class="applicantProfiletable applicantKnowledgeTable">
+
+    <tbody>
+        @if (Model.Count() < 1)
+        {
+            <tr>
+                <td colspan="2">@Res.ApplicantProfile.ThereIsNoKnowledge</td>
+
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td><b>@item.KnowledgeName</b></td>
+                <td>@item.KnowledgeLevel</td>
+
+
+                <td>
+                    <img onclick="getEntity(@item.Id,'GetApplicantKnowledge','ApplicantKnowledgeAddUpdate','ApplicantKnowledgeModal')" class="ApplicantProfileIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABQklEQVRIidWVT0rDQBSHP6/QlbdQSaqoCU2VEhT/lKL36KI3yg16E7voypUFa0UhoPu6mF8gxkw6Q+OiAwNDXub73rxkZmCH2j2wUB+2DX8AXoEQ6GrcmmQELIF3INGzEHhpAz4U/ACYAN+S/BFcY2q39uyfwJGgK0lW1JRoAZx5ZH4DvAFBCZ5oJUvgsTph7QFPBT8GIsEvgENlPqqb5CpIBTypZB5gymX9c1wEAwFPK/AuZkWNjE2CWMAev8sSYGp+t42gACYVeCj4rUuStmAH+FJ8WhKda5w6JmkNjoEM2AdySYpyDRwZjcG5gEgyk+jSg2ENxhLsaZwBH0DfM0lrMAOeJJljytXxZDQGnyWJa2J1Z1fuK2hq5bOr2HS9NgXF+xFmF9u+y1YCZziYJUeego1lKbcrzA3ketHkPvB/bT9xHYAQthVLFgAAAABJRU5ErkJggg==">
+                    <img onclick="deleteEntity(@item.Id,'RemoveApplicantKnowledge','Knowledge','ApplicantKnowledgeListDiv','ApplicantKnowledgeModal')" class="ApplicantProfileIcon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAt0lEQVRYhe2XUQqEMAxEBxEPJXo+67l0j6LX2P2JWGqrTbatoHkQhJQmwwQ0AgqfBsAIYAXwpVgAGDrLjrEau2FKCFioWWvlOuxOJMFnszRE4zmzWRqs8fhsliIaz6Y6FcF6dcTFrFSB/Jyh18S9kGoMp3VCDhSDI+CDo42xORGudT4rY3LPGYEKUAEqQAVk4WofsJlxfKXG5kTc/jle6dn90bx3arFIuRkPEgENidg25GL/BO/iBw2XhNDZRIpPAAAAAElFTkSuQmCC">
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+

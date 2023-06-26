@@ -1,0 +1,44 @@
+﻿#top_employers {
+    background-color: #dddddd;
+    margin: auto;
+    margin-top: -10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.employer_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 15%;
+    background: white;
+    margin: 1px;
+    flex: auto;
+    text-align: center;
+    padding: 20px;
+    min-width: 200px;
+    height: 100px;
+}
+
+.employer_container div .item {
+    background: white;
+    padding: 10px;
+    vertical-align: middle;
+    border-right: 2px solid gray;
+}
+
+@media screen and (max-width: 480px) {
+    .item {
+        width: 50%;
+        background: white;
+        margin: 1px;
+        flex: auto;
+        text-align: center;
+        padding: 25px;
+        min-width: 200px;
+        height: 140px;
+    }
+}

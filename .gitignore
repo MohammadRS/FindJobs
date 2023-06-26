@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/*/bin/
+/*/obj/
+/FindJobs.Web/wwwroot/Files/*
+/FindJobs.WebApi/wwwroot/Files/*
+/FindJobs.Web/GPUCache
+/FindJobs.sln.DotSettings.user

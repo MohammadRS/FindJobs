@@ -1,0 +1,193 @@
+﻿@using FindJobs.Domain.Dtos;
+@model ApplicantDto
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width" name="viewport" />
+    <!--[if !mso]><!-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <!--<![endif]-->
+    <title></title>
+    <!--[if !mso]><!-->
+    <!--<![endif]-->
+    <style type="text/css">
+        .p-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .p-image {
+            width: 5rem;
+            border-radius: 136px;
+            margin: 10px 3px !important;
+            height: 5rem;
+            object-fit: cover;
+            border: 0px;
+        }
+
+        .p-info {
+            display: block;
+            padding: 10px;
+        }
+
+        .p-flex-row {
+            flex-direction: row;
+            flex-basis: 15%;
+            margin-left: 20px;
+        }
+
+        .p-flex-coulmn {
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .p-hr {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .p-table {
+            max-width: 100%;
+            overflow-x: auto;
+            min-width: 40%;
+            border-spacing: 20px;
+        }
+
+        .p-header-text {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="p-container">
+        <div class="p-flex-row">
+            <img src="@Model.ApplicantImage" alt="Applicant-Image" class="p-image" />
+        </div>
+        <div class="p-hr">
+            <hr />
+        </div>
+
+        <div class="p-flex-coulmn">
+            <h3>@Res.Cv.Personal</h3>
+            <div class="p-info">
+                <table class="p-table">
+                    <tr>
+                        <td class="p-header-text">@Res.Cv.FullName</td>
+                        <td>@Model.FirstName @Model.LastName</td>
+                    </tr>
+                    <tr>
+                        <td class="p-header-text">@Res.Cv.Address</td>
+                        <td>@Model.CountryName,@Model.CityName </td>
+                    </tr>
+                    <tr>
+                        <td class="p-header-text">@Res.Cv.PhoneNumber</td>
+                        <td>@Model.Phone</td>
+                    </tr>
+                    <tr>
+                        <td class="p-header-text">@Res.Cv.Email</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+      
+        @if (Model.ApplicantEducations.Count > 0 && Model != null)
+        {
+            <div class="p-flex-coulmn">
+                <h3>@Res.Cv.Education</h3>
+                <table class="p-table">
+                    @foreach (var item in Model.ApplicantEducations)
+                    {
+                        <tr>
+                            <td class="p-header-text"> @item.StartEducation - @item.EndEducation</td>
+                            <td>@item.InstituteName <br /> @item.CourseName <br> @item.EducationLevel</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        <div class="p-hr">
+            <hr />
+        </div>
+
+        @if (Model.ApplicantWorkExperiences.Count > 0 && Model != null)
+        {
+            <div class="p-flex-coulmn">
+                <h3>@Res.Cv.WorkExperincees</h3>
+                <table class="p-table">
+                    @foreach (var item in Model.ApplicantWorkExperiences)
+                    {
+                        <tr>
+                            <td class="p-header-text"> @item.StartWork - @item.EndWork</td>
+                            <td>
+                                item.JobTitle <br /> @item.JobPosition <br>
+
+                                @if (item.IsCurrentlyWorking)
+                                {
+                                    <p>@Res.Cv.StillWokring</p>
+                                }
+                                else
+                                {
+                                    <p>@Res.Cv.notemployed</p>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+        }
+        <div class="p-hr">
+            <hr />
+        </div>
+        @if (Model.ApplicantKnowledges.Count > 0 && Model != null)
+        {
+            <div class="p-flex-coulmn">
+                <h3>@Res.Cv.Knowledges</h3>
+                <div class="p-info">
+                    <table class="p-table">
+                        @foreach (var item in Model.ApplicantKnowledges)
+                        {
+                            <tr>
+                                <td class="p-header-text">>@item.KnowledgeName</td>
+                                <td>@item.KnowledgeLevel</td>
+                            </tr>
+                        }
+
+
+                    </table>
+                </div>
+            </div>
+        }
+        <div class="p-hr">
+            <hr />
+        </div>
+        @if (Model.ApplicantLanguages.Count > 0 && Model != null)
+        {
+
+            <div class="p-flex-coulmn">
+                <h3>@Res.Cv.Languages</h3>
+                <div class="p-info">
+                    <table class="p-table">
+                        @foreach (var item in Model.ApplicantLanguages)
+                        {
+                            <tr>
+                                <td class="p-header-text">@item.LanguageName</td>
+                                <td>@item.LanguageLevel</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>

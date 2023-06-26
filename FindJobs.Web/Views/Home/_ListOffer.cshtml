@@ -1,0 +1,113 @@
+﻿@using FindJobs.Domain.Dtos
+@model PaginationDto<OfferDto>
+
+
+
+@if (Model.Data.Count() == 0)
+{
+    <section class="profile-offer ">
+        <div class="company-header-card sm-margin-top-company">
+            <div class="left-box-company">
+                <div class="box sm-mg-left-company">
+                    <h4 class="text-warning">  @Res.CompanyOffer.ThereIsNoOfferRegisteredForyourJobCategoriesOrLocation</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@foreach (var item in Model.Data)
+{
+
+    <section class="profile-offer">
+        <div class="company-header-card sm-margin-top-company">
+            <div class="left-box-company">
+                @{
+                    var companyImage = item.CompanyDto.Logo ?? @FindJobs.Domain.Constants.Images.MaleImage;
+                }
+
+                <input type="image" id="applicant-image" src="@companyImage" alt="Applicant-Image" class="applicant-profile-image" />
+
+
+
+                <div class="box sm-mg-left-company">
+                    <div style="display:flex;flex-direction:row">
+                        <h3><a asp-controller="Home" asp-route-id="@item.Id" asp-action="Preview">@Res.CompanyOffer.Job : @item.JobTitle</a></h3>
+                        
+                    </div>
+                    @{
+                        var offerJobCategoryCount = item.OfferJobCategoryDtos.Count - 1;
+                    }
+
+                    @for (int i = 0; i < item.OfferJobCategoryDtos.Count; i++)
+                    {
+
+                        <span>@item.OfferJobCategoryDtos[i].JobCategoryDto.Jobcategory </span>
+                        if (i < offerJobCategoryCount)
+                        {
+                            <span>,</span>
+                        }
+
+                    }
+
+                    <div class="row-left-items-company">
+                        <h4>@Res.ApplicantProfile.Skills</h4>
+                        <div class="row-left-items-company">
+                            @foreach (var result in item.OfferKnowledgeDtos.Distinct())
+                            {
+                                <span>@result.KnowledgeDto.Name </span>
+                                @if(item.OfferKnowledgeDtos.Last() != result)
+                                {
+                                    <span>,</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-right-company">
+
+                <div class="applicant-search">
+                    <div class="row-items-company">
+                        <table class="icon-search-table-company">
+                            <tr>
+                                <td>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAA20lEQVRoge2ayw6DIBBFL00/rrva/9/ZwG/YjRjSYosI4XZyT8JCHgOHiRMXAuXcADwBLGub175W9I6/MSebpJv9S/yNGHzveWj8S8ODDCUVeQAI+Ezvr5vZm3+0HY0fAEy5Bd8kchu2EjgT38fJ7m1hCXFNy/fjTHwHGHpHajLChq2MSIQNMyKCDZVfNiTChkTYuFascZm+peNYEWYyIhE2zIjoE4UNlV82JMKGGRGVXzZUftmQCBtmRFR+2ZAIGxJhIxUJw05Rj891TutArz8aWjcP4N7gMkQXXjdxqG1L7Y6IAAAAAElFTkSuQmCC
+                                                                            " alt="RegisterDate" />
+                                </td>
+                                <td><label>@item.ExprationDate.ToString("yyyy-MM-dd HH:mm")</label></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABcUlEQVRIieWVvUoDQRSFP0wdElBBUbBQe9HKwiYGW7HyB22D7yCE+ACCTyDYSsBCVIKNFlpFn0Ct1E6MjT8s2VjMWWdJdtf9sREPDJO998w5d+/sTOA/YADYBq6BV40mUFMuE5Yk2AkZLWAxi3hbQkdACchrzAPHyrXTmAz6Kt+K4FXFeQH6kxjUsJV7KAIVjYIvfiJuNYnBjRaVfOL32N7f+UzKijWTGHjtyet5k94NrihXwG54D/pCDBzNOc1uAMft4jgBnFBcqaqynouYtnjV32JbtKDYZZBQ2Bucal7W3AKmsZs8g2kjwErXmliYwLTgAxiJ4I0Cn+KOJzEAOMS8+k4EZ1ecelJxMG1wgbeQ6iaBd8xJnkpjALCPqbARkDtTbi+tOMAw5hroAKu++Dr2ihjKYgCw4RMbw2zss2JrWcU91CV4Dlzo98FviYP5Y3nCHrRHEt6ecTCL+eYdYC7uotzPlG88YE50g5Tf/d/EF4evafuLIfTaAAAAAElFTkSuQmCC
+                                                        " alt="Location" />
+                                </td>
+                                <td>@item.CompanyDto.CityDto.Name</td>
+                            </tr>
+                            @if (item.IsWorkingFromHome)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAt0lEQVR4nO1TWwrDMAzTJWKWI27HXT96HI9BAiXEWWp76WAWGEqoJfkFBGygEpcgAXgC2AHkq8S5xFITBGArwlvzTSsr3wHcOm95pXiFZKKO6KviIxMuBujEnNt/zQbSROWjHJMBMmz4MZc115EUlX/iyCvF1SbI2jqBk2dGmbyWp4Mjp9iJh+f5CAYq91uri3vTshGZFKMcKhrTjr0NTIMVZGGAYwSIJYT/GfKJe9fk/K6BwP/gBTVhynwIgmqrAAAAAElFTkSuQmCC" />
+                                    </td>
+                                    <td><label>@Res.CompanyOffer.Remote</label></td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABTUlEQVRIid3VvS4EURjG8R+b3RCKLRQqiWiEwhUIhZ4VRKnbIEErGp1wDUrcgF7lBnwkvhNRSEQhgkRlFXNkJ7EZM7ur4Ekmk5nznuf/nidnzvDfVcAM9nCOV7zhJrybRT5Wv57FfBLXqPxw3aEUzCtpjFuxFTM4whIG0IF29GMRxzWAP2ozFL6jHIBJzRxkAZRi5iMpmvmKJRWgoJp5OYV5Zs2oZp4USybFjUrhvo2PZgHiuhCtYOA3zOElADqbadq0rIOKoiafagHuw72nAUCXKInbWoO7gb7cAABy6K01MB0Ax+qLLi/a6rmkgqsAma8DsBbm7icVTageFaMZAcN4SDNvIwZZkLBk0apXMRSei2k6aY1BKjjBCgZF30gRfaF2LtRcoS2NeVzjuPT9tKzgES2if8MhxrKafymPKezgTLTHn3GK7npN/5Y+AXAAXFnQzwu6AAAAAElFTkSuQmCC
+
+                                                                             " alt="Language" />
+                                </td>
+                                <td><label>@item.RegisterDate.ToString("yyyy-MM-dd HH:mm")</label></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+}

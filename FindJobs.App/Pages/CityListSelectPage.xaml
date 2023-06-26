@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                 xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+                 xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources" 
+                 xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                 x:Class="FindJobs.App.Pages.CityListSelectPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="30,120,30,30"  >
+            <Grid RowDefinitions="10,*">
+
+                <StackLayout Grid.Row="1">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="10,10,10,10"     >
+                        <StackLayout Orientation="Horizontal" Margin="10">
+
+                            <Entry WidthRequest="200" x:Name="serchCity" Placeholder="{x:Static res:Messages.PleaseTypeYourCity}" HorizontalOptions="StartAndExpand" BackgroundColor="White" TextChanged="serchCity_TextChanged" />
+                            <ffimageloadingsvg:SvgCachedImage Grid.Row="0"
+                                                          Source="{re:AppResources SharedIcons.close.svg}"
+                                                          WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Close_Clicked"></TapGestureRecognizer>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                        </StackLayout>
+                        <CollectionView x:Name="CollectionCity" SelectionMode="Single" SelectionChanged="CollectionCity_SelectionChanged" Scrolled="CollectionCity_Scrolled"  Margin="0,0,0,0"  VerticalOptions="Center" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label TextColor="Black" Text="{Binding Name}" Padding="5"  Grid.Column="0"  Grid.Row="0" HorizontalOptions="StartAndExpand" />
+                                    </Grid>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <StackLayout x:Name="stackIndicator" Orientation="Vertical" HeightRequest="150" WidthRequest="150" IsVisible="false">
+                <ActivityIndicator x:Name="ActivityIndecator" IsRunning="True" Margin="0,50,0,0" Color="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

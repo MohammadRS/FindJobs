@@ -1,0 +1,154 @@
+﻿.multiselect-dropdown {
+    display: inline-block;
+    margin: 9px 10px;
+    font-size: 17px;
+    padding: 8px;
+    z-index: 5000;
+    position: relative;
+    outline: 0;
+    border-radius: 7px;
+    border: solid 1px white;
+    background: rgba(256,256,256,0.2);
+    width: calc(100% - 20px);
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    color: black;
+    text-align:left;
+    padding-left: 50px;
+    max-width: 420px;
+    background-image: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJiSURBVHjavNdPSBZBGMfxfd/SLAlDDbJS+gMRKQaF0alDxyiiTC92SIKiMISog4cOXbx06RRBQZeEiP5SUARFVCCiYSFmHUShP0KZ2UEFsXf7DswLy8Pszsy+vj7wObzjzu5vd5533zEThmGQUBU4iANowFqUYgYT6MdDvMFCkKZUAIOV6MJE6FbvcSTmXIlMg9swEKarW1hVSIAmj7uOqxdY7RogE+mBrXiLGsNKfcBTDOv1V72wB4ew3nC8OvYwcj498NxwN9/RimzMHVSgGwuGuRd8lqDZcIJB1Do+yqOYFfN/YYNrgFdi8qRuRp+OPmm4iS6XANsxLyZeTPOVMtzIgG1OljbYi5JIW0yjJ0hXN8TnemxOmqACNIqxj/iRMkAv5iKfy7DFFmCjGBsP0tdPTIqxaluArBjLBYVV6HOwuvg3MVZXwMUrUSXGpmwBhsTYTttjSyj1diyPfJ7HmC1AH/6JNWtJGaBdfP6MUZdX8Tvx/f3q8hYTjhleRJdd34Rthsmvscbx4vvwW8yfxibXABl9QVkj+uRxJyjBOcwY5l7y/Tmu11urSrFKqj9e4hFG9ItGdXoTWrEjZnVv44ToL+uWbD/+hItXPVjmuyXbjS+LGOIOVvgEyG80ruCv40WGcN3wq5qv+yj1CZBXo5vsGcZ1INVwU/ikH3Gz3kWr4zsTQt7TTesVQG7V16EO1aaTaecTQtyVTyJIufGwOZMQ4gnKih3AFuJxvjGLGUDpSAjxAMuLHUA5i1xMiM5sUPy6hlMxf9u1FAFU3cRpw3jfUixB1HGM6v87rqoe+C/AACL7kORg5RkNAAAAAElFTkSuQmCC');
+}
+
+    .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder {
+        margin-right: 0.5em;
+        margin-bottom: 2px;
+        padding: 1px 0;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.multiselect-dropdown span.optext {
+    background-color: lightgray;
+    padding: 1px 0.75em;
+}
+
+    .multiselect-dropdown span.optext .optdel {
+        float: right;
+        margin: 0 -6px 1px 5px;
+        font-size: 0.7em;
+        margin-top: 2px;
+        cursor: pointer;
+        color: #666;
+    }
+
+        .multiselect-dropdown span.optext .optdel:hover {
+            color: #c66;
+        }
+
+.multiselect-dropdown span.placeholder {
+    color: #ced4da;
+}
+
+.multiselect-dropdown-list-wrapper {
+    box-shadow: gray 0 3px 8px;
+    z-index: 100;
+    padding: 2px;
+    border-radius: 4px;
+    border: solid 1px #ced4da;
+    display: none;
+    margin: -1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+   
+}
+
+    .multiselect-dropdown-list-wrapper .multiselect-dropdown-search {
+        margin-bottom: 5px;
+    }
+
+.multiselect-dropdown-list {
+    padding: 2px;
+    height: 15rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align:left;
+}
+multiselect-dropdown-list div{
+    text-align:left;
+}
+
+.multiselect-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+    .multiselect-dropdown-list::-webkit-scrollbar-thumb {
+        background-color: #bec4ca;
+        border-radius: 3px;
+    }
+
+    .multiselect-dropdown-list div {
+        padding: 5px;
+    }
+
+    .multiselect-dropdown-list input {
+        height: 1.15em;
+        width: 1.15em;
+        margin-right: 0.35em;
+    }
+
+    .multiselect-dropdown-list div.checked {
+    }
+
+    .multiselect-dropdown-list div:hover {
+        background-color: #ced4da;
+    }
+
+.multiselect-dropdown span.maxselected {
+    width: 100%;
+}
+
+.multiselect-dropdown-all-selector {
+    border-bottom: solid 1px #999;
+}
+.offer_outer_dropdown .multiselect-dropdown {
+    display: inline-block !important;
+    padding: 2px 5px 0px 5px !important;
+    border-radius: 4px !important;
+    border: solid 1px #ced4da !important;
+    background-color: white !important;
+    position: relative !important;
+    width: 68vw !important;
+    min-height: 100px !important;
+    max-width: 456px !important;
+    text-align: left !important;
+    padding: 10px 7px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    place-content: start !important;
+    font-size: 17px !important;
+    color: black !important;
+    text-align: left !important;
+    margin-left: -1px
+}
+
+.offer_outer_dropdown .multiselect-dropdown-list-wrapper{
+    position:relative;
+}

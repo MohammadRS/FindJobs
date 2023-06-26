@@ -1,0 +1,161 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  NugetPackages: $(Pipeline.Workspace)/.nuget/packages
+  webProjectName: 'FindJobs.Web'
+  ftpServer: 'findjobs.dev.dotnek.com'
+  ftpUsername: 'findjobs.dev.dotnek.com'
+  ftpPassword: 'FND%$jobs1'
+  ftpEscapedPassword: $[replace(replace(replace(replace(replace(variables['ftpPassword'], '&', '^&'), '|', '^|'), '<', '^<'), '>', '^>'), '%', '%%')]
+  webApiProjectName: $(webProjectName)Api
+  webApiFtpServer: api.$(ftpServer)
+  webApiFtpUsername: api.$(ftpUsername)
+  webApiFtpPassword: 'FND%$jobs1'
+  webApiFtpEscapedPassword: $[replace(replace(replace(replace(replace(variables['webApiFtpPassword'], '&', '^&'), '|', '^|'), '<', '^<'), '>', '^>'), '%', '%%')]
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: Adding Nuget Installer
+
+- task: PowerShell@2
+  displayName: 'Create Cache Directory'
+  inputs:
+    targetType: 'inline'
+    script: 'New-Item -ItemType directory -Path $(NugetPackages)'
+
+- task: Cache@2
+  displayName: 'NuGet Cache'
+  inputs:
+    key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+    path: '$(NugetPackages)'
+    cacheHitVar: 'CACHE_RESTORED'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Restore'
+  #condition: ne(variables.CACHE_RESTORED, false)
+  inputs:
+    command: 'restore'
+    restoreSolution: '$(solution)'
+    feedsToUse: 'config'
+
+
+- task: VSTest@2
+  displayName: Run All Tests
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+        
+- task: DotNetCoreCLI@2
+  displayName: Publish Web Projects
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '*Web*/*.csproj'
+    arguments: '--output $(build.artifactStagingDirectory)/publish'
+    zipAfterPublish: false
+
+- task: CmdLine@2
+  displayName: Create app_offline.htm locally
+  inputs:
+    script: 'echo ^<center^>Updating Website....^</center^> > app_offline.htm'
+    workingDirectory: '$(build.artifactStagingDirectory)'
+
+- task: FtpUpload@2
+  displayName: Upload app_offline.htm to web project
+  retryCountOnTaskFailure: 10
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://$(ftpServer)'
+    username: '$(ftpUsername)'
+    password: '$(ftpPassword)'
+    rootDirectory: '$(build.artifactStagingDirectory)'
+    filePatterns: 'app_offline.htm'
+    remoteDirectory: '/'
+    clean: false
+    cleanContents: false
+    preservePaths: true
+    trustSSL: false
+
+- task: FtpUpload@2
+  displayName: Upload app_offline.htm to web api project
+  retryCountOnTaskFailure: 10
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://$(webApiFtpServer)'
+    username: '$(webApiFtpUsername)'
+    password: '$(webApiFtpPassword)'
+    rootDirectory: '$(build.artifactStagingDirectory)'
+    filePatterns: 'app_offline.htm'
+    remoteDirectory: '/'
+    clean: false
+    cleanContents: false
+    preservePaths: true
+    trustSSL: false
+
+- task: FtpUpload@2
+  displayName: Upload web project files
+  retryCountOnTaskFailure: 10
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://$(ftpServer)'
+    username: '$(ftpUsername)'
+    password: '$(ftpPassword)'
+    rootDirectory: '$(build.artifactStagingDirectory)/publish/$(webProjectName)'
+    filePatterns: '**'
+    remoteDirectory: '/'
+    clean: false
+    cleanContents: false
+    preservePaths: true
+    trustSSL: false
+
+- task: FtpUpload@2
+  displayName: Upload web api project files
+  retryCountOnTaskFailure: 10
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://$(WebApiFtpServer)'
+    username: '$(WebApiFtpUsername)'
+    password: '$(WebApiFtpPassword)'
+    rootDirectory: '$(build.artifactStagingDirectory)/publish/$(webApiProjectName)'
+    filePatterns: '**'
+    remoteDirectory: '/'
+    clean: false
+    cleanContents: false
+    preservePaths: true
+    trustSSL: false
+
+
+- task: CmdLine@2
+  displayName: Delete app_offline.htm from web project
+  retryCountOnTaskFailure: 10
+  inputs:
+    script: |
+      echo user $(ftpUsername) $(ftpEscapedPassword) > delete_app_offline.txt
+      echo delete app_offline.htm >> delete_app_offline.txt
+      echo bye >> delete_app_offline.txt
+      ftp -s:delete_app_offline.txt -n $(ftpServer)
+    workingDirectory: '$(build.artifactStagingDirectory)'
+
+    
+- task: CmdLine@2
+  displayName: Delete app_offline.htm from web api project
+  retryCountOnTaskFailure: 10
+  inputs:
+    script: |
+      echo user $(WebApiFtpUsername) $(webApiFtpEscapedPassword) > delete_app_offline2.txt
+      echo delete app_offline.htm >> delete_app_offline2.txt
+      echo bye >> delete_app_offline2.txt
+      ftp -s:delete_app_offline2.txt -n $(WebApiFtpServer)
+    workingDirectory: '$(build.artifactStagingDirectory)'

@@ -1,0 +1,135 @@
+﻿input[type=button]:disabled {
+    background-color: silver !important;
+}
+
+input[type=text]:disabled {
+    background-color: silver !important;
+}
+
+input[type=text]:disabled::placeholder {
+    color: white;
+}
+
+button:disabled,
+button[disabled] {
+    background-color: silver !important;
+}
+
+header {
+    background-image: linear-gradient(to bottom right,#$0$ 0%,#$1$ 100%) !important;
+    min-height: 300px;
+    height: 50vh !important;
+}
+
+#dotted {
+    height: 50vh;
+    margin-bottom: -50vh;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+.middlecontainer {
+    top: -100px;
+}
+
+/*home page boddy*/
+/*///////////////////////////////////////////////////*/
+
+.wrapper{
+    width:100%;
+    margin:auto;
+}
+
+
+.bg-green {
+    background-color: #a2c4c9;
+}
+
+.bg-Blue {
+    background-color: #9fc5f8;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.color-gray {
+    color: #938989;
+}
+
+.color-dark {
+    color: #3c3737;
+}
+
+.box-shadow-2px {
+    box-shadow: 2px 2px 5px gray;
+}
+.m-1{
+    margin:12px 0;
+}
+.title-lg {
+    font-size: 35px;
+    color: black;
+}
+
+.title-sm {
+    font-size: 25px;
+    color: black;
+}
+
+.img {
+    width: 60px;
+    margin: auto;
+}
+.columns-3 {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2rem;
+}
+.columns-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin: auto;
+}
+p {
+    padding:0 1rem;
+}
+.text-center {
+    text-align: center;
+}
+.graph {
+    width: 70%;
+    margin:auto;
+}
+/* animation */
+.fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+}
+
+.appear {
+    opacity: 1;
+}
+
+.from-left {
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.from-right {
+    transform: translateX(+50%);
+    opacity: 0;
+}
+
+.from-left, .from-right {
+    transition: opacity 250ms ease-in, transform 250ms ease-in;
+}
+
+    .from-left.appear, .from-right.appear {
+        transform: translateX(0);
+        opacity: 1;   
+
+    } 

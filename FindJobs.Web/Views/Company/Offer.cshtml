@@ -1,0 +1,966 @@
+﻿@using FindJobs.Domain.ViewModels
+@using FindJobs.Web.Controllers;
+@using Microsoft.Extensions.Configuration
+@model JobOfferViewModel
+@inject IConfiguration Configuration
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/company/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/wizard-steps/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/mobile-wizard-steps/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link href="~/css/internal/multiselect-dropdown-layout.css" rel="stylesheet" />
+}
+    @functions {
+    string getCurrency(string code)
+    {
+        var cur = Model.CurrencyDtos.FirstOrDefault(x => x.Code == code);
+        return cur.Code;
+    }
+}
+
+
+<div class="container">
+    <nav class="nav">
+        <a class="a">
+            <span class="span">
+                1<br>
+                @Res.CompanyOffer.Complete_Profile
+            </span>
+        </a>
+        <a class="a" id="lnkOffer">
+            <span class="span" onclick="goToPage('offer')">
+                2<br>
+                @Res.CompanyOffer.Add_Offer
+            </span>
+        </a>
+        <a class="a" id="lnkPub">
+            <span class="span" onclick="goToPage('publication')">
+                3<br>
+                @Res.CompanyOffer.Publication
+            </span>
+        </a>
+        <a class="a" id="lnkRev">
+            <span class="span" onclick="goToPage('review')">
+                4<br>
+                @Res.CompanyOffer.Review
+            </span>
+        </a>
+
+        <a class="a" id="lnkPay">
+            <span class="span" onclick="goToPage('payment')">
+                5<br>
+                @Res.CompanyOffer.Payment
+            </span>
+        </a>
+    </nav>
+
+    <nav class="mobile-nav">
+        <div class="line_box" style="margin: 40px 0 40px 0;">
+            <div class="text_circle done" id="c_profile">
+                <div class="circle">
+                    <h4>1.@Res.CompanyOffer.Complete_Profile</h4>
+                </div>
+                <a href="javascript:void(0)" class="timeline-h"><span data-toggle="popover" data-trigger="hover" data-placement="top">1</span></a>
+            </div>
+            <div class="text_circle done" id="c_offer">
+                <div class="circle">
+                    <h4>2.@Res.CompanyOffer.Add_Offer</h4>
+                </div>
+                <a href="javascript:void(0)" class="timeline-h"><span data-toggle="popover" data-trigger="hover" data-placement="top">2</span></a>
+            </div>
+            <div class="text_circle" id="c_pub">
+                <div class="circle">
+                    <h4>3.@Res.CompanyOffer.Publication</h4>
+                </div>
+                <a href="javascript:void(0)" class="timeline-h"><span data-toggle="popover" data-trigger="hover" data-placement="top">3</span></a>
+            </div>
+            <div class="text_circle" id="c_rev">
+                <div class="circle">
+                    <h4>4.@Res.CompanyOffer.Review</h4>
+                </div>
+                <a href="javascript:void(0)" class="timeline-h"><span data-toggle="popover" data-trigger="hover" data-placement="top">4</span></a>
+            </div>
+            <div class="text_circle" id="c_pay">
+                <div class="circle">
+                    <h4>5.@Res.CompanyOffer.Payment</h4>
+                </div>
+                <a href="javascript:void(0)" class="timeline-h"><span data-toggle="popover" data-trigger="hover" data-placement="top">5</span></a>
+            </div>
+        </div>
+
+    </nav>
+
+    <form novalidate id="offerForm">
+        <div id="company-offer">
+
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.PositionDescription</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            @********************************* /Position Description*******************************@
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box job-title">
+                                            <label> @Res.CompanyOffer.JobTitle</label>
+
+                                            <input asp-for="OfferDto.JobTitle" class="input" required type="text" />
+                                            <span id="jobTitleValidate" class="not-valid">@Res.CompanyOffer.ThisFieldIsRequired</span>
+                                            <input type="hidden" id="companyName" value="@Model.CompanyDto.Name" />
+                                            <input type="hidden" id="numberOfEmployees" value="@Model.CompanyDto.NumberOfEmployee" />
+                                            <input type="hidden" id="firstName" value="@Model.CompanyDto.FirstName" />
+                                            <input type="hidden" id="lastName" value="@Model.CompanyDto.LastName" />
+                                            <input type="hidden" id="phone" value="@Model.CompanyDto.ContactPersonPhone" />
+                                            <input type="hidden" id="contactPersonEmail" value="@Model.CompanyDto.ContactPersonEmail" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box ">
+                                            <label>@Res.CompanyOffer.JobPosition:</label>
+                                              <div class="offer_outer_dropdown">
+                                            <select class="selectMulti" id="JobCategories" asp-for="OfferDto.JobCategories" multiple multiselect-search="true" multiselect-select-all="false" multiselect-max-items="10">
+                                                @foreach (var item in Model.JobCategories.OrderBy(x=>x.Jobcategory))
+                                                {
+                                                    <option value="@item.Id">@item.Jobcategory</option>
+                                                }
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.JobDescription:</label>
+                                            <textarea asp-for="OfferDto.JobDescription" type="text" placeholder="@Res.CompanyOffer.JobDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.Benifits:</label>
+                                            <textarea type="text" asp-for="OfferDto.Benifits" placeholder="@Res.CompanyOffer.Benifits"></textarea>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <h4>@Res.CompanyOffer.Typeofemployment:</h4>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsFullTime" />
+                                        @Res.CompanyOffer.FullTime
+                                    </label>
+
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsPartTime" />
+                                        @Res.CompanyOffer.PartTime
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.Agreement" checked />
+                                        @Res.CompanyOffer.Agreement
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.Freelancer" />
+                                        @Res.CompanyOffer.Freelancer
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsInternShip" />
+                                        @Res.CompanyOffer.InternShip
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <h4>@Res.CompanyOffer.placeofwork:</h4>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsWorkingFromHome" />
+                                        @Res.CompanyOffer.WorkingFromHome
+                                    </label>
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsPartialWorkFromHome" />
+                                        @Res.CompanyOffer.PartialWorkFromHome
+                                    </label>
+
+                                </td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsWorkAtTheRegularWorkPlace" />
+                                        @Res.CompanyOffer.WorkAtTheRegularWorkPlace
+                                    </label>
+                                    <input type="text" asp-for="OfferDto.WorkPlaceAddress" />
+                                </td>
+
+
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td><h4>@Res.CompanyOffer.TravelRequirement</h4></td>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" asp-for="OfferDto.IsTravelRequirement" />
+                                        @Res.CompanyOffer.TravelRequirement
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.RequiredJuniorKnowledge:</label>
+                                            <div class="offer_outer_dropdown">
+                                            <select id="RequiredJuniorKnowledges" multiple asp-for="OfferDto.RequiredJuniorKnowledges" multiselect-search="true" multiselect-select-all="false" multiselect-max-items="10">
+                                                @foreach (var item in Model.KnowledgeDtos.OrderBy(x=>x.Name))
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.RequiredSeniorknowledge:</label>
+                                            <div class="offer_outer_dropdown">
+                                                <div class="offer_outer_dropdown">
+                                                <select id="RequiredSeniorKnowledges" asp-for="OfferDto.RequiredSeniorKnowledges" multiple multiselect-search="true" asp-for="OfferDto.RequiredSeniorKnowledges" multiselect-select-all="false" multiselect-max-items="10">
+                                                    @foreach (var item in Model.KnowledgeDtos.OrderBy(x=>x.Name))
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.Advantage_OptionalKnowledge:</label>
+                                            <div class="offer_outer_dropdown">
+                                            <select id="OptionalKnowledges" multiple multiselect-search="true" asp-for="OfferDto.OptionalKnowledges" multiselect-select-all="false" multiselect-max-items="10">
+                                                @foreach (var item in Model.KnowledgeDtos.OrderBy(x=>x.Name))
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </details>
+            </div>
+            @*************************************Wage Conditaion***************************************@
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.WageConditions</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box">
+                                            <label> @Res.CompanyOffer.BasicSalary</label>
+
+                                            <input  class="input" placeholder="@Res.CompanyOffer.BasicSalary" asp-for="OfferDto.BasicSalary" required type="number" />
+                                            <span id="basicvalidation" style="display:none;color:red">@Res.CompanyOffer.BasicPriceValidation</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box">
+                                            <label> @Res.CompanyOffer.UpperLimit</label>
+                                            <input  class="input" asp-for="OfferDto.UpperLimit" placeholder="@Res.CompanyOffer.UpperLimit" required type="number" />
+                                            <span id="uppervalidation" style="display:none;color:red">@Res.CompanyOffer.BasicPriceValidation</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box">
+                                            <label> @Res.CompanyOffer.Currency</label>
+
+                                            <select asp-for="OfferDto.CurrencyCode">
+                                                @foreach (var item in Model.CurrencyDtos.OrderByDescending(x => x.Code))
+                                                {
+                                                    <option value="@item.Code">@item.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box">
+                                            <label> @Res.CompanyOffer.Per</label>
+                                            <select asp-for="OfferDto.PerType">
+                                                <option value="0">Year</option>
+                                                <option value="1">Month</option>
+                                                <option value="2">Day</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.DoShowApplicantsSalary" />
+                                                @Res.CompanyOffer.ShowApplicantsSalary
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </details>
+            </div>
+
+
+
+            @*************************************KnowLedage And Requirements***************************************@
+
+
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.KnowLedageAndRequirements</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+                                <td class="orderBox">
+                                    <h4 class="educationOffer">@Res.CompanyOffer.Education:</h4>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasPrimaryEducation" />
+                                                @Res.CompanyOffer.Primary_education
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasHighSchoolStudent" />
+                                                @Res.CompanyOffer.Highschoollstudent
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasSecondarySchoolWithGraduation" />
+                                                @Res.CompanyOffer.Secondaryschoollwithgraduation
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasSecondarySchoolWithOutGraduation" />
+                                                @Res.CompanyOffer.Secondaryschoollwithoutgraduation
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasPostSecondary" />
+                                                @Res.CompanyOffer.PostSecondary
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasUniversityStudent" />
+                                                @Res.CompanyOffer.UniversityStudent
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasHigherEducationLevel1" />
+                                                @Res.CompanyOffer.HighereducationLevel1
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasHigherEducationLevel2" />
+                                                @Res.CompanyOffer.HighereducationLevel2
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td class="orderBox">
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>
+                                                <input type="checkbox" asp-for="OfferDto.HasHigherEducationLevel3" />
+                                                @Res.CompanyOffer.HighereducationLevel3
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </details>
+            </div>
+
+            @*************************************SKILL***************************************@
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.LanguageSkills</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.RequiredLanguageSkills:</label>
+                                            <div class="offer_outer_dropdown">
+                                            <select id="LanguageSkillsRequireds" asp-for="OfferDto.LanguageSkillsRequireds" multiple multiselect-search="true" multiselect-select-all="false" multiselect-max-items="10">
+                                                @foreach (var item in Model.LanguageDtos.OrderBy(x=>x.Name))
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+
+                                <td>
+                                    <div class="profile-flex-container">
+
+                                        <div class="box">
+                                            <label>@Res.CompanyOffer.OptionalLanguageSkills:</label>
+                                            <div class="offer_outer_dropdown">
+                                            <select id="LanguageSkillsOptionals" asp-for="OfferDto.LanguageSkillsOptionals" multiple multiselect-search="true" multiselect-select-all="false" multiselect-max-items="10">
+                                                @foreach (var item in Model.LanguageDtos.OrderBy(x=>x.Name))
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </details>
+            </div>
+
+            @*************************************Adi***************************************@
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.Additional_section</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+
+                                <td>
+                                    <div class="box">
+                                        <label> @Res.CompanyOffer.DrivingLicence</label>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="box">
+                                        <label>
+                                            <input type="checkbox" asp-for="OfferDto.HasDriverLicenceA" />
+                                            @Res.CompanyOffer.A
+                                        </label>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="box">
+                                        <label>
+                                            <input type="checkbox" asp-for="OfferDto.HasDriverLicenceB" />
+                                            @Res.CompanyOffer.B
+                                        </label>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="box">
+                                        <label>
+                                            <input type="checkbox" asp-for="OfferDto.HasDriverLicenceC" />
+                                            @Res.CompanyOffer.C
+                                        </label>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="box">
+                                        <label>
+                                            <input type="checkbox" asp-for="OfferDto.HasDriverLicenceD" />
+                                            @Res.CompanyOffer.D
+                                        </label>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="box">
+                                        <label>
+                                            <input type="checkbox" asp-for="OfferDto.HasDriverLicenceE" />
+                                            @Res.CompanyOffer.E
+                                        </label>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </details>
+            </div>
+        </div>
+        @*************************************CompanyPublication***************************************@
+        <div id="company-publication">
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.CompanyPublication</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            @foreach (var item in Model.PackageDtos)
+                            {
+                                <tr class="companyProfiletable-custom-td">
+                                    <td>
+                                        @if(Model.PackageDtos.Last() == item)
+                                        {
+                                            <label>
+                                            <input type="radio" asp-for="OfferDto.PackageName" value="@item.PackageName" checked />
+                                            @item.PackageName
+                                        </label>
+                                        }
+                                        else
+                                        {
+                                        <label>
+                                            <input type="radio" asp-for="OfferDto.PackageName" value="@item.PackageName" />
+                                            @item.PackageName
+                                        </label>    
+                                        }
+                                        
+                                    </td>
+                                    <td>
+                                        <label>@item.Price </label>
+                                    </td>
+                                    <td>
+                                        <label>@getCurrency(@item.CurrencyCode) </label>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </details>
+            </div>
+        </div>
+        @*************************************ReView***************************************@
+        <div id="Review">
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.Review</summary>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <h4>
+                                                <span id="jobTitleSpan"></span>/<span id="positionSpan"></span>/<span id="companyNameSpan"></span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="companyProfiletable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="profile-flex-container">
+                                        <div class="box">
+                                            <table class="companyProfiletable bg-grey">
+                                                <tr class="companyProfiletable-custom-td">
+                                                    <td class="imageOfferTd">
+                                                        <div class="image-offer-page">
+                                                            <img style="height:50px;width:50px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACtElEQVRogeWazYuNURzHPzNoyCWJxmSKRAnlWelaWthosLOh/ANWLCw1kyZbbrqGBVsbJVlIibxLpCzIQiQ1eRu5V/cyXhbnPN1x5758z3PPOU/41K+m7u/5nu93nuc559znufCP0OdZbxEwAmwDEmA1sMR+NgW8BJ4A14DLwBfP4/fMEFAGqsAvsarAGWBtDn5nMQCMARX0AM31DThmtXJhGXCjg0HXugOsiJoA2AS87tF4q3pltaMwGCjEzDCDoUPMx1wCoUKkdZvA98xYhBBpjYcKMURvs5Nr1YE1IYKUI4ZIa8J3iAJmFY4dpGLH7kq/GGSnKmipAyeAoj2uYP8u2c9UFgI7HPq7chr9v/gG2NxBK7E9qt4pn0EeiIPWuoRISWyvonnPYw7eiYMed9AsiZqTXhJY6uKgWxw0i6JmzUsCi3oZuEwIBVHzqyKmzlpTDgZVvI6tin0S+zaIfS69H5UmNcgLsW+f2AewV+x77qDZlXH0GzMR9BL0CWTUYw72iIOmC2KnMK4L4i6fQZYDPxwGr2PWiZlblK00tiiqzndgsc8gAI8dDPiqm6o59WYHuOTQ64uLIUTXE/ds/ARWhQgC8ChikOsuxlwuLTBPBmNRDilewGwZQp+Nt8A8F2OuZ6QCnHU8JgsnMVNvUIbRd8NZ6jONJ/gyrmcEzKp8LsNxKiXC7LZbspIwz7g+AEtjhUgZ9WC8uQ5ETWBZgN+H2c9wnKl8sl8wqNZIZO9/0A88bGHKta7GNt6KBPP6LGuIKrAuuus2qN8gW9XBHPy2ZQB4inuI+8CcHPx2pAhMo4eoARtzcSpwFD3IoZw8SswFbtE9xBWybY+iMgy8p32IScxrvL+C3Zivqs0hpoHtOfrKxBFmBzmcq6OM9AHnaYS4gP9fI0WjgHnjdBe3Vw7/L78ByP0EVSkVHdcAAAAASUVORK5CYII=">
+                                                            <div>
+                                                                <div>
+                                                                    <div class="image-offer-text-title">  @Res.CompanyOffer.AddressOfWork </div>
+                                                                </div>
+                                                                <div id="addressOfWorkP"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="imageOfferTd">
+                                                        <div class="image-offer-page">
+                                                            <img style="height:50px;width:50px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAADwElEQVR4nO3dy4scRRwH8M+aaEggMYEwKjvrY0Hi86AoxEOI4k0QQRAvnvSgJxX8AxTESyAIevFxEk++EC+iGNSDiIqgCGqMyQZFjMRXUBHduI6HmhAPK1uzTnV19/w+0JelZurX9Z3ure6drSaEEEIIIYQQQgghzIq52gVM2VZchWtwBYbjbYAN2D5u9zNWcBzHxtthHBpvn+KPJgvvsnNxLw5gGaMpbMv4GE80uB+dcx2eM71BX2070tjedMguvKzcoP97O9DQPnXCHO6Tzs1NDP4IT5feqY2lO5iSHXgBNzbc79HSHXQhgAvwKi6r0PfMBzCPt3HhOl//Jw7iK3yHk+OfnylNSQfSNHUBm1Z5ffEA2my7NB+f9Ly9hEewG2dl9rUBl+MOPIbPxu91znR2pZteMtnAH8Jt0mBOw1D/LlSz3S1/4P/GPqufQsI6DPCT/CvW2+uU2V9Pyhv8FemUE6ZoXpq55ATwYKUae22fvMH/UPun0J2zUZqr5wTQ9BXxTLhJ3uB/ZIanhyU9JS+AmPUUcsTag/87NtcqsM8W5H36X6tVYCln1C5g7OrMdq8XraKCtgRwZWa7d4tWUUFbAtiV2W6paBUVtCWAhYw2v+L70oU0rS0BzGe06eUfR5q4oBk10Mf/UfWiri1HwMyKACqLACqLACqLACqLAALybsQ9VK26guIIqCwCqCwCqCwCqCwCqCwCqCzuhsbd0NkWAVQWAVQWAVQWAVQWAQRwwtp3Q1+pVl1BbTkCfshoMyxeRQVdCiDnu0Od05YAvs5oM9DDf0VtSwBfZLSZw6WlC2laWwI4mNnuhqJVVNCWAD7IbNe7ANrkmLWnoieklU56oy1HALyV0eZs3Fy6kFl1q7yvp7xZq8C+24xf5IVwfaUae+9xeQF8rofXBG1wsbQKSk4I+yvV2HvPygtghLsq1dhrQ/wmL4AV3FOnzH57QP5RMJLWmdhapdKempOWJZgkhG9wp/yVEteyY0rv01kDfGmyEEb4Fo9iL7ZM0N/5uAUP4z38Na6hqLavu7OId3DeOl9/UlrO8qi0GNSy9HtjE7ZJn/JTC7duW+X1u/H+OvvujUXpdvWkR8I0tuJrE7XpXtB/WcIe6Uho2mLpDroQAOlRI3txv3QaacpFDfbVGZfgec2cgt5oaJ86aQ9elH7RlgrgcGN702Hz0pM1pvkQn1OD/0zp4ts+DZ3UFukxVtdKy9EPpfn9TqefGTAnPcaK9HWY49I6REtOP8bqE/zYZOEhhBBCCCGEEEIIof/+ARP4E7ThdtrrAAAAAElFTkSuQmCC">                                                <div>
+                                                                <div>
+                                                                    <div class="image-offer-text-title">   @Res.CompanyOffer.WageConditions </div>
+                                                                </div>
+                                                                @Res.CompanyOffer.BasicSalary : <span id="baseOfSalarySapn"></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="imageOfferTd">
+                                                        <div class="image-offer-page">
+                                                            <img style="height:50px;width:50px" src="data:image/png;base64,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">                                                <div>
+                                                                <div>
+                                                                    <div class="image-offer-text-title">   @Res.CompanyOffer.TypeOfContract </div>
+                                                                </div>
+                                                                <div id="typeOfContractP"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="companyProfiletable jobDescriptionTable">
+                        <tbody>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.JobDescription
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td></td>
+                                <td>
+                                    <p class="sub-text-font" id="jobDescriptionP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.Benifits
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td></td>
+                                <td>
+                                    <p class="sub-text-font" id="benefitsSpan"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="main-title">
+                                        @Res.CompanyOffer.RequirementsPerEmployee
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.Education
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="educationP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.LanguageSkills
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.RequiredLanguageSkills
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="requiredLanguageSkillP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.OptionalLanguageSkills
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="optionalLanguageSkillP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.OtherKnowledge
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.RequiredJuniorKnowledge
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="joniorKnowledgeP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.RequiredSeniorknowledge
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p id="seniorKnowledgeP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable sm-height">
+                                <td></td>
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.Advantage_OptionalKnowledge
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="optionalKnowledgeP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.DrivingLicence
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="drivingLicenseP"></p>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyProfile.NumberOfEmployee
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="sub-text-font" id="numberEmploymentSpan"></p>
+                                    </td>
+                            </tr>
+                            
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <div class="title">
+                                        @Res.CompanyOffer.Contact
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                </td>
+                                <td>
+                                    @Res.CompanyOffer.FullName : <span id="firstNameSpan"></span> <span id="lastNameSpan"></span>
+
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Res.CompanyProfile.Phone : <span id="phoneSpan"></span>
+
+                                </td>
+                                <td></td>
+                                <td>
+                                    @Res.CompanyProfile.Email : <span id="emailSpan"></span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr class="companyProfiletable-custom-td">
+                                <td>
+                                    <input type="button" class="btn-offer-Save" value="Save" onclick="save('@Res.CompanyOffer.SaveSuccess','@Res.CompanyOffer.ErrorSave')" />
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </details>
+            </div>
+        </div>
+    </form>
+    @*************************************Payments***************************************@
+    <form method="post" asp-action="PayPalCheckout" asp-controller="Payment">
+        <div id="payment">
+            <div class="detailsbox">
+                <details open>
+                    <summary>@Res.CompanyOffer.Payment</summary>
+                    <table class="companyProfiletable">
+                        <tr>
+                            <td class="flex-td">
+                                <label>@Res.Payment.ChoosePayment</label>
+                                <img src='@BaseController.PlaceholderImage(18, 14)' class='lazyload' data-src="/dsvg/SharedIcons/card" />
+                            </td>
+                        </tr>
+                        <tr class="paymentbox">
+                            <td>
+                                <input type="radio" name="fav_language" value="Paypal">
+                                <label>@Res.Payment.UsePaypal</label>
+                            </td>
+                        </tr>
+                        <tr class="paymentbox">
+                            <td>
+                                <input type="radio" name="fav_language" value="CreditCard">
+                                <label>@Res.Payment.UseCrditCard</label>
+                            </td>
+                        </tr>
+
+                        <tr class="companyProfiletable-custom-td moveToright">
+                            <td>
+                                <input type="hidden" name="OfferId" id="OfferId" />
+                                <input type="submit" class="btn-offer-Save" value="@Res.Payment.GoToPayment" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </details>
+            </div>
+        </div>
+    </form>
+    <div class="button-positions">
+        <input  type="button" value="@Res.CompanyOffer.Previous" class="btn-offer-Prev" onclick="preDiv()" />
+        <input id="btn_next" type="button" value="@Res.CompanyOffer.Next" class="btn-offer-Save" onclick="nextDiv('@Res.CompanyOffer.ThisFieldIsRequired','@Res.CompanyOffer.Primary_education','@Res.CompanyOffer.Highschoollstudent','@Res.CompanyOffer.Secondaryschoollwithgraduation','@Res.CompanyOffer.Secondaryschoollwithoutgraduation','@Res.CompanyOffer.PostSecondary','@Res.CompanyOffer.UniversityStudent','@Res.CompanyOffer.HighereducationLevel1','@Res.CompanyOffer.HighereducationLevel2','@Res.CompanyOffer.HighereducationLevel3','@Res.CompanyOffer.FullTime','@Res.CompanyOffer.PartTime','@Res.CompanyOffer.Agreement','@Res.CompanyOffer.Freelancer','@Res.CompanyOffer.InternShip')" />
+    </div>
+
+</div>
+
+
+@section Script{
+    <script src="~/js/internal/offer.js"></script>
+    <script src="/djs/internal/multi-select-dropdown-layout/~@Res.Layout.KeywordCompany"></script>
+    <script src="~/js/layout-lazy/MessageShow.js"></script>
+    }
+

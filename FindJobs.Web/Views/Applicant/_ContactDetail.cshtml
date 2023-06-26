@@ -1,0 +1,53 @@
+﻿@using FindJobs.Domain.Dtos
+@using FindJobs.Domain.Global
+@using Microsoft.Extensions.Configuration
+@model ApplicantDto
+@inject IConfiguration configure
+
+<form id="SaveApplicantContactDetail" onsubmit="return SaveApplicationContactDetail('@Res.ApplicantProfile.UpdateSuccessfully','@Res.ApplicantProfile.PhoneNumberNotValid','@Res.ApplicantProfile.NotSuccessfullyUpdate')">
+    <div class="profile-flex-container">
+        <div class="box">
+            <label>@Res.ApplicantProfile.Phone</label>
+            <input id="ContactPhone" asp-for="Phone" type="text" value="@Model.Phone" />
+        </div>
+
+
+
+
+        <div class="box">
+            <label>@Res.ApplicantProfile.Country</label>
+            <div class="autocomplete">
+                <input id="country" type="text" autocomplete="off" name="CountryName" value="@Model.CountryName" placeholder="country">
+            </div>
+        </div>
+        <div class="box" id="stateBox">
+            <label>@Res.ApplicantProfile.State</label>
+            <div class="autocomplete">
+                <input id="state" type="text" autocomplete="off" value="@Model.StateName" name="StateName" placeholder="state">
+            </div>
+        </div>
+        <div class="box" id="cityBox">
+            <label>@Res.ApplicantProfile.City</label>
+            <div class="autocomplete">
+                <input id="city" type="text" autocomplete="off" value="@Model.CityMainName" name="CityMainName" placeholder="cities">
+            </div>
+        </div>
+
+        <div class="box" id="CityNameBox">
+
+            <label>@Res.ApplicantProfile.CityName</label>
+            <input id="CityName" type="text" asp-for="CityName" value="@Model.CityName" />
+
+        </div>
+
+        <div class="box">
+            <label>@Res.ApplicantProfile.PostCode_Zip</label>
+            <input id="PostalCode" type="number" type="text" asp-for="PostalCode" value="@Model.PostalCode" />
+        </div>
+        <div class="box">
+            <label>@Res.ApplicantProfile.StreetAddress</label>
+            <input id="ContactAddress" asp-for="Address" value="@Model.Address" />
+        </div>
+    </div>
+    <input type="submit" id="btnSaveForm" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+</form>

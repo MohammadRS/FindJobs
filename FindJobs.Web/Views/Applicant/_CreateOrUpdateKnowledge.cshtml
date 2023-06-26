@@ -1,0 +1,37 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantKnowledgeDto
+
+
+
+
+<form onsubmit="return saveEntity(this,'CreateOrUpdateApplicantKnowledge','ApplicantKnowledgeListDiv','@Res.ApplicantProfile.EducationAddSuccessfully','ApplicantKnowledgeModal','@Res.ApplicantProfile.SaveSuccessfully','@Res.ApplicantProfile.NotSaveSuccessfully')">
+    <div class="profile-flex-container">
+
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="box">
+            <label>@Res.ApplicantProfile.Knowledge</label>
+            <select class="CourseName" required type="text" asp-for="KnowledgeName" value="@Model.KnowledgeName">
+                @foreach (var item in Model.KnowledgeDtos)
+                {
+                    @if(Model.KnowledgeName==item.Name){
+                        <option value="@item.Name" selected="selected">@item.Name</option>
+                    }else{
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                }
+            </select>
+         
+        </div>
+        <div class="box">
+            <label>@Res.ApplicantProfile.KnowledgeLevel</label>
+
+            <select asp-for="KnowledgeLevel" value="@Model.KnowledgeLevel">
+                <option value="0">@Res.ApplicantProfile.RequiredJuniorKnowledge</option>
+                <option value="1">@Res.ApplicantProfile.RequiredSeniorknowledge</option>
+                <option value="2">@Res.ApplicantProfile.AdvantageOrOptionalKnowledge</option>
+            </select>
+        </div>
+    </div>
+    <input type="submit" id="btnSaveForm" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+
+</form>

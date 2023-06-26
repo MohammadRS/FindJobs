@@ -1,0 +1,1493 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+		<LangVersion>8</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Fonts\**" />
+		<Compile Remove="Resx\fr\**" />
+		<EmbeddedResource Remove="Fonts\**" />
+		<EmbeddedResource Remove="Resx\fr\**" />
+		<None Remove="Fonts\**" />
+		<None Remove="Resx\fr\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Images\Content\map.webp" />
+		<None Remove="Images\Flags\ad.svg" />
+		<None Remove="Images\Flags\ae.svg" />
+		<None Remove="Images\Flags\af.svg" />
+		<None Remove="Images\Flags\ag.svg" />
+		<None Remove="Images\Flags\ai.svg" />
+		<None Remove="Images\Flags\al.svg" />
+		<None Remove="Images\Flags\am.svg" />
+		<None Remove="Images\Flags\ao.svg" />
+		<None Remove="Images\Flags\aq.svg" />
+		<None Remove="Images\Flags\ar.svg" />
+		<None Remove="Images\Flags\as.svg" />
+		<None Remove="Images\Flags\at.svg" />
+		<None Remove="Images\Flags\au.svg" />
+		<None Remove="Images\Flags\aw.svg" />
+		<None Remove="Images\Flags\ax.svg" />
+		<None Remove="Images\Flags\az.svg" />
+		<None Remove="Images\Flags\ba.svg" />
+		<None Remove="Images\Flags\bb.svg" />
+		<None Remove="Images\Flags\bd.svg" />
+		<None Remove="Images\Flags\be.svg" />
+		<None Remove="Images\Flags\bf.svg" />
+		<None Remove="Images\Flags\bg.svg" />
+		<None Remove="Images\Flags\bh.svg" />
+		<None Remove="Images\Flags\bi.svg" />
+		<None Remove="Images\Flags\bj.svg" />
+		<None Remove="Images\Flags\bl.svg" />
+		<None Remove="Images\Flags\bm.svg" />
+		<None Remove="Images\Flags\bn.svg" />
+		<None Remove="Images\Flags\bo.svg" />
+		<None Remove="Images\Flags\bq.svg" />
+		<None Remove="Images\Flags\br.svg" />
+		<None Remove="Images\Flags\bs.svg" />
+		<None Remove="Images\Flags\bt.svg" />
+		<None Remove="Images\Flags\bv.svg" />
+		<None Remove="Images\Flags\bw.svg" />
+		<None Remove="Images\Flags\by.svg" />
+		<None Remove="Images\Flags\bz.svg" />
+		<None Remove="Images\Flags\ca.svg" />
+		<None Remove="Images\Flags\cc.svg" />
+		<None Remove="Images\Flags\cd.svg" />
+		<None Remove="Images\Flags\cf.svg" />
+		<None Remove="Images\Flags\cg.svg" />
+		<None Remove="Images\Flags\ch.svg" />
+		<None Remove="Images\Flags\ci.svg" />
+		<None Remove="Images\Flags\ck.svg" />
+		<None Remove="Images\Flags\cl.svg" />
+		<None Remove="Images\Flags\cm.svg" />
+		<None Remove="Images\Flags\cn.svg" />
+		<None Remove="Images\Flags\co.svg" />
+		<None Remove="Images\Flags\cr.svg" />
+		<None Remove="Images\Flags\cu.svg" />
+		<None Remove="Images\Flags\cv.svg" />
+		<None Remove="Images\Flags\cw.svg" />
+		<None Remove="Images\Flags\cx.svg" />
+		<None Remove="Images\Flags\cy.svg" />
+		<None Remove="Images\Flags\cz.svg" />
+		<None Remove="Images\Flags\de.svg" />
+		<None Remove="Images\Flags\dj.svg" />
+		<None Remove="Images\Flags\dk.svg" />
+		<None Remove="Images\Flags\dm.svg" />
+		<None Remove="Images\Flags\do.svg" />
+		<None Remove="Images\Flags\dz.svg" />
+		<None Remove="Images\Flags\ec.svg" />
+		<None Remove="Images\Flags\ee.svg" />
+		<None Remove="Images\Flags\eg.svg" />
+		<None Remove="Images\Flags\eh.svg" />
+		<None Remove="Images\Flags\er.svg" />
+		<None Remove="Images\Flags\es-ca.svg" />
+		<None Remove="Images\Flags\es-ga.svg" />
+		<None Remove="Images\Flags\es.svg" />
+		<None Remove="Images\Flags\et.svg" />
+		<None Remove="Images\Flags\eu.svg" />
+		<None Remove="Images\Flags\fi.svg" />
+		<None Remove="Images\Flags\fj.svg" />
+		<None Remove="Images\Flags\fk.svg" />
+		<None Remove="Images\Flags\fm.svg" />
+		<None Remove="Images\Flags\fo.svg" />
+		<None Remove="Images\Flags\fr.svg" />
+		<None Remove="Images\Flags\ga.svg" />
+		<None Remove="Images\Flags\gb-eng.svg" />
+		<None Remove="Images\Flags\gb-nir.svg" />
+		<None Remove="Images\Flags\gb-sct.svg" />
+		<None Remove="Images\Flags\gb-wls.svg" />
+		<None Remove="Images\Flags\gb.svg" />
+		<None Remove="Images\Flags\gd.svg" />
+		<None Remove="Images\Flags\ge.svg" />
+		<None Remove="Images\Flags\gf.svg" />
+		<None Remove="Images\Flags\gg.svg" />
+		<None Remove="Images\Flags\gh.svg" />
+		<None Remove="Images\Flags\gi.svg" />
+		<None Remove="Images\Flags\gl.svg" />
+		<None Remove="Images\Flags\gm.svg" />
+		<None Remove="Images\Flags\gn.svg" />
+		<None Remove="Images\Flags\gp.svg" />
+		<None Remove="Images\Flags\gq.svg" />
+		<None Remove="Images\Flags\gr.svg" />
+		<None Remove="Images\Flags\gs.svg" />
+		<None Remove="Images\Flags\gt.svg" />
+		<None Remove="Images\Flags\gu.svg" />
+		<None Remove="Images\Flags\gw.svg" />
+		<None Remove="Images\Flags\gy.svg" />
+		<None Remove="Images\Flags\hk.svg" />
+		<None Remove="Images\Flags\hm.svg" />
+		<None Remove="Images\Flags\hn.svg" />
+		<None Remove="Images\Flags\hr.svg" />
+		<None Remove="Images\Flags\ht.svg" />
+		<None Remove="Images\Flags\hu.svg" />
+		<None Remove="Images\Flags\id.svg" />
+		<None Remove="Images\Flags\ie.svg" />
+		<None Remove="Images\Flags\il.svg" />
+		<None Remove="Images\Flags\im.svg" />
+		<None Remove="Images\Flags\in.svg" />
+		<None Remove="Images\Flags\io.svg" />
+		<None Remove="Images\Flags\iq.svg" />
+		<None Remove="Images\Flags\ir.svg" />
+		<None Remove="Images\Flags\is.svg" />
+		<None Remove="Images\Flags\it.svg" />
+		<None Remove="Images\Flags\je.svg" />
+		<None Remove="Images\Flags\jm.svg" />
+		<None Remove="Images\Flags\jo.svg" />
+		<None Remove="Images\Flags\jp.svg" />
+		<None Remove="Images\Flags\ke.svg" />
+		<None Remove="Images\Flags\kg.svg" />
+		<None Remove="Images\Flags\kh.svg" />
+		<None Remove="Images\Flags\ki.svg" />
+		<None Remove="Images\Flags\km.svg" />
+		<None Remove="Images\Flags\kn.svg" />
+		<None Remove="Images\Flags\kp.svg" />
+		<None Remove="Images\Flags\kr.svg" />
+		<None Remove="Images\Flags\kw.svg" />
+		<None Remove="Images\Flags\ky.svg" />
+		<None Remove="Images\Flags\kz.svg" />
+		<None Remove="Images\Flags\la.svg" />
+		<None Remove="Images\Flags\lb.svg" />
+		<None Remove="Images\Flags\lc.svg" />
+		<None Remove="Images\Flags\li.svg" />
+		<None Remove="Images\Flags\lk.svg" />
+		<None Remove="Images\Flags\lr.svg" />
+		<None Remove="Images\Flags\ls.svg" />
+		<None Remove="Images\Flags\lt.svg" />
+		<None Remove="Images\Flags\lu.svg" />
+		<None Remove="Images\Flags\lv.svg" />
+		<None Remove="Images\Flags\ly.svg" />
+		<None Remove="Images\Flags\ma.svg" />
+		<None Remove="Images\Flags\mc.svg" />
+		<None Remove="Images\Flags\md.svg" />
+		<None Remove="Images\Flags\me.svg" />
+		<None Remove="Images\Flags\mf.svg" />
+		<None Remove="Images\Flags\mg.svg" />
+		<None Remove="Images\Flags\mh.svg" />
+		<None Remove="Images\Flags\mk.svg" />
+		<None Remove="Images\Flags\ml.svg" />
+		<None Remove="Images\Flags\mm.svg" />
+		<None Remove="Images\Flags\mn.svg" />
+		<None Remove="Images\Flags\mo.svg" />
+		<None Remove="Images\Flags\mp.svg" />
+		<None Remove="Images\Flags\mq.svg" />
+		<None Remove="Images\Flags\mr.svg" />
+		<None Remove="Images\Flags\ms.svg" />
+		<None Remove="Images\Flags\mt.svg" />
+		<None Remove="Images\Flags\mu.svg" />
+		<None Remove="Images\Flags\mv.svg" />
+		<None Remove="Images\Flags\mw.svg" />
+		<None Remove="Images\Flags\mx.svg" />
+		<None Remove="Images\Flags\my.svg" />
+		<None Remove="Images\Flags\mz.svg" />
+		<None Remove="Images\Flags\na.svg" />
+		<None Remove="Images\Flags\nc.svg" />
+		<None Remove="Images\Flags\ne.svg" />
+		<None Remove="Images\Flags\nf.svg" />
+		<None Remove="Images\Flags\ng.svg" />
+		<None Remove="Images\Flags\ni.svg" />
+		<None Remove="Images\Flags\nl.svg" />
+		<None Remove="Images\Flags\no.svg" />
+		<None Remove="Images\Flags\np.svg" />
+		<None Remove="Images\Flags\nr.svg" />
+		<None Remove="Images\Flags\nu.svg" />
+		<None Remove="Images\Flags\nz.svg" />
+		<None Remove="Images\Flags\om.svg" />
+		<None Remove="Images\Flags\pa.svg" />
+		<None Remove="Images\Flags\pe.svg" />
+		<None Remove="Images\Flags\pf.svg" />
+		<None Remove="Images\Flags\pg.svg" />
+		<None Remove="Images\Flags\ph.svg" />
+		<None Remove="Images\Flags\pk.svg" />
+		<None Remove="Images\Flags\pl.svg" />
+		<None Remove="Images\Flags\pm.svg" />
+		<None Remove="Images\Flags\pn.svg" />
+		<None Remove="Images\Flags\pr.svg" />
+		<None Remove="Images\Flags\ps.svg" />
+		<None Remove="Images\Flags\pt.svg" />
+		<None Remove="Images\Flags\pw.svg" />
+		<None Remove="Images\Flags\py.svg" />
+		<None Remove="Images\Flags\qa.svg" />
+		<None Remove="Images\Flags\re.svg" />
+		<None Remove="Images\Flags\ro.svg" />
+		<None Remove="Images\Flags\rs.svg" />
+		<None Remove="Images\Flags\ru.svg" />
+		<None Remove="Images\Flags\rw.svg" />
+		<None Remove="Images\Flags\sa.svg" />
+		<None Remove="Images\Flags\sb.svg" />
+		<None Remove="Images\Flags\sc.svg" />
+		<None Remove="Images\Flags\sd.svg" />
+		<None Remove="Images\Flags\se.svg" />
+		<None Remove="Images\Flags\sg.svg" />
+		<None Remove="Images\Flags\sh.svg" />
+		<None Remove="Images\Flags\si.svg" />
+		<None Remove="Images\Flags\sj.svg" />
+		<None Remove="Images\Flags\sk.svg" />
+		<None Remove="Images\Flags\sl.svg" />
+		<None Remove="Images\Flags\sm.svg" />
+		<None Remove="Images\Flags\sn.svg" />
+		<None Remove="Images\Flags\so.svg" />
+		<None Remove="Images\Flags\sr.svg" />
+		<None Remove="Images\Flags\ss.svg" />
+		<None Remove="Images\Flags\st.svg" />
+		<None Remove="Images\Flags\sv.svg" />
+		<None Remove="Images\Flags\sx.svg" />
+		<None Remove="Images\Flags\sy.svg" />
+		<None Remove="Images\Flags\sz.svg" />
+		<None Remove="Images\Flags\tc.svg" />
+		<None Remove="Images\Flags\td.svg" />
+		<None Remove="Images\Flags\tf.svg" />
+		<None Remove="Images\Flags\tg.svg" />
+		<None Remove="Images\Flags\th.svg" />
+		<None Remove="Images\Flags\tj.svg" />
+		<None Remove="Images\Flags\tk.svg" />
+		<None Remove="Images\Flags\tl.svg" />
+		<None Remove="Images\Flags\tm.svg" />
+		<None Remove="Images\Flags\tn.svg" />
+		<None Remove="Images\Flags\to.svg" />
+		<None Remove="Images\Flags\tr.svg" />
+		<None Remove="Images\Flags\tt.svg" />
+		<None Remove="Images\Flags\tv.svg" />
+		<None Remove="Images\Flags\tw.svg" />
+		<None Remove="Images\Flags\tz.svg" />
+		<None Remove="Images\Flags\ua.svg" />
+		<None Remove="Images\Flags\ug.svg" />
+		<None Remove="Images\Flags\um.svg" />
+		<None Remove="Images\Flags\un.svg" />
+		<None Remove="Images\Flags\us.svg" />
+		<None Remove="Images\Flags\uy.svg" />
+		<None Remove="Images\Flags\uz.svg" />
+		<None Remove="Images\Flags\va.svg" />
+		<None Remove="Images\Flags\vc.svg" />
+		<None Remove="Images\Flags\ve.svg" />
+		<None Remove="Images\Flags\vg.svg" />
+		<None Remove="Images\Flags\vi.svg" />
+		<None Remove="Images\Flags\vn.svg" />
+		<None Remove="Images\Flags\vu.svg" />
+		<None Remove="Images\Flags\wf.svg" />
+		<None Remove="Images\Flags\ws.svg" />
+		<None Remove="Images\Flags\xk.svg" />
+		<None Remove="Images\Flags\ye.svg" />
+		<None Remove="Images\Flags\yt.svg" />
+		<None Remove="Images\Flags\za.svg" />
+		<None Remove="Images\Flags\zm.svg" />
+		<None Remove="Images\Flags\zw.svg" />
+		<None Remove="Images\SharedIcons\Additional.svg" />
+		<None Remove="Images\SharedIcons\arrow.svg" />
+		<None Remove="Images\SharedIcons\bell.svg" />
+		<None Remove="Images\SharedIcons\bellblue.svg" />
+		<None Remove="Images\SharedIcons\calendar.svg" />
+		<None Remove="Images\SharedIcons\card.svg" />
+		<None Remove="Images\SharedIcons\close-teal.svg" />
+		<None Remove="Images\SharedIcons\close.svg" />
+		<None Remove="Images\SharedIcons\close-white.svg" />
+		<None Remove="Images\SharedIcons\contacts.svg" />
+		<None Remove="Images\SharedIcons\delete.svg" />
+		<None Remove="Images\SharedIcons\education.svg" />
+		<None Remove="Images\SharedIcons\facebook.svg" />
+		<None Remove="Images\SharedIcons\facebookcolored.svg" />
+		<None Remove="Images\SharedIcons\google.svg" />
+		<None Remove="Images\SharedIcons\grad.svg" />
+		<None Remove="Images\SharedIcons\heart.svg" />
+		<None Remove="Images\SharedIcons\heartblue.svg" />
+		<None Remove="Images\SharedIcons\heartRed.svg" />
+		<None Remove="Images\SharedIcons\know.svg" />
+		<None Remove="Images\SharedIcons\language.svg" />
+		<None Remove="Images\SharedIcons\location-silver.svg" />
+		<None Remove="Images\SharedIcons\location.svg" />
+		<None Remove="Images\SharedIcons\locationmap.svg" />
+		<None Remove="Images\SharedIcons\logo.svg" />
+		<None Remove="Images\SharedIcons\menu.svg" />
+		<None Remove="Images\SharedIcons\notepad.svg" />
+		<None Remove="Images\SharedIcons\paper.svg" />
+		<None Remove="Images\SharedIcons\paperblue.svg" />
+		<None Remove="Images\SharedIcons\printer.svg" />
+		<None Remove="Images\SharedIcons\profile.svg" />
+		<None Remove="Images\SharedIcons\profileblue.svg" />
+		<None Remove="Images\SharedIcons\progress.svg" />
+		<None Remove="Images\SharedIcons\returnsicon.svg" />
+		<None Remove="Images\SharedIcons\search.svg" />
+		<None Remove="Images\SharedIcons\searchblack.svg" />
+		<None Remove="Images\SharedIcons\searchblue.svg" />
+		<None Remove="Images\SharedIcons\star.svg" />
+		<None Remove="Images\SharedIcons\stars.svg" />
+		<None Remove="Images\SharedIcons\upload.svg" />
+		<None Remove="Images\SharedIcons\warning.svg" />
+		<None Remove="Images\SharedIcons\work.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Images\SharedIcons\locationmap.svg" />
+	  <EmbeddedResource Include="Images\SharedIcons\notepad.svg" />
+	  <EmbeddedResource Include="Images\SharedIcons\printer.svg" />
+	  <EmbeddedResource Include="Images\SharedIcons\returnsicon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Images\Content\map.webp" />
+		<EmbeddedResource Include="Images\Flags\ad.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ae.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\af.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ag.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ai.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\al.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\am.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ao.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\aq.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ar.svg" />
+		<EmbeddedResource Include="Images\Flags\as.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\at.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\au.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\aw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ax.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\az.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ba.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bb.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bd.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\be.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bi.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bj.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bo.svg" />
+		<EmbeddedResource Include="Images\Flags\bq.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\br.svg" />
+		<EmbeddedResource Include="Images\Flags\bz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bs.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bv.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\bw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\by.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ca.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cd.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ch.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ci.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ck.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\co.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cv.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cx.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cy.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\cz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\de.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\dj.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\dk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\dm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\do.svg" />
+		<EmbeddedResource Include="Images\Flags\dz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ec.svg" />
+		<EmbeddedResource Include="Images\Flags\ee.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\eg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\eh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\er.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\es-ca.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\es-ga.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\es.svg" />
+		<EmbeddedResource Include="Images\Flags\et.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\eu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fi.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fj.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fo.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\fr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ga.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gb-eng.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gb-nir.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gb-sct.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gb-wls.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gb.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gd.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ge.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gi.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gp.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gq.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gs.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gt.svg" />
+		<EmbeddedResource Include="Images\Flags\gu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\gy.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\hk.svg" />
+		<EmbeddedResource Include="Images\Flags\hm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\hn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\hr.svg" />
+		<EmbeddedResource Include="Images\Flags\ht.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\hu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\id.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ie.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\il.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\im.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\in.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\io.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\iq.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ir.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\is.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\it.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\je.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\jm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\jo.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\jp.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ke.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ki.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\km.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kp.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ky.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\kz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\la.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lb.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\li.svg" />
+		<EmbeddedResource Include="Images\Flags\lk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ls.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\lv.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ly.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ma.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\md.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\me.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ml.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mo.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mp.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mq.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ms.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mv.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mx.svg" />
+		<EmbeddedResource Include="Images\Flags\my.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\mz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\na.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\nc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ne.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\nf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ng.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ni.svg" />
+		<EmbeddedResource Include="Images\Flags\nl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\no.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\np.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\nr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\nu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\nz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\om.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pa.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pe.svg" />
+		<EmbeddedResource Include="Images\Flags\pf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ph.svg" />
+		<EmbeddedResource Include="Images\Flags\pk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ps.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\pw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\py.svg" />
+		<EmbeddedResource Include="Images\Flags\qa.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\re.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ro.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\rs.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ru.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\rw.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sa.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sb.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sd.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\se.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sg.svg" />
+		<EmbeddedResource Include="Images\Flags\sh.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\si.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sj.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sk.svg" />
+		<EmbeddedResource Include="Images\Flags\sl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\so.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ss.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\st.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sv.svg" />
+		<EmbeddedResource Include="Images\Flags\sx.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sy.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\sz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\td.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\th.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tj.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tl.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\to.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tr.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tv.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\tw.svg" />
+		<EmbeddedResource Include="Images\Flags\tz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ua.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ug.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\um.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\un.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\us.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\uy.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\uz.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\va.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\vc.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ve.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\vg.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\vi.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\vn.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\vu.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\wf.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ws.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\xk.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\ye.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\yt.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\za.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\zm.svg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\Flags\zw.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\Additional.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\arrow.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\bellblue.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\bell.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\calendar.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\card.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\close-teal.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\close-white.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\close.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\contacts.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\delete.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\education.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Images\SharedIcons\facebook.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\facebookcolored.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\google.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\grad.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\heartblue.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\heart.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\heartRed.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\know.svg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Images\SharedIcons\language.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\location-silver.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\location.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\logo.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\menu.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\paperblue.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\paper.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\profileblue.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\profile.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\progress.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\search.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\searchblue.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\searchblack.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\stars.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\star.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\upload.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\warning.svg" />
+		<EmbeddedResource Include="Images\SharedIcons\work.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+		<PackageReference Include="Xamarin.Forms.Svg" Version="1.0.3" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+
+		<Compile Update="AppResources.cs">
+			<CustomToolNamespace></CustomToolNamespace>
+		</Compile>
+
+		<Compile Update="Resx\en\AdvanceSearch.Designer.cs">
+		  <DependentUpon>AdvanceSearch.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
+
+		<Compile Update="Resx\en\CompanyProfile.Designer.cs">
+		  <DependentUpon>CompanyProfile.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		</Compile>
+
+		<Compile Update="Resx\en\ApplicantProfile.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ApplicantProfile.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\CompanyOffer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>CompanyOffer.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\Cv.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Cv.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\Menu.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Menu.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\Messages.Designer.cs">
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Messages.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\Payment.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Payment.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\Validation.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Validation.resx</DependentUpon>
+		</Compile>
+
+		<Compile Update="Resx\en\XTabbar.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>XTabbar.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resx\en\AdvanceSearch.resx">
+		  <SubType>Designer</SubType>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		  <LastGenOutput>AdvanceSearch.Designer.cs</LastGenOutput>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\CompanyProfile.resx">
+		  <SubType>Designer</SubType>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		  <LastGenOutput>CompanyProfile.Designer.cs</LastGenOutput>
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\ApplicantProfile.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ApplicantProfile.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Auth.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\CompanyOffer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>CompanyOffer.Designer.cs</LastGenOutput>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Continent.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Cv.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Cv.Designer.cs</LastGenOutput>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Email.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\EmailPref.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Layout.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Menu.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Messages.resx">
+			<CustomToolNamespace>Res</CustomToolNamespace>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Messages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Payment.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Payment.Designer.cs</LastGenOutput>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\Validation.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Validation.Designer.cs</LastGenOutput>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resx\en\XTabbar.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		  <CustomToolNamespace>Res</CustomToolNamespace>
+		  <LastGenOutput>XTabbar.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

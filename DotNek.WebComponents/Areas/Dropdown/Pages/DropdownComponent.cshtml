@@ -1,0 +1,34 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model DotNek.WebComponents.Areas.Dropdown.Models.DropdownConfiguration 
+<link rel="stylesheet" href="/dcss/Dropdown/dropdown"/>
+
+
+@{
+    <style>
+        .custom-select-options li:hover { background: @Model.SelectedItemColor !important;  }
+    </style>
+}
+
+<div class="div-dropdown">
+    <div class="custom-select" id="@Model.ComponentId">
+        <p class="dropdown-title">@Model.Title</p>
+        <input type="text" id="custom-select-input" class="select-css" aria-describedby="custom-select-info">
+        <ul class="custom-select-options hidden-all" id="custom-select-list">
+            @foreach (var item in @Model.Items)
+            {
+                <li>
+                    <p>@item</p>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
+
+
+<script src="/djs/Dropdown/dropdown"></script>
+
+
+<script>
+    customSelect(`#@Model.ComponentId`, { statusSelector: `#@Model.SelectStatus` });
+</script>

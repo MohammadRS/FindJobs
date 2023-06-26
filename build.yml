@@ -1,0 +1,53 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  NugetPackages: $(Pipeline.Workspace)/.nuget/packages
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: Adding Nuget Installer
+
+- task: PowerShell@2
+  displayName: 'Create Cache Directory'
+  inputs:
+    targetType: 'inline'
+    script: 'New-Item -ItemType directory -Path $(NugetPackages)'
+
+- task: Cache@2
+  displayName: 'NuGet Cache'
+  inputs:
+    key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+    path: '$(NugetPackages)'
+    cacheHitVar: 'CACHE_RESTORED'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Restore'
+  #condition: ne(variables.CACHE_RESTORED, false)
+  inputs:
+    command: 'restore'
+    restoreSolution: '$(solution)'
+    feedsToUse: 'config'
+
+- task: MSBuild@1
+  displayName: 'Build Web Projects'
+  inputs:
+    solution: '*Web*/*.csproj'
+    msbuildArguments: '/clp:NoSummary;NoItemAndPropertyList;ErrorsOnly /verbosity:quiet /nologo'
+
+
+- task: VSTest@2
+  displayName: 'Run All Tests'
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'

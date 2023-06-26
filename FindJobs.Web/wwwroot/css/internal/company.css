@@ -1,0 +1,349 @@
+﻿/*********************************** offer ************************************/
+.flex-td {
+    display: flex;
+}
+
+.moveToright {
+    float: right;
+}
+.paymentbox {
+    box-shadow: 0px 0px 8px #bbb;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+}
+.validate {
+    color: red;
+}
+
+.profile-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .profile-flex-container .box {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+
+.job-title {
+    height: 90px;
+}
+
+.profile-flex-container .box textarea[type="text"] {
+    width: 68vw;
+    height: 100px;
+    max-width: 455px;
+}
+
+.profile-flex-container .box input[type="text"], .profile-flex-container .box input[type="email"],
+.profile-flex-container .box input[type="number"], .profile-flex-container .box input[type="file"],
+.profile-flex-container .box input[type="url"], .profile-flex-container .box select {
+    width: 220px;
+}
+
+.bg-grey{
+    background-color:lightgrey;
+}
+.companyProfiletable {
+    width: 100%;
+}
+
+    .companyProfiletable tr {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .companyProfiletable td {
+        text-align: left;
+        max-width: 2000px;
+        min-width: 127px;
+    }
+
+        .companyProfiletable td textarea[type="text"] {
+            width: 431px;
+            height: 100px;
+        }
+
+.companyProfiletable-custom-td {
+    display: flex !important;
+    margin-left: 30px;
+}
+
+    .companyProfiletable-custom-td > .orderBox {
+        text-align: left;
+        max-width: 2700px;
+        min-width: 285px;
+        margin-top: 10px;
+    }
+
+.educationOffer {
+    margin: 8px;
+}
+
+.not-valid {
+    color: red;
+    display: none;
+    font-size: 15px;
+}
+
+
+
+
+.mg-small {
+    margin-left: 30px !important;
+}
+
+.btn-offer-Save {
+    background-color: #$0$;
+    color: #fff;
+    border-radius: 4px;
+    width: 200px;
+}
+
+    .btn-offer-Save:hover {
+        background-color: #$1$;
+        cursor: pointer;
+    }
+
+
+.btn-offer-Prev {
+    background-color: #$0$;
+    color: #fff;
+    border-radius: 4px;
+    width: 200px;
+}
+
+    .btn-offer-Prev:hover {
+        background-color: #$1$;
+        cursor: pointer;
+    }
+
+.send-cv {
+    margin-bottom: 50px;
+}
+
+.header-text {
+    font-weight: bold;
+    font-size: 27px;
+}
+
+.insideDivProfile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+
+.md-input {
+    width: 265px !important;
+    margin-right: 10px;
+}
+
+
+.sm-height{
+    min-height:76px;
+}
+    .sm-height td {
+        width: 275px !important;
+    }
+.sub-text-font{
+    font-size:18px
+}
+
+
+/*********************************** offer ************************************/
+
+summary {
+    cursor: pointer;
+}
+
+details {
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0px 0px 8px #bbb;
+    padding: 23px;
+    border-radius: 10px;
+}
+
+    details p {
+        padding: 20px;
+    }
+
+summary {
+    padding: 0px;
+    background-color: #fff;
+    outline: none;
+    border-radius: 5px;
+}
+
+.input[type="text"], .select, .textarea[type="text"] {
+    border: 1px solid silver;
+    border-radius: 4px;
+    padding: 10px 7px;
+}
+
+
+
+details[open] summary {
+    font-size: 20px;
+    padding: 0px;
+    color: #$1$;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.detailsbox {
+    margin-top: 20px;
+}
+
+.AdditionalSectionTable input[type="text"], input[type="number"] {
+    width: 100px;
+}
+
+.AdditionalSectionTable select {
+    width: 100px;
+}
+
+
+
+.AdditionalSectionTable .box {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.AdditionalSectionTable tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.AdditionalSectionTable td {
+    width: 170px;
+}
+
+.button-positions {
+    text-align: left;
+    margin: 40px;
+}
+
+.image-offer-page {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 350px;
+    margin-top: 10px;
+    align-items: flex-start;
+}
+
+.image-offer-text-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.imageOfferTd {
+    min-width: 400px;
+}
+
+/*********************************** Listoffer ************************************/
+
+.company-header-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 15rem;
+    box-shadow: 0px 0px 8px #bbb;
+    border-radius: 0.5rem;
+    padding: 0 0 0 0.5rem;
+    outline: 0.05rem solid transparent;
+    transition: outline 0.5s;
+}
+
+.left-box-company {
+    display: flex;
+}
+
+.sm-margin-top-company {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.icon-search-table-company {
+    margin: 26px 32px;
+}
+
+    .icon-search-table-company img:not(.img-search-applicant) {
+        min-width: 16px;
+        max-width: 30px;
+    }
+.applicant-search .row-items-company {
+    flex-direction: row;
+    margin-top: 38px;
+    max-width: 130vh;
+  
+}
+.profile .box-right-company {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.profile-offer {
+    margin: 20px 35px 15px 35px;
+}
+
+    .profile-offer table {
+       
+        padding: 10px;
+    }
+
+        .profile-offer table:after {
+            display: inline-block !important;
+        }
+
+        .profile-offer table tr td:first-child {
+            max-width: 160px;
+        }
+
+@media (max-width: 768px) {
+
+    .company-header-card {
+        flex-direction: column !important;
+        height: unset !important;
+    }
+    .left-box-company{
+        display:block;
+    }
+}
+
+.main-title{
+    font-size:20px;
+    font-weight:bolder;
+    margin:0px 10px;
+}
+.title {
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 0px 10px;
+}
+.sub-title {
+    font-size: 17px;
+    font-weight: bolder;
+    margin: 0px 10px;
+}
+.jobDescriptionTable{
+    margin-top:40px;
+}

@@ -1,0 +1,89 @@
+﻿
+/*****************************************Email prefrence  *********************************************** */
+input[type=button]:disabled {
+    background-color: silver !important;
+}
+
+button:disabled,
+button[disabled] {
+    background-color: silver !important;
+}
+
+.emailpreference-header {
+    display: inline-block;
+    width: 100%;
+}
+.emailpreference-header > h1{
+    color: black !important;
+    text-align: center;
+}
+.emailpreference-header > p {
+    text-align: center;
+}
+.emailpreference-items {
+    text-align: start;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+.emailpreference-input {
+    text-align: center !important;
+    text-decoration: underline #b9b9b9;
+}
+.emailpreference-value {
+    width: 320px;
+    text-align: center;
+    text-decoration: underline #b9b9b9;
+}
+.emailpreference-hr {
+    
+    text-align: center;
+}
+
+
+.emailpreference-item {
+    display: inline-block;
+    margin-left: 30%;
+}
+.emailpreference-checkbox-div {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    place-items: center;
+}
+.emailpreference-checkbox-text {
+    font-size: 18px;
+    place-self: center;
+}
+.emailpreference-checkbox {
+    width: 30px;
+    height: 39px;
+    accent-color: #$1$ !important;
+}
+.emailpreference-detials {
+    display: flex;
+    margin-top: -9px;
+    padding-left: 35px;
+}
+
+.btn {
+    background-color: #$0$ !important;
+    color: #fff;
+    border-radius: 4px;
+    width: 150px;
+}
+.emailpreference-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+@media only screen and (max-width: 768px) {
+
+    .emailpreference-item {
+        margin: 0;
+        align-content: center;
+    }
+}
+/*****************************************\Email prefrence  *********************************************** */

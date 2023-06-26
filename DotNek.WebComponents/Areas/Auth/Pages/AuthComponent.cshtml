@@ -1,0 +1,87 @@
+﻿@using System.Web
+@using DotNek.WebComponents.Areas.Auth.Enums
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model DotNek.WebComponents.Areas.Auth.Models.AuthConfiguration
+
+<link rel="stylesheet" href="/dcss/auth/auth/@Model.ColorTeal~@Model.ColorAqua"/>
+
+<div id="loginbox" style="display: none;">
+    <div>
+        <div class="dialogbox-header">
+            <img class="loginbox_close" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+PHN2ZyBmaWxsPSIjMjI1NTY2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgMzAgMzAiIHdpZHRoPSIzMHB4IiBoZWlnaHQ9IjMwcHgiPiAgICA8cGF0aCBkPSJNIDcgNCBDIDYuNzQ0MTI1IDQgNi40ODc5Njg3IDQuMDk3NDY4NyA2LjI5Mjk2ODggNC4yOTI5Njg4IEwgNC4yOTI5Njg4IDYuMjkyOTY4OCBDIDMuOTAxOTY4NyA2LjY4Mzk2ODggMy45MDE5Njg3IDcuMzE3MDMxMyA0LjI5Mjk2ODggNy43MDcwMzEyIEwgMTEuNTg1OTM4IDE1IEwgNC4yOTI5Njg4IDIyLjI5Mjk2OSBDIDMuOTAxOTY4NyAyMi42ODM5NjkgMy45MDE5Njg3IDIzLjMxNzAzMSA0LjI5Mjk2ODggMjMuNzA3MDMxIEwgNi4yOTI5Njg4IDI1LjcwNzAzMSBDIDYuNjgzOTY4OCAyNi4wOTgwMzEgNy4zMTcwMzEzIDI2LjA5ODAzMSA3LjcwNzAzMTIgMjUuNzA3MDMxIEwgMTUgMTguNDE0MDYyIEwgMjIuMjkyOTY5IDI1LjcwNzAzMSBDIDIyLjY4Mjk2OSAyNi4wOTgwMzEgMjMuMzE3MDMxIDI2LjA5ODAzMSAyMy43MDcwMzEgMjUuNzA3MDMxIEwgMjUuNzA3MDMxIDIzLjcwNzAzMSBDIDI2LjA5ODAzMSAyMy4zMTYwMzEgMjYuMDk4MDMxIDIyLjY4Mjk2OSAyNS43MDcwMzEgMjIuMjkyOTY5IEwgMTguNDE0MDYyIDE1IEwgMjUuNzA3MDMxIDcuNzA3MDMxMiBDIDI2LjA5ODAzMSA3LjMxNzAzMTIgMjYuMDk4MDMxIDYuNjgyOTY4OCAyNS43MDcwMzEgNi4yOTI5Njg4IEwgMjMuNzA3MDMxIDQuMjkyOTY4OCBDIDIzLjMxNjAzMSAzLjkwMTk2ODcgMjIuNjgyOTY5IDMuOTAxOTY4NyAyMi4yOTI5NjkgNC4yOTI5Njg4IEwgMTUgMTEuNTg1OTM4IEwgNy43MDcwMzEyIDQuMjkyOTY4OCBDIDcuNTExNTMxMiA0LjA5NzQ2ODcgNy4yNTU4NzUgNCA3IDQgeiIvPjwvc3ZnPg==" alt="close" />
+        </div>
+        <div class="tab">
+            <button class="tablinks active" tabType="0" onclick="OpenTab(event, 'Applicant', '@Model.ActiveItemColor')">@ViewData["Applicant"]</button>
+            <button class="tablinks" tabType="1" onclick="OpenTab(event, 'Company', '@Model.ActiveItemColor')">@ViewData["Company"] </button>
+        </div>
+        <div class="div-login-box">
+            <h3 class="header-text">@ViewData["Title"]</h3>
+            <div id="Applicant" class="tabcontent ">
+                <div style="text-align: left;">
+                    <div id="buttonDiv"></div>
+                    <div class="fb-login-button sm-margin-top" data-onlogin="onFacebookSignIn" data-width="300" data-size="large" data-button-type="login_with" data-layout="default" data-use-continue-as="false" data-scope="public_profile,email"></div>
+                    <div class="lg-margin-top">
+                        <hr />
+                        <div class="div-splitter">
+                            <span class="line-splitter">@ViewData["OR"]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Company" class="tabcontent" style="visibility: hidden">
+                <input type="hidden" value="component" />
+            </div>
+            <div class="md-margin-top">
+                <input type="email" required placeholder="@ViewData["Email"]" id="email" name="email" title="email" data-verifymessage="Email" style="width: 300px;" />
+            </div>
+            <div class="md-margin-top">
+                <input type="button" style="background-color: @Model.ColorTeal !important" id="verifyBtn" class="btn inputbox" value="@ViewData["SendCode"]" />
+                <input type="text" autocomplete="off" class="inputbox" id="verifyCode" placeholder="@ViewData["Code"]" name="verifycode" title="Code" required disabled />
+                <div class="g-recaptcha"
+                     data-sitekey="@Model.CaptchaSiteKey"
+                     data-callback="EmailVerifyCallback"
+                     data-size="@(Model.IsCaptchaVisible ? "" : "invisible")">
+                </div>
+            </div>
+            <div class="sm-margin-top">
+                <input type="button" id="loginBtn" name="loginBtn" class="btn" value="@ViewData["SignIn"]" style="width: 300px;" disabled="disabled" />
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+            <div style="text-align: center;">
+                <span class="terms-text">@ViewData["Terms"] </span> <a href="@Model.TermsLink" class="terms-link-text">@ViewData["TermsLinkText"]</a>
+            </div>
+            <br /><br />
+            <span style="display: none;" id="Applicantprev_link"></span>
+        </div>
+
+    </div>
+</div>
+<script>
+
+    var googleTag = document.createElement("script");
+    googleTag.src = "https://accounts.google.com/gsi/client";
+    document.getElementsByTagName("head")[0].appendChild(googleTag);
+
+    var googleTagCaptcha = document.createElement("script");
+    googleTagCaptcha.src = "https://www.google.com/recaptcha/api.js";
+    document.getElementsByTagName("head")[0].appendChild(googleTagCaptcha);
+
+    var googleClientIdTag = document.createElement("script");
+    googleClientIdTag.src = "/djs/auth/auth/@Model.GoogleAuthClientId~@Model.FacebookAppId~@Model.Culture~@HttpUtility.UrlEncode(Url.Action("Profile","Applicant"))~@HttpUtility.UrlEncode(Url.Action("Profile","Company"))~@((int)ClientType.Applicant)~@((int)ClientType.Company)~@HttpUtility.UrlEncode(Url.Action("LoginWithEmail","Auth"))~@HttpUtility.UrlEncode(Url.Action("SendEmailVerifyCode","Auth"))~@HttpUtility.UrlEncode(Url.Action("LoginWithGoogle","Auth"))~@HttpUtility.UrlEncode(Url.Action("LoginWithFacebook","Auth"))~@ViewData["EmailNotValid"]~@ViewData["VerifyCodeNotValid"]~@Model.ColorAqua~@Model.ColorTeal";
+    document.getElementsByTagName("head")[0].appendChild(googleClientIdTag);
+
+    window.onload=function(){
+    var facebookTag = document.createElement("script");
+    facebookTag.src = "https://connect.facebook.net/@Model.Culture.Substring(0, 2)/sdk.js#xfbml=1&version=v14.0&appId=@Model.FacebookAppId&autoLogAppEvents=1";
+    document.getElementsByTagName("head")[0].appendChild(facebookTag);
+    }
+   
+   
+</script>
+@*<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://connect.facebook.net/@Model.Culture.Substring(0, 2)/sdk.js#xfbml=1&version=v14.0&appId=@Model.FacebookAppId&autoLogAppEvents=1" async defer></script>
+<script src="/djs/auth/auth/@Model.GoogleAuthClientId~@Model.FacebookAppId~@Model.Culture~@HttpUtility.UrlEncode(Url.Action("Profile","Applicant"))~@HttpUtility.UrlEncode(Url.Action("Profile","Company"))~@((int)ClientType.Applicant)~@((int)ClientType.Company)~@HttpUtility.UrlEncode(Url.Action("LoginWithEmail","Auth"))~@HttpUtility.UrlEncode(Url.Action("SendEmailVerifyCode","Auth"))~@HttpUtility.UrlEncode(Url.Action("LoginWithGoogle","Auth"))~@HttpUtility.UrlEncode(Url.Action("LoginWithFacebook","Auth"))~@ViewData["EmailNotValid"]~@ViewData["VerifyCodeNotValid"]~@Model.ColorAqua~@Model.ColorTeal" async defer></script>
+*@
+ 
+               

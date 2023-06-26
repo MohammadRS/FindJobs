@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+             xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources"
+             xmlns:forms="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+              xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="FindJobs.App.Themes.MainTheme"
+              xmlns:helper="clr-namespace:FindJobs.App.Helper;assembly=FindJobs.App"
+             x:Name="MyPage">
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="MainThemeTemplate">
+            <StackLayout  HorizontalOptions="FillAndExpand">
+
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" x:Name="HeaderMain"  >
+                    <Frame BorderColor="LightGray"
+       HasShadow="True"
+       CornerRadius="0"
+       HorizontalOptions="FillAndExpand">
+                        <Frame.Background>
+                            <!-- StartPoint defaults to (0,0) -->
+                            <LinearGradientBrush  StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop x:Name="gradientStart"  
+                          Offset="1.0" />
+                                <GradientStop x:Name="gradientEnd" 
+                          Offset="0.1" />
+                            </LinearGradientBrush>
+
+                        </Frame.Background>
+                        <StackLayout VerticalOptions="StartAndExpand">
+                            <StackLayout Orientation="Horizontal" >
+
+                                <forms:SvgCachedImage Source="{re:AppResources SharedIcons.logo.svg}" HorizontalOptions="StartAndExpand" Margin="0,20,20,20" WidthRequest="55" HeightRequest="45"   />
+                                <forms:SvgCachedImage  Source="{re:AppResources SharedIcons.menu.svg}" WidthRequest="35" HeightRequest="30"   Margin="0,0,10,0">
+                                    <forms:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="MenuClicked" />
+                                    </forms:SvgCachedImage.GestureRecognizers>
+                                </forms:SvgCachedImage>
+                                <forms:SvgCachedImage BindingContext="{x:Reference Name=MyPage}" WidthRequest="45" HeightRequest="35"
+                                                      Source="{Binding CurrentFlag}" BackgroundColor="Transparent">
+                                    <forms:SvgCachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="MenuLanguageClicked"></TapGestureRecognizer>
+                                    </forms:SvgCachedImage.GestureRecognizers>
+                                </forms:SvgCachedImage>
+
+                            </StackLayout>
+                            <StackLayout x:Name="MainLayout" Margin="0,5" HorizontalOptions="FillAndExpand">
+
+                                <power:PowerEntry   Padding="2,0" Margin="0,10,0,5" BorderColor="White" Icon="{re:AppResources SharedIcons.search.svg}" PlaceHolder="{x:Static res:Layout.KeywordCompany}" FontSize="20" TextColor="Silver" x:Name="JobCategoryList" >
+                                    <power:PowerEntry.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="JobCategory_Clicked"></TapGestureRecognizer>
+                                    </power:PowerEntry.GestureRecognizers>
+                                </power:PowerEntry>
+
+                                <power:PowerEntry Padding="1,0" Margin="0,3,0,5" BorderColor="White" PlaceHolder="{x:Static res:Layout.CityLocation}" FontSize="20" TextColor="Silver" Icon="{re:AppResources SharedIcons.location.svg}" x:Name="CityLocation">
+                                    <power:PowerEntry.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="CityLocation_Clicked"></TapGestureRecognizer>
+                                    </power:PowerEntry.GestureRecognizers>
+                                </power:PowerEntry>
+                                <Frame   VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="20,12,0,30" WidthRequest="190"  Padding="5,-1 ,5,-1" BorderColor="White" >
+                                    <Button x:Name="SearchOffers" Text="{x:Static res:Layout.Search}" FontSize="Medium"  BackgroundColor="Transparent"  TextColor="White" Clicked="SearchOffers_Clicked" />
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <ContentPresenter VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <power:PowerLayout  Grid.Column="0" Grid.Row="0" Padding="2" Clicked="FindNav_Clicked" BorderColor="Transparent"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                            <ffsvg:SvgCachedImage x:Name="SearchImage"  Source="{re:AppResources SharedIcons.searchblack.svg}"  VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                            </ffsvg:SvgCachedImage>
+                            <Label  Text="{x:Static res:XTabbar.Find}" HorizontalOptions="CenterAndExpand"></Label>
+                        </power:PowerLayout>
+                        <power:PowerLayout Clicked="MyJobNav_clicked"  Grid.Column="1" Grid.Row="0" Padding="2" VerticalOptions="Center" BorderColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <ffsvg:SvgCachedImage x:Name="MyJobImage"  Source="{re:AppResources SharedIcons.paper.svg}"  VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                            </ffsvg:SvgCachedImage>
+                            <Label Text="{x:Static res:XTabbar.MyJob}" HorizontalOptions="CenterAndExpand"></Label>
+                        </power:PowerLayout>
+                        <power:PowerLayout Clicked="SuggestNav_clicked" Grid.Column="2" Grid.Row="0" Padding="2"  VerticalOptions="Center" BorderColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <ffsvg:SvgCachedImage x:Name="SuggestImage" Source="{re:AppResources SharedIcons.heart.svg}"  VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                            </ffsvg:SvgCachedImage>
+                            <Label Text="{x:Static res:XTabbar.Favourite}" HorizontalOptions="CenterAndExpand"></Label>
+                        </power:PowerLayout>
+                        <power:PowerLayout Clicked="JobAlert_clicked"  Grid.Column="3" Grid.Row="0" Padding="2"  VerticalOptions="Center" BorderColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <ffsvg:SvgCachedImage x:Name="JobAlertImage"  Source="{re:AppResources SharedIcons.bell.svg}"  VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                            </ffsvg:SvgCachedImage>
+                            <Label Text="{x:Static res:XTabbar.JobAlert}" HorizontalOptions="CenterAndExpand"></Label>
+                        </power:PowerLayout>
+                        <power:PowerLayout Clicked="ProfileNav_clicked"   Grid.Column="4" Grid.Row="0" Padding="2"   VerticalOptions="Center" BorderColor="Transparent" HorizontalOptions="CenterAndExpand">
+                            <ffsvg:SvgCachedImage  x:Name="ProfileImage" Source="{re:AppResources SharedIcons.profile.svg}"  VerticalOptions="Center" WidthRequest="30" HeightRequest="30"  >
+                            </ffsvg:SvgCachedImage>
+                            <Label Text="{x:Static res:XTabbar.Profile}" HorizontalOptions="CenterAndExpand"></Label>
+                        </power:PowerLayout>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.Resources>
+</ContentPage>
+

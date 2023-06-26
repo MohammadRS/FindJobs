@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Res="clr-namespace:Res;assembly=FindJobs.Resources" 
+               xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+               xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+               xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+               xmlns:helper="clr-namespace:FindJobs.App.Helper"
+               Title="{x:Static Res:CompanyOffer.Favourites}"
+             x:Class="FindJobs.App.Pages.FavouritePage">
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="{helper:GetColorAppSetting Source=UISettings:WhiteSmoke}" Padding="15,0,15,0" Margin="0,10,0,0">
+            <StackLayout x:Name="NoResult" IsVisible="false"  >
+                <Frame   CornerRadius="15"   MinimumHeightRequest="250"  Grid.Row="0" HasShadow="True"   BackgroundColor="White" >
+                    <Label Text="{x:Static Res:Messages.NoOfferExistInFavourite}" FontSize="20" TextColor="{helper:GetColorAppSetting Source=UISettings:ColorRed}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Frame>
+            </StackLayout>
+            <ScrollView>
+
+                <CollectionView x:Name="OfferCollection" VerticalOptions="FillAndExpand"  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="6">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="onCollectionViewItemSelected" CommandParameter="{Binding Id}" />
+                                </StackLayout.GestureRecognizers>
+                                <Frame   CornerRadius="15"   MinimumHeightRequest="250"  Grid.Row="0" HasShadow="True"   BackgroundColor="White" >
+                                    <Grid   RowDefinitions="auto,auto,auto,auto,auto" ColumnDefinitions="auto,*,auto" >
+
+                                        <Image Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" WidthRequest="40" HeightRequest="40"   x:Name="myImage" Source="{Binding Image1}" Aspect="AspectFit" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding JobCategory}" VerticalOptions="CenterAndExpand" Padding="7,0,0,0" FontSize="20" TextColor="{helper:GetColorAppSetting Source=UISettings:ColorRed}" />
+
+                                        <ffimageloadingsvg:SvgCachedImage Grid.Column="2" HeightRequest="30" WidthRequest="30"   x:Name="heartIcon" 
+                                                          Source="{re:AppResources SharedIcons.delete.svg}"
+                                                           HorizontalOptions="Center"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnDeleteIconClicked" CommandParameter="{Binding Id}" ></TapGestureRecognizer>
+                                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                        </ffimageloadingsvg:SvgCachedImage>
+
+
+
+                                        <Label Grid.Row="1" Grid.Column="1" FontSize="18" Padding="0,15,0,15" Text="{Binding  Description}" TextColor="Black" />
+
+                                        <Label Grid.Row="2" Grid.Column="1"   Text="{Binding jobCategory}" TextColor="Black" />
+
+                                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                            <ffimageloadingsvg:SvgCachedImage 
+                                                          Source="{re:AppResources SharedIcons.location-silver.svg}"
+                                                          WidthRequest="20" HeightRequest="20" HorizontalOptions="Start"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer ></TapGestureRecognizer>
+                                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                            </ffimageloadingsvg:SvgCachedImage>
+                                            <power:PowerLabel Text="{Binding City}" TextColor="Black"  VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                                            <ffimageloadingsvg:SvgCachedImage 
+                                                          Source="{re:AppResources SharedIcons.calendar.svg}"
+                                                          WidthRequest="20" HeightRequest="20" HorizontalOptions="Start"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer ></TapGestureRecognizer>
+                                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                            </ffimageloadingsvg:SvgCachedImage>
+                                            <power:PowerLabel Text="{Binding RegisterDate}" TextColor="Black" VerticalOptions="Center" />
+                                        </StackLayout>
+
+
+
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</themes:MainTheme>

@@ -1,0 +1,25 @@
+﻿.cv-title{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.cv-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cv-dropdown {
+    margin: 10px 10px;
+    padding: 2px;
+    z-index: 101;
+    position: relative;
+    outline: 0;
+    border-radius: 7px;
+    border: solid 1px white;
+    background: rgb(211 204 204 / 20%);
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    color: black;
+    padding-left: 50px;
+}
+

@@ -1,0 +1,54 @@
+.title > h4 {
+    color: gray;
+}
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.table {
+    width: 100%;
+}
+.table tr{
+    display:flex;
+    flex-wrap:wrap;
+}
+.table td{
+    flex-basis:300px;
+}
+    .table td:nth-of-type(1) {
+        flex-basis: 50px;
+    }
+
+.lg-flex{
+    flex-basis:600px !important;
+}
+
+
+.small-padding{
+    padding:17px;
+}
+.bottom-table{
+    flex-basis:350px !important;
+}
+.contact-button {
+    background-color: #$0$;
+    border-radius: 5px;
+    border: 0px none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 200px;
+}
+
+    .contact-button:hover {
+        background-color: #$1$;
+        cursor: pointer;
+    }
+
+
+

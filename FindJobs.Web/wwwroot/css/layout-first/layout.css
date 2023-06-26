@@ -1,0 +1,459 @@
+﻿/*************** STRUCTURE & HEADER *****************/
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    scroll-behavior: smooth;
+}
+
+/*i Comment Them becuase they will make confilct to all others css*/
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    border: none 0px;
+}
+
+a, a:hover, a:focus, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1440px;
+    padding: 0px 10px;
+    margin: auto auto;
+}
+
+.inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 150px;
+}
+
+header {
+    background-image: linear-gradient(to bottom right,#000 0%,#555 100%);
+    height: 300px;
+}
+
+#navbar {
+    box-sizing: border-box;
+}
+
+.flag {
+    position: relative;
+    z-index: 200;
+    float: right;
+    margin-top: 27px;
+    margin-left: 10px;
+}
+
+
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.middlecontainer {
+    display: table;
+    height: calc(100% - 100px);
+    position: relative;
+    top: 0px !important;
+}
+
+.middle-v {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.advance-layout {
+    display: none;
+}
+
+.middle-h {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.row > * {
+    float: left;
+}
+
+    .row > *:last-child {
+        float: right;
+    }
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+h1 {
+    font-family: 'Questrial', sans-serif;
+    font-size: 55px;
+    color: white;
+    margin: 0px;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Questrial', sans-serif;
+}
+
+.maintitle {
+    font-size: 30px;
+}
+
+
+.subtitle {
+    font-family: 'Questrial', sans-serif;
+    font-size: 25px;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-search {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px;
+    background: rgba(256,256,256,0.2);
+    color: white;
+    font-size: 15px;
+    width: 100%;
+    max-width: 160px;
+    z-index: 100;
+    position: relative;
+    cursor: pointer;
+}
+
+    .btn-search:hover {
+        background-color: white;
+        color: gray;
+    }
+
+.searchbox {
+    margin: 10px 10px;
+    font-size: 20px;
+    padding: 8px;
+    z-index: 100;
+    position: relative;
+    outline: 0;
+    border-radius: 7px;
+    border: solid 1px white;
+    background: rgba(256,256,256,0.2);
+    width: calc(100% - 20px);
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    color: white;
+    padding-left: 50px;
+}
+
+.searchbox-job {
+    max-width: 420px;
+    background-image: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJiSURBVHjavNdPSBZBGMfxfd/SLAlDDbJS+gMRKQaF0alDxyiiTC92SIKiMISog4cOXbx06RRBQZeEiP5SUARFVCCiYSFmHUShP0KZ2UEFsXf7DswLy8Pszsy+vj7wObzjzu5vd5533zEThmGQUBU4iANowFqUYgYT6MdDvMFCkKZUAIOV6MJE6FbvcSTmXIlMg9swEKarW1hVSIAmj7uOqxdY7RogE+mBrXiLGsNKfcBTDOv1V72wB4ew3nC8OvYwcj498NxwN9/RimzMHVSgGwuGuRd8lqDZcIJB1Do+yqOYFfN/YYNrgFdi8qRuRp+OPmm4iS6XANsxLyZeTPOVMtzIgG1OljbYi5JIW0yjJ0hXN8TnemxOmqACNIqxj/iRMkAv5iKfy7DFFmCjGBsP0tdPTIqxaluArBjLBYVV6HOwuvg3MVZXwMUrUSXGpmwBhsTYTttjSyj1diyPfJ7HmC1AH/6JNWtJGaBdfP6MUZdX8Tvx/f3q8hYTjhleRJdd34Rthsmvscbx4vvwW8yfxibXABl9QVkj+uRxJyjBOcwY5l7y/Tmu11urSrFKqj9e4hFG9ItGdXoTWrEjZnVv44ToL+uWbD/+hItXPVjmuyXbjS+LGOIOVvgEyG80ruCv40WGcN3wq5qv+yj1CZBXo5vsGcZ1INVwU/ikH3Gz3kWr4zsTQt7TTesVQG7V16EO1aaTaecTQtyVTyJIufGwOZMQ4gnKih3AFuJxvjGLGUDpSAjxAMuLHUA5i1xMiM5sUPy6hlMxf9u1FAFU3cRpw3jfUixB1HGM6v87rqoe+C/AACL7kORg5RkNAAAAAElFTkSuQmCC');
+
+}
+
+    .searchbox-job:hover {
+        border-color: #11bbbb;
+    }
+
+.searchbox-location {
+    max-width: 250px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAACPUlEQVRYhe3YvWsUQRzG8WckUcQrNAYhIAELawUl50uhsZBgo50vCIq1rYVYaWVjaaXYaIj+BQELFT0QCaKkSqGphCvEnKJBNCFfi53F5dzZm52dXSHk6e529/f7zO3NzN5JG1nnMVULAPskHZU0Jmm3ffuTpK6kjjFmvmqPENQocBtYZHAW7bmjTcCGgRvANw9Yf74C14HhunAjwLMAWH9eAbti48aBjxFwaT4A47FwW4G5iLg074BtMYBPasClma6KO1YjLs1kKM4ArxsAvgGc6/GmAmNb0qGg0ZXLhKSDroNDBReeLtFkRdKMpBdKdqfjks4PqJ/NGUlzJfpJwLznLeoBEznXt0kWZ5+8L4WzDX56Fr9YUOOSZ41lV43cLyewQ9KSxzh+SNppjPntqLPZ1vFZ70aMMb3+N12TxHdj77pwkmSPdT1r5fZ0Af8ZiSNj9lPKDbBFyWOYT3J7uoBLklY9irYknSs4fkF+t3dF0heP8/6GZK/0SQ9o51x/GP9Z/NblKFqnnkra7zGW7ZI6wGNJz5VMvElJZwfU7+9VLsARz9HHSNiOBXQawL0MwlngVAPAk8FAi3xQI+5eJZwFtoCFGnALQKsy0CL3AN2IuM/A3ii4DPIA8D0CbpnQWeuBPAH8qoBbBco8ZwYhLwNrAbg14EqtuAzyagDwWiO4DPJmCdytRnEZ5B0P3N3/grNAA9wvwD0Ein45NoIcAh7l4KYB36cZZyr/gZkGOCVpyr6cNcbMxqq9kXWdP6BG4SNmqSsxAAAAAElFTkSuQmCC');
+
+}
+
+    .searchbox-location:hover {
+        border-color: #11bbbb;
+    }
+
+#logo {
+    z-index: 101;
+    display: block;
+    position: relative;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 33px;
+    margin-top: 20px;
+}
+
+.login-ml {
+    margin-left: 430px;
+}
+
+.minus-margin {
+    margin: 0px -20px;
+}
+
+.profile-item {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    margin-top: -23px;
+    display: flex;
+    position: absolute;
+    margin-left: -7px;
+    border: 1px white solid;
+}
+
+#nav-zmenu-over li a {
+    margin-top: 4px !important;
+}
+
+.zmenu__nav > li.login-btn > a {
+    width: 97px;
+}
+
+#menu-top-profile a {
+    color: #ccc;
+}
+
+#menu-top-profile a:hover {
+    color: #fff;
+}
+
+.advancesearch-layout {
+    display: flex;
+    flex-direction: row;
+    margin-left: 172px;
+}
+
+
+/*ItemProfileMenu-pzmenu*/
+
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+.pmenu {
+    margin-top: 6px;
+    z-index: 200;
+    position: relative;
+}
+
+
+.pmenu {
+    display: flex;
+    flex-direction: row-reverse
+}
+
+    .pmenu ul {
+        padding: 0;
+        list-style: none;
+        font: 0 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    .pmenu li, .pmenu a {
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .pmenu a {
+        color: #fff;
+        text-decoration: none;
+        border-right: 1px solid #000;
+    }
+
+        .pmenu a:last-child {
+            border-right: none;
+            font-size: 14px !important;
+            cursor: pointer;
+        }
+
+.pmenu__nav > li.login-btn > a {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+
+    .pmenu__nav > li.login-btn > a:hover {
+        background-color: white;
+        color: gray;
+    }
+
+.pmenu__nav > li.logout-btn > a {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+
+    .pmenu__nav > li.logout-btn > a:hover {
+        background-color: white;
+        color: gray;
+    }
+
+
+.pmenu__nav > li {
+    padding: 20px 0px;
+    position: relative;
+}
+
+    .pmenu__nav > li > a {
+        padding: 0px 20px;
+        text-transform: uppercase;
+    }
+
+    .pmenu__nav > li:hover > ul {
+        opacity: 1;
+        visibility: visible;
+        margin: 0;
+    }
+
+    .pmenu__nav > li:hover > a {
+        color: #fff;
+    }
+
+    .pmenu__nav > li:focus-within > ul {
+        opacity: 1;
+        visibility: visible;
+        margin: 0;
+    }
+
+    .pmenu__nav > li:focus-within > a {
+        color: #fff;
+    }
+
+    .pmenu__nav > li:hover > ul > li > a {
+        font-size: 15px;
+    }
+
+.pmenu__nav__hasDropdown:before {
+    content: "";
+    position: absolute;
+    border: 4px solid transparent;
+    border-bottom: 0;
+    border-top-color: currentColor;
+    top: 50%;
+    margin-top: -2px;
+    right: 10px;
+}
+
+.pmenu__nav__dropdown {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-height: 430px !important;
+    min-width: 160px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    margin: 20px 0 0 0;
+    background-color: #373737;
+    transition: margin 0.15s, opacity 0.15s;
+}
+
+.pmenu__nav > li:last-child ul {
+    right: 0;
+    left: auto;
+}
+
+    .pmenu__nav > li:last-child ul > li:first-child > a:after {
+        right: 1em;
+        left: auto;
+    }
+
+.pmenu__nav__dropdown > li {
+    width: 100%;
+}
+
+    .pmenu__nav__dropdown > li > a {
+        color: #ccc;
+    }
+
+    .pmenu__nav__dropdown > li:first-child > a:after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        left: 1em;
+        top: -6px;
+        border: 6px solid transparent;
+        border-top: 0;
+        border-bottom-color: inherit;
+    }
+
+    .pmenu__nav__dropdown > li:last-child {
+        border: 0;
+    }
+
+.pmenu__nav__dropdown a {
+    padding: 10px 30px;
+    width: 160px;
+    border-color: #373737;
+    border-width: 0px;
+}
+
+    .pmenu__nav__dropdown a:hover {
+        background-color: #777;
+        border-color: #777;
+        color: #fff;
+    }
+
+    .pmenu__nav__dropdown a:focus {
+        background-color: #777;
+        border-color: #777;
+        color: #fff;
+    }
+
+
+.pzmenu {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+
+
+@media screen and (max-width: 1000px) {
+    #logo img {
+            height: 40px;
+            width: 34px;
+        }
+
+    .searchbox-job {
+        max-width: none;
+    }
+
+    .searchbox-location {
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .no-mobile {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1440px;
+        padding: 0px 10px;
+        margin: auto auto;
+    }
+
+    .inner-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 0px;
+    }
+}

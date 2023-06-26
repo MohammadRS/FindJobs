@@ -1,0 +1,75 @@
+.ox-elements {
+    display: flex;
+    flex-direction: row;
+}
+
+.ox-sidenav {
+    width: 100px;
+    position: unset;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #$1$;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.ox-image {
+    width: 5rem;
+    border-radius: 136px;
+    margin: 10px 3px !important;
+    height: 5rem;
+    object-fit: cover;
+    border: 0px;
+}
+
+.ox-right-side {
+    margin-left: 41px;
+}
+
+.ox-hr-line {
+    width: 80%;
+    border: 1px solid lightgray;
+}
+
+.ox-header-text {
+    color: gray;
+}
+
+.ox-description {
+    max-width: 80%;
+}
+
+.ox-table td {
+    text-align: left;
+    max-width: 200px;
+    min-width: 170px;
+    margin: 5px 0;
+}
+
+.ox-table .ox-table-min-td {
+    min-width: 430px;
+}
+
+.ox-table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .ox-table tr {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .ox-table td:last-child {
+        text-align: left;
+    }
+
+@media (max-width: 768px) {
+    .ox-table tr td {
+        display: block;
+        align-self: center;
+        margin: 5px 0;
+    }
+}

@@ -1,0 +1,63 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantEducationDto
+
+
+
+
+<form onsubmit="return saveEntity(this,'CreateOrUpdateApplicantEducation','ApplicantEducationListDiv','@Res.ApplicantProfile.EducationAddSuccessfully','ApplicantEducationModal','@Res.ApplicantProfile.SaveSuccessfully','@Res.ApplicantProfile.NotSaveSuccessfully')">
+    <div class="profile-flex-container">
+
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="box">
+            <label>@Res.ApplicantProfile.EducationLevel</label>
+
+            <select asp-for="EducationLevel" value="@Model.EducationLevel">
+                <option value="0">@Res.ApplicantProfile.University</option>
+                <option value="1">@Res.ApplicantProfile.HighSchool</option>
+                <option value="2">@Res.ApplicantProfile.CourseOrCertificate</option>
+            </select>
+        </div>
+        <div class="box">
+
+            <label>@Res.ApplicantProfile.University/InstituteName</label>
+
+            <input class="InstituteName" type="text" asp-for="InstituteName" value="@Model.InstituteName" />
+        </div>
+        <div class="box">
+
+            <label>@Res.ApplicantProfile.CourseName</label>
+
+            <input class="CourseName" required type="text" asp-for="CourseName" value="@Model.CourseName" />
+
+        </div>
+        <div class="box"></div>
+        <div class="box">
+            <label>@Res.ApplicantProfile.From:</label>
+
+            @if (Model.StartEducation !=null)
+            {
+                <input class="StartEducation" type="month" asp-for="StartEducation" value="@Model.StartEducation.Value.ToString("yyyy-MM")" />
+            }
+            else
+            {
+                <input class="StartEducation" type="month" asp-for="StartEducation" value="" />
+            }
+        </div>
+        <div class="box">
+
+            <label>@Res.ApplicantProfile.To:</label>
+
+            @if (Model.EndEducation !=null)
+            {
+                <input class="EndEducation" type="month" asp-for="EndEducation" value="@Model.EndEducation.Value.ToString("yyyy-MM")" />
+            }
+            else
+            {
+                <input class="EndEducation" type="month" asp-for="EndEducation" value="" />
+            }
+        </div>
+    </div>
+
+    <input type="submit" id="btnSaveForm" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+
+</form>

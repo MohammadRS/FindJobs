@@ -1,0 +1,40 @@
+﻿
+fieldset {
+    border: none;
+}
+
+legend {
+    padding: 20px 20px;
+    font-size: 20px;
+}
+
+.required-label {
+    width: 5px;
+    color: red;
+    padding: 0;
+}
+
+.required:after {
+    content: " *";
+    color: red;
+}
+
+
+#company-save-button {
+    background-color: #$0$;
+    padding: 8px 0;
+    border-radius: 5px;
+    border: 0 none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 129px;
+    margin: 20px 50px;
+}
+
+    #company-save-button:hover {
+        background-color: #$1$;
+        cursor:pointer;
+    }

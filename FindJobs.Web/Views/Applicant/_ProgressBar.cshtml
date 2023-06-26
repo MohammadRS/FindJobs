@@ -1,0 +1,25 @@
+﻿@using FindJobs.Domain.Dtos
+@model CalculateProgressbarDto
+
+    <link rel="stylesheet" href="/dcss/internal/progressbar/@Model.ProfileProgressBarOffset" />
+    
+
+<div class="skill">
+    <div class="outer">
+        <div class="inner">
+            <div id="number">
+               @Model.ProfileCompleted %
+            </div>
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px" class="svg-progressbar">
+        <defs>
+            <linearGradient id="GradientColor">
+                <stop offset="0%" stop-color="#@ViewData["ColorTeal"]" />
+                <stop offset="100%" stop-color="#@ViewData["ColorAqua"]" />
+            </linearGradient>
+        </defs>
+        <circle cx="80" cy="80" r="70" stroke-linecap="round" transform="rotate(-90 80 80)" class="circle-progressbar" />
+    </svg>
+</div>

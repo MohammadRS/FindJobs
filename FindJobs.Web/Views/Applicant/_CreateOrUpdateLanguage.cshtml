@@ -1,0 +1,43 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantLanguageDto
+
+
+
+
+<form onsubmit="return saveEntity(this,'CreateOrUpdateApplicantLanguage','ApplicantLanguageListDiv','@Res.ApplicantProfile.LanguageAddSuccessfully','ApplicantLanguageModal','@Res.ApplicantProfile.SaveSuccessfully','@Res.ApplicantProfile.NotSaveSuccessfully')">
+    <div class="profile-flex-container">
+
+        <div class="box">
+            <label>@Res.ApplicantProfile.Knowledge</label>
+            <select class="CourseName" required type="text" asp-for="LanguageName" value="@Model.LanguageName">
+                @foreach (var item in Model.languageDtos)
+                {
+                    if (Model.LanguageName == item.Name)
+                    {
+                        <option value="@item.Name" selected="selected">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                }
+            </select>
+
+        </div>
+        <div class="box">
+
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+
+            <label>@Res.ApplicantProfile.languageLevel</label>
+
+            <select asp-for="LanguageLevel" value="@Model.LanguageLevel">
+                <option value="0">@Res.ApplicantProfile.Beginner</option>
+                <option value="1">@Res.ApplicantProfile.Intermediate</option>
+                <option value="2">@Res.ApplicantProfile.Advanced</option>
+                <option value="3">@Res.ApplicantProfile.Expert</option>
+            </select>
+        </div>
+    </div>
+    <input type="submit" id="btnSaveForm" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+
+</form>

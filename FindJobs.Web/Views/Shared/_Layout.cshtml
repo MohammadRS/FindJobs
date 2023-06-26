@@ -1,0 +1,288 @@
+﻿@using FindJobs.Domain.Enums
+@using FindJobs.Domain.Global
+@using FindJobs.Web.Helper;
+@using DotNek.WebComponents.Areas.Auth.Enums
+@using Microsoft.Extensions.Configuration
+@using FindJobs.Domain.Dtos
+@using FindJobs.Web.Controllers
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Globalization
+@using System.Threading
+@using System.Web;
+@inject IConfiguration Configuration
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    var newCulture = new CultureInfo(ViewData["Culture"].ToString()!);
+    Thread.CurrentThread.CurrentCulture = newCulture;
+    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(newCulture.Name);
+    string ControllerName = ViewContext.RouteData.Values["controller"].ToString();
+
+}
+
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Desc">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://apis.google.com/">
+    <link rel="dns-prefetch" href="https://www.google.com/">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://apis.google.com/">
+    <link rel="preconnect" href="https://www.google.com/">
+    @*<link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE3Ny43NzhweCIgaGVpZ2h0PSIxNzcuNzc4cHgiIHZpZXdCb3g9IjAgMCAxNzcuNzc4IDE3Ny43NzgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDE3Ny43NzggMTc3Ljc3ODsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KICA8c3R5bGU+DQogICAgcG9seWdvbiB7DQogICAgICBmaWxsOiAjNjY2Ow0KICAgIH0NCiAgICBAbWVkaWEgKHByZWZlcnMtY29sb3Itc2NoZW1lOiBkYXJrKSB7DQogICAgICBwb2x5Z29uIHsNCiAgICAgICAgZmlsbDogI0VFRTsNCiAgICAgIH0NCiAgICB9DQogIDwvc3R5bGU+DQo8Zz4NCgk8Zz4NCgkJPHBvbHlnb24gcG9pbnRzPSIxNzEuMjM1LDAgMTEzLjk1NCwwIDE0Mi41OTcsNDkuNjEyIAkJIi8+DQoJCTxwb2x5Z29uIHBvaW50cz0iOTkuNjI2LDAgNDIuMzQ1LDAgNzAuOTg2LDQ5LjYxMiAJCSIvPg0KCQk8cG9seWdvbiBwb2ludHM9IjM1LjE4NCw0LjE0MSA2LjU0Myw1My43NDcgNjMuODI1LDUzLjc0NyAJCSIvPg0KCQk8cG9seWdvbiBwb2ludHM9IjEwNi43OSw0LjE0MSA3OC4xNTIsNTMuNzQ3IDEzNS40MzQsNTMuNzQ3IAkJIi8+DQoJCTxwb2x5Z29uIHBvaW50cz0iMTM1LjQzNCw2Mi4wMjEgNzguMTUyLDYyLjAyMSAxMDYuNzksMTExLjYzMSAJCSIvPg0KCQk8cG9seWdvbiBwb2ludHM9IjcwLjk4Niw2Ni4xNSA0Mi4zNDUsMTE1Ljc2MyA5OS42MjYsMTE1Ljc2MyAJCSIvPg0KCQk8cG9seWdvbiBwb2ludHM9IjE3MS4yMzUsMTI0LjAzMSAxMTMuOTU0LDEyNC4wMzEgMTQyLjU5NywxNzMuNjQ2IAkJIi8+DQoJCTxwb2x5Z29uIHBvaW50cz0iOTkuNjI2LDEyNC4wMzEgNDIuMzQ1LDEyNC4wMzEgNzAuOTg2LDE3My42NDYgCQkiLz4NCgkJPHBvbHlnb24gcG9pbnRzPSIzNS4xODQsMTI4LjE2OSA2LjU0MywxNzcuNzc4IDYzLjgyNSwxNzcuNzc4IAkJIi8+DQoJCTxwb2x5Z29uIHBvaW50cz0iMTA2Ljc5LDEyOC4xNjkgNzguMTUyLDE3Ny43NzggMTM1LjQzNCwxNzcuNzc4IAkJIi8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=">*@
+    @*<meta property="og:title" content="@ViewBag.Title"/>
+    <meta property="og:description" content="@ViewBag.Desc"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="@Request.Url.AbsoluteUri"/>
+    <meta property="og:image" content="@(Helper.RelativetoAbsolutePath(Request, Url, ViewBag.Image) != "" ? Helper.RelativetoAbsolutePath(Request, Url, ViewBag.Image) : "")"/>*@
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@("@dotnek")" />
+    <meta name="twitter:creator" content="@("@dotnek")" />
+    <meta name="twitter:title" content="@ViewBag.Title" />
+    <meta name="twitter:description" content="@ViewBag.Desc" />
+    @*    <meta name="twitter:image" content="@(Helper.RelativetoAbsolutePath(Request, Url, ViewBag.Image) != "" ? Helper.RelativetoAbsolutePath(Request, Url, ViewBag.Image) : "")"/>
+    *@
+    <link rel="manifest" href="/PWA/manifest.json">
+    <link rel="apple-touch-icon" href="/PWA/icon-180x180.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#2a5b6d">
+    <meta name="theme-color" content="#2a5b6d" />
+    <link rel="preload" href="~/Fonts/Questrial/latin.woff2" as="font" crossorigin>
+    <style>
+        @(Html.Raw(Startup.InlineStyles["Layout"]))
+    </style>
+    <style>header { background-image: linear-gradient(to bottom right, @ViewData["HeaderColorDark"] 0%, @ViewData["HeaderColorLight"] 100%); }</style>
+  
+<link href="~/css/internal/dropdown_select.css" rel="stylesheet" />
+
+
+
+
+    @await RenderSectionAsync("Css", false)
+    <link rel="stylesheet" href="~/css/layout-lazy.css" media="print" onload="this.media = 'all'">
+  
+    <noscript>
+        <link rel="stylesheet" href="~/css/layout-lazy.css">
+    </noscript>
+    <!-- Google Tag Manager -->
+    @*<script>
+    (function(w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KJ29PG9');
+    </script>*@
+</head>
+<body data-rsssl="1" id="top" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+    <!-- Google Tag Manager (noscript) -->
+    @*<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ29PG9" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>*@
+
+    <header id="MainHeaderSite">
+
+        <div id="navbar" class="container row">
+            <div>
+                <a href="/" id="logo">
+                    <img src="/dsvg/SharedIcons/logo" width="55" height="65" />
+                </a>
+            </div>
+            <div>
+                <div class="pzmenu">
+              
+                <div class="pmenu" aria-label="Menu">
+                    <ul class="pmenu__nav" id="profile-menu">
+                       
+                        @{
+
+                            var token = HttpContextAccessor.HttpContext.Request.Cookies["AuthToken"];
+                            if (token != null)
+                            {
+                                var userImage = HttpContextAccessor.HttpContext.Session.GetString("ApplicantImage");
+                                                                                                                                                                                        <li>
+                                                                                                                                                                                            <a class="pmenu__nav__hasDropdown" aria-haspopup="true" style="width:50px"><div class="profile-item" style="background-image:url(@userImage)"></div></a>
+                                                                                                                                                                                            <ul class="pmenu__nav__dropdown" aria-label="submenu" role="menu" id="menu-top-profile">
+                                                                                                                                                                                                @await Html.PartialAsync("_SideMenu", MenuType.Top)
+                                                                                                                                                                                            </ul>
+                                                                                                                                                                                        </li>
+                            } else
+                        {
+                                                                                                                                                                                    <li class="login-btn">
+                                                                                                                                                                                        <a href="#" role="menuitem" class="loginbox_open">@Res.Layout.JoinLogin</a>
+                                                                                                                                                                                    </li>
+                        }
+                            }
+                            </ul>
+
+                </div>
+             
+                <div class="flag">
+                    @if (ViewData["CurrentCultureDto"] is not null)
+                    {
+                        <img onclick="openCultureList()" width="40" height="30"
+                         style="box-shadow: 0px 0px 150px 30px white; vertical-align: middle;"
+                         class="flagicon" src='/dsvg/Flags/@(((CultureDto)ViewData["CurrentCultureDto"]).CountryCode.ToLower())'
+                         alt='@((CultureDto)ViewData["CurrentCultureDto"]).CultureCode'>
+                    }
+                </div>
+
+                <nav class="zmenu" role="navigation" aria-label="Menu">
+
+                    <button class="zmenu__btn" type="button">
+                        <span class="zmenu__btn__bar"></span><span class="zmenu__btn__bar"></span><span class="zmenu__btn__bar"></span>
+                    </button>
+                    <ul class="zmenu__nav" id="nav-zmenu-over">
+                        
+                        <li>
+                            <a class="zmenu__nav__hasDropdown" aria-haspopup="true">@Res.Layout.JobSearch</a>
+                            <ul class="zmenu__nav__dropdown" aria-label="submenu" role="menu">
+
+
+
+                                @if (ViewData["JobCategoy"] is not null)
+                                {
+                                    @foreach (var item in ViewData["JobCategoy"] as List<JobCategoryDto>)
+                                    {
+                                        <li  onclick="set_searchbox_keyword(@item.Id)">
+                                            <a>@item.Jobcategory</a>
+                                        </li>
+
+                                    }
+                                }
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="zmenu__nav__hasDropdown" aria-haspopup="true">@Res.Layout.Region</a>
+                            <ul class="zmenu__nav__dropdown" aria-label="submenu" role="menu">
+                                @if (ViewData["Regions"] is not null)
+                                {
+                                    @foreach (var item in ViewData["Regions"] as List<CityDto>)
+                                    {
+                                        <li  onclick="set_searchbox_location('@item.Id.ToString().Trim()','@item.Name')">
+                                            <a>@item.Name</a>
+                                        </li>
+
+                                    }
+                                }
+
+
+                            </ul>
+                        </li>
+                                    <li>
+                                        
+                                    </li>
+                            </ul>
+                </nav>
+            </div>
+        </div>
+        </div>
+        <div id="dotted">
+            <canvas id="lines"></canvas>
+        </div>
+        <div class="container full-height">
+            <div class="middle-h middlecontainer">
+                <div class="middle-v center">
+                    <select multiple id="jobCategories-multiselect" class="searchbox searchbox-job" placeholder="@Res.Layout.KeywordCompany" >
+                        @foreach (var item in await FindJobs.Domain.Global.Global.GetJobCategories(Configuration["GlobalSettings:ApiUrl"]))
+                        {
+                           <option value="@item.Id">@item.Jobcategory</option>
+                         }
+                    </select>
+                  
+                    <div id="single-select" class="searchbox searchbox-location" placeholder="@Res.Layout.CityLocation" ></div>
+                   
+                    <button id="searchbox_button" class="btn-search" onclick="searchOffer('@Url.Action("ListOffer","Home")')">@Res.Layout.Search</button>
+                   
+
+                <div class="advancesearch-layout">
+                    <div id="advance-show" class="middle-v center advance-layout advance-s advance">
+                    
+                    </div>
+                    <a id="delete-advanceSearch" class=" advance-layout advance-s advance">
+                        <span id="delete-selected" class="delete" style="display: none">@Res.AdvanceSearch.DeleteSelected</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+    <div id="culturelist" style="display: none;">
+        <div style="height: auto;" class="container lazyload" data-src="/dwebp/Content/map">
+            <div style="text-align: right; position:relative; top:20px; margin-bottom: -45px; ">
+                <img onclick="closeCultureList()" width="32" height="33" src='data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjODA2MDkwIiBoZWlnaHQ9IjMyOXB0IiB2aWV3Qm94PSIwIDAgMzI5LjI2OTMzIDMyOSIgd2lkdGg9IjMyOXB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0xOTQuODAwNzgxIDE2NC43Njk1MzEgMTI4LjIxMDkzOC0xMjguMjE0ODQzYzguMzQzNzUtOC4zMzk4NDQgOC4zNDM3NS0yMS44MjQyMTkgMC0zMC4xNjQwNjMtOC4zMzk4NDQtOC4zMzk4NDQtMjEuODI0MjE5LTguMzM5ODQ0LTMwLjE2NDA2MyAwbC0xMjguMjE0ODQ0IDEyOC4yMTQ4NDQtMTI4LjIxMDkzNy0xMjguMjE0ODQ0Yy04LjM0Mzc1LTguMzM5ODQ0LTIxLjgyNDIxOS04LjMzOTg0NC0zMC4xNjQwNjMgMC04LjM0Mzc1IDguMzM5ODQ0LTguMzQzNzUgMjEuODI0MjE5IDAgMzAuMTY0MDYzbDEyOC4yMTA5MzggMTI4LjIxNDg0My0xMjguMjEwOTM4IDEyOC4yMTQ4NDRjLTguMzQzNzUgOC4zMzk4NDQtOC4zNDM3NSAyMS44MjQyMTkgMCAzMC4xNjQwNjMgNC4xNTYyNSA0LjE2MDE1NiA5LjYyMTA5NCA2LjI1IDE1LjA4MjAzMiA2LjI1IDUuNDYwOTM3IDAgMTAuOTIxODc1LTIuMDg5ODQ0IDE1LjA4MjAzMS02LjI1bDEyOC4yMTA5MzctMTI4LjIxNDg0NCAxMjguMjE0ODQ0IDEyOC4yMTQ4NDRjNC4xNjAxNTYgNC4xNjAxNTYgOS42MjEwOTQgNi4yNSAxNS4wODIwMzIgNi4yNSA1LjQ2MDkzNyAwIDEwLjkyMTg3NC0yLjA4OTg0NCAxNS4wODIwMzEtNi4yNSA4LjM0Mzc1LTguMzM5ODQ0IDguMzQzNzUtMjEuODI0MjE5IDAtMzAuMTY0MDYzem0wIDAiLz48L3N2Zz4=' alt='close'>
+            </div>
+
+            @foreach (var continent in Startup.ContinentGroups)
+            {
+                <div style="float: left; width: 100%; max-width: 355px; box-sizing: border-box; padding: 10px;">
+
+                    <div style="font-size: 18px; color: #666; text-transform: uppercase; line-height: 30px; margin: 20px 0px 25px 6px;">@Res.Layout.ResourceManager.GetString(continent)</div>
+
+                    @foreach (var c in (List<CultureDto>)ViewData["CultureList"])
+                    {
+                        if (@continent.Split(',').Contains(c.ContinentCode))
+
+                        {
+
+                            <a href="@Url.Action(ViewContext.RouteData.Values["Action"]?.ToString(), ViewContext.RouteData.Values["Controller"]?.ToString(), new { area = "", culture = c.CultureCode })">
+
+                                <img width="18" height="14" src='@BaseController.PlaceholderImage(18, 14)' class='lazyload' data-src="/dsvg/Flags/@(c.CountryCode.ToLower())" alt="@c.CountryNativeName - @c.LanguageNativeName" />
+                                <span>@c.CountryNativeName - @c.LanguageNativeName</span>
+
+                            </a>
+                        }
+                    }
+
+                </div>
+            }
+
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div style="width:300px;">
+        <main class="display-main no-mobile">
+
+            <div class="sidemenu-general ">
+                <div class="sidemenu-general-main">
+                    <partial name="/Areas/Auth/Pages/AuthComponent.cshtml" view-data="@((ViewDataDictionary)ViewData["AuthData"])" model="@ViewData["AuthModel"]" />
+                    <div>
+                        @await Html.PartialAsync("_SideMenu", MenuType.Side)
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="container">
+       <div class="inner-container" >
+
+        @RenderBody()
+    </div>
+    </div>
+
+   
+    <footer>
+        <div class="container middlecontainer center">
+            &copy; @DateTime.Now.Year - @ViewData["ProjectName"]
+        </div>
+    </footer>
+     
+<script src="~/js/internal/dropdown_select.min.js"></script>
+
+    
+    @await RenderSectionAsync("Script", false)
+    <script src="/djs/internal/home/~@HttpUtility.UrlEncode(Url.Action("GetCityList","Applicant"))"></script>
+    <script src="/js/layout-lazy.js" async defer></script>
+    <script src="/PWA/app.js" async defer></script>
+ 
+   
+</body>
+</html>

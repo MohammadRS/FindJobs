@@ -1,0 +1,252 @@
+﻿@using FindJobs.Domain.Dtos
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Web
+@model ApplicantDto
+@inject IConfiguration Configuration
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/progressbar/@ViewData["ProfileProgressBarOffset"]" />
+    <link href="~/css/internal/autocompelete.css" rel="stylesheet" />
+    }
+  
+
+    <div class="container">
+        <main class="main-flexbox">
+        <div class="main-flex-insidebox">
+
+                <section class="profile ">
+                    <div class="applicant-header-card">
+
+                    @if (Model.ApplicantImageValue != null )
+                    {
+                        <input type="image" onclick="imageClicked()" id="applicant-image" src="@Model.ApplicantImage" alt="Applicant-Image" class="applicant-profile-image" />
+                    }
+                    else if(Model.ApplicantGoogleImage !=null)
+
+                    {
+                        <input type="image" onclick="imageClicked()" id="applicant-image" src="@Model.ApplicantGoogleImage" alt="Applicant-Image" class="applicant-profile-image" />
+                    }
+                    else{
+                        <input type="image" onclick="imageClicked()" id="applicant-image" src="@Model.ApplicantImage" alt="Applicant-Image" class="applicant-profile-image" />
+                        
+                        }
+
+                    <input accept="image/*" type="file" id="image-input" onchange="SendImageFile('@Res.ApplicantProfile.ImageSizeError','@Res.ApplicantProfile.FileIsNotImage','@Res.ApplicantProfile.ImageUploadSuccessfully','@Res.ApplicantProfile.ImageNotUploade')" style="display: none;" />
+                    <div class="download-profile">
+                        <div class="skill-progressbar" id="skill-progressbar">
+                         
+                        </div>
+                    </div>
+
+                </div>
+                <div class="profile">
+                    <section class="profile">
+                        @*Personal Information*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.PersonalInformation</summary>
+                            <div id="PersonalInformationDiv">
+                                @await Html.PartialAsync("_PersonalInformation",Model)
+                            </div>
+                        </details>
+                        @*Contact Information*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.ContactDetail</summary>
+
+                            <div id="ApplicantContactDetailDiv">
+                                @await Html.PartialAsync("_ContactDetail",Model)
+                            </div>
+
+                        </details>
+                        @* Upload Document*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.UploadDocuments</summary>
+                            <div id="upload_document">
+                                <div id="documentModal" class="modalDialog">
+                                    <div>
+                                        <div class="Upload_document_line">
+                                            <a onclick="closeModal('documentModal','buttonShowDocumentModal')" class="close">X</a>
+                                            <h2>@Res.ApplicantProfile.UploadDocuments </h2>
+                                        </div>
+                                        <div class="profile-flex-container">
+                                            <div class="box">
+                                                <label>@Res.ApplicantProfile.SelectYourDocument</label>
+
+                                                <input type="file" id="DocumentFile" />
+                                            </div>
+                                            <div class="box">
+                                                <label>Document Type</label>
+
+                                                <select id="documentType">
+                                                    <option value="0">CV</option>
+                                                    <option value="1">Certificate</option>
+                                                    <option value="2">CoverLetter</option>
+                                                    <option value="3">Other Document</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="button" class="applicant-save-button" value="@Res.ApplicantProfile.Save" onclick="saveDocument('documentList','@Res.ApplicantProfile.SelectDocumentFile','@Res.ApplicantProfile.DocumentSizeMoreThan10','@Res.ApplicantProfile.FileIsNotImage','@Res.ApplicantProfile.DocumentUploadSuccessfully','@Res.ApplicantProfile.YouCanOnlyUploadSixDocument')" />
+                                    </div>
+                                </div>
+                                <div id="documentList">
+                                    @await Html.PartialAsync("_ApplicantDocumentList",Model.ApplicantDocuments)
+                                </div>
+                                
+                                    <img class="insertButton" onclick="showModal('documentModal','buttonShowDocumentModal')" id="buttonShowDocumentModal" alt="#" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADJ0lEQVRoge2Zv08UQRTHP+CJ4c6oiGfiYWVDIzaA2Ir/gSHSQkLUktCqnUrrD9R/QBPt/BVLYi+QWIFYXbhDDTEBJAc2YvEWcvd29tjZmVsw3jeZYo6Z7/u+YffNe2+hiSb+b7R44mkFLgKDQC/QDRSAo8HfN4BlYAGYBaaBT8AfT/YT4ywwCSwB25ZjCbgPdKWuGugEngK/Y4qtN7aAJ8DJtMQPAysehOuxAlxrpPAMcupRAlaB58AY0A/kgcPByAe/jQEvgLU6PFOBLa9oB95FGJwHRoI1NnyjyEtt4nxryVcXGcziK8A4bqeVASYCLs3/xpF7F88M5CWgzwd5gH6gbLDz2JV42EA6h8R43ygE3NreUFLCTsLRpkRjxO8gDywqmz+AjiRkOuJUsHts9EnGxXnC78Qji/2A3LBbimTckiOpAwC31N5NLP/zk4pgHvuI4OJAjvBLfS/u5lbCuc2IpQBwcwDghtpfDLTtiUtq4yrJLhVXB7LAuuLo14tMHl1W8/fIM5g2KsAH9dugXmRyQEeaj74UJcC0moeioMmBbjX/7E2OPbRtrc2In9Q+d6ci1vlOp004rdasxHFAFylt++jAEbVmSy+IFZYOMkwObKj5sTSEROC4mv/SC0wOfFPzcxHkLXsM1/Um21qb0YEvan4hgjwNaNtam9GBGTXXF1uauKLmWpsRA9S++WvsTyqRQ575ao5Y6bwpmRtNIMDVgZtqf+xkDqRjVr15gfTT6WW1/64NQRfhgmbCUoSLA3fUXuuCBqTdV01SwZDO1kFSB3oIl5QPLfbvwlTUl2l8Uf9V2Uxc1IP0KvVJzgWGfCOPtN61vauuxFMG0kWke+ALPYRPfht44IM8g/QqNXkF6R7kHLhzwG3MrcXXwCEH7hq0I71KUxpcRgrwrAVfFonzOlRWi/fW3N1BBulVRuXz68BL4Dpym+eRWqINKUwGEEdfEb5hdcTxdvImDCGRwXdB8x0PL2xcdCDtPn3ZJRmbyKmfSEt8NQpIx6wYU2z1KCLpwRkXAT4/s/YifZs+pHvQRe1n1hISfmeQdsksB+AzaxNN/Ov4C9Zw3msDrOdOAAAAAElFTkSuQmCC">
+                               
+                            </div>
+
+
+                        </details>
+                        @*  Work Experience*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.WorkExperience</summary>
+                            <div id="work_experience">
+                                <div id="WorkExperienceModal" class="modalDialog">
+                                    <div>
+                                        <div class="Upload_document_line">
+                                            <a onclick="closeModal('WorkExperienceModal')" class="close">X</a>
+                                            <h2>@Res.ApplicantProfile.WorkExperience </h2>
+
+                                        </div>
+                                        <div id="WorkExperienceInsertUpdate">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="workExperienceTable">
+                                @await Html.PartialAsync("_ApplicantWorkExperienceList",Model.ApplicantWorkExperiences)
+                            </div>
+                         
+                            <img class="insertButton" onclick="getEntity(0,'GetWorkExperience','WorkExperienceInsertUpdate','WorkExperienceModal','@Res.ApplicantProfile.cantFetchData')" alt="#" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADJ0lEQVRoge2Zv08UQRTHP+CJ4c6oiGfiYWVDIzaA2Ir/gSHSQkLUktCqnUrrD9R/QBPt/BVLYi+QWIFYXbhDDTEBJAc2YvEWcvd29tjZmVsw3jeZYo6Z7/u+YffNe2+hiSb+b7R44mkFLgKDQC/QDRSAo8HfN4BlYAGYBaaBT8AfT/YT4ywwCSwB25ZjCbgPdKWuGugEngK/Y4qtN7aAJ8DJtMQPAysehOuxAlxrpPAMcupRAlaB58AY0A/kgcPByAe/jQEvgLU6PFOBLa9oB95FGJwHRoI1NnyjyEtt4nxryVcXGcziK8A4bqeVASYCLs3/xpF7F88M5CWgzwd5gH6gbLDz2JV42EA6h8R43ygE3NreUFLCTsLRpkRjxO8gDywqmz+AjiRkOuJUsHts9EnGxXnC78Qji/2A3LBbimTckiOpAwC31N5NLP/zk4pgHvuI4OJAjvBLfS/u5lbCuc2IpQBwcwDghtpfDLTtiUtq4yrJLhVXB7LAuuLo14tMHl1W8/fIM5g2KsAH9dugXmRyQEeaj74UJcC0moeioMmBbjX/7E2OPbRtrc2In9Q+d6ci1vlOp004rdasxHFAFylt++jAEbVmSy+IFZYOMkwObKj5sTSEROC4mv/SC0wOfFPzcxHkLXsM1/Um21qb0YEvan4hgjwNaNtam9GBGTXXF1uauKLmWpsRA9S++WvsTyqRQ575ao5Y6bwpmRtNIMDVgZtqf+xkDqRjVr15gfTT6WW1/64NQRfhgmbCUoSLA3fUXuuCBqTdV01SwZDO1kFSB3oIl5QPLfbvwlTUl2l8Uf9V2Uxc1IP0KvVJzgWGfCOPtN61vauuxFMG0kWke+ALPYRPfht44IM8g/QqNXkF6R7kHLhzwG3MrcXXwCEH7hq0I71KUxpcRgrwrAVfFonzOlRWi/fW3N1BBulVRuXz68BL4Dpym+eRWqINKUwGEEdfEb5hdcTxdvImDCGRwXdB8x0PL2xcdCDtPn3ZJRmbyKmfSEt8NQpIx6wYU2z1KCLpwRkXAT4/s/YifZs+pHvQRe1n1hISfmeQdsksB+AzaxNN/Ov4C9Zw3msDrOdOAAAAAElFTkSuQmCC" />
+                      
+                        </details>
+
+
+                        @*Application educations*@
+
+                        <details>
+                            <summary>@Res.ApplicantProfile.Education</summary>
+                            <div id="Applicant_Education">
+                                <div id="ApplicantEducationModal" class="modalDialog">
+                                    <div>
+                                        <div class="Upload_document_line">
+                                            <a onclick="closeModal('ApplicantEducationModal')" class="close">X</a>
+                                            <h2>@Res.ApplicantProfile.Education </h2>
+
+                                        </div>
+                                        <div id="ApplicantEducationAddUpdate">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="ApplicantEducationListDiv">
+                                @await Html.PartialAsync("_ApplicantEducations",Model.ApplicantEducations)
+                            </div>
+                          
+                            <img class="insertButton" onclick="getEntity(0,'GetApplicantEducation','ApplicantEducationAddUpdate','ApplicantEducationModal','@Res.ApplicantProfile.cantFetchData')" alt="#" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADJ0lEQVRoge2Zv08UQRTHP+CJ4c6oiGfiYWVDIzaA2Ir/gSHSQkLUktCqnUrrD9R/QBPt/BVLYi+QWIFYXbhDDTEBJAc2YvEWcvd29tjZmVsw3jeZYo6Z7/u+YffNe2+hiSb+b7R44mkFLgKDQC/QDRSAo8HfN4BlYAGYBaaBT8AfT/YT4ywwCSwB25ZjCbgPdKWuGugEngK/Y4qtN7aAJ8DJtMQPAysehOuxAlxrpPAMcupRAlaB58AY0A/kgcPByAe/jQEvgLU6PFOBLa9oB95FGJwHRoI1NnyjyEtt4nxryVcXGcziK8A4bqeVASYCLs3/xpF7F88M5CWgzwd5gH6gbLDz2JV42EA6h8R43ygE3NreUFLCTsLRpkRjxO8gDywqmz+AjiRkOuJUsHts9EnGxXnC78Qji/2A3LBbimTckiOpAwC31N5NLP/zk4pgHvuI4OJAjvBLfS/u5lbCuc2IpQBwcwDghtpfDLTtiUtq4yrJLhVXB7LAuuLo14tMHl1W8/fIM5g2KsAH9dugXmRyQEeaj74UJcC0moeioMmBbjX/7E2OPbRtrc2In9Q+d6ci1vlOp004rdasxHFAFylt++jAEbVmSy+IFZYOMkwObKj5sTSEROC4mv/SC0wOfFPzcxHkLXsM1/Um21qb0YEvan4hgjwNaNtam9GBGTXXF1uauKLmWpsRA9S++WvsTyqRQ575ao5Y6bwpmRtNIMDVgZtqf+xkDqRjVr15gfTT6WW1/64NQRfhgmbCUoSLA3fUXuuCBqTdV01SwZDO1kFSB3oIl5QPLfbvwlTUl2l8Uf9V2Uxc1IP0KvVJzgWGfCOPtN61vauuxFMG0kWke+ALPYRPfht44IM8g/QqNXkF6R7kHLhzwG3MrcXXwCEH7hq0I71KUxpcRgrwrAVfFonzOlRWi/fW3N1BBulVRuXz68BL4Dpym+eRWqINKUwGEEdfEb5hdcTxdvImDCGRwXdB8x0PL2xcdCDtPn3ZJRmbyKmfSEt8NQpIx6wYU2z1KCLpwRkXAT4/s/YifZs+pHvQRe1n1hISfmeQdsksB+AzaxNN/Ov4C9Zw3msDrOdOAAAAAElFTkSuQmCC" />
+                       
+                        </details>
+
+                        @*Applicant knowledge*@
+
+                        <details>
+                            <summary>@Res.ApplicantProfile.Knowledge</summary>
+                            <div id="Applicant_Knowledge">
+                                <div id="ApplicantKnowledgeModal" class="modalDialog">
+                                    <div>
+                                        <div class="Upload_document_line">
+                                            <a onclick="closeModal('ApplicantKnowledgeModal')" class="close">X</a>
+                                            <h2>@Res.ApplicantProfile.Knowledge </h2>
+
+                                        </div>
+                                        <div id="ApplicantKnowledgeAddUpdate">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="ApplicantKnowledgeListDiv">
+                                @await Html.PartialAsync("_ApplicantKnowledgeList",Model.ApplicantKnowledges)
+                            </div>
+                          
+                            <img class="insertButton" onclick="getEntity(0,'GetApplicantKnowledge','ApplicantKnowledgeAddUpdate','ApplicantKnowledgeModal','@Res.ApplicantProfile.cantFetchData')" alt="#" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADJ0lEQVRoge2Zv08UQRTHP+CJ4c6oiGfiYWVDIzaA2Ir/gSHSQkLUktCqnUrrD9R/QBPt/BVLYi+QWIFYXbhDDTEBJAc2YvEWcvd29tjZmVsw3jeZYo6Z7/u+YffNe2+hiSb+b7R44mkFLgKDQC/QDRSAo8HfN4BlYAGYBaaBT8AfT/YT4ywwCSwB25ZjCbgPdKWuGugEngK/Y4qtN7aAJ8DJtMQPAysehOuxAlxrpPAMcupRAlaB58AY0A/kgcPByAe/jQEvgLU6PFOBLa9oB95FGJwHRoI1NnyjyEtt4nxryVcXGcziK8A4bqeVASYCLs3/xpF7F88M5CWgzwd5gH6gbLDz2JV42EA6h8R43ygE3NreUFLCTsLRpkRjxO8gDywqmz+AjiRkOuJUsHts9EnGxXnC78Qji/2A3LBbimTckiOpAwC31N5NLP/zk4pgHvuI4OJAjvBLfS/u5lbCuc2IpQBwcwDghtpfDLTtiUtq4yrJLhVXB7LAuuLo14tMHl1W8/fIM5g2KsAH9dugXmRyQEeaj74UJcC0moeioMmBbjX/7E2OPbRtrc2In9Q+d6ci1vlOp004rdasxHFAFylt++jAEbVmSy+IFZYOMkwObKj5sTSEROC4mv/SC0wOfFPzcxHkLXsM1/Um21qb0YEvan4hgjwNaNtam9GBGTXXF1uauKLmWpsRA9S++WvsTyqRQ575ao5Y6bwpmRtNIMDVgZtqf+xkDqRjVr15gfTT6WW1/64NQRfhgmbCUoSLA3fUXuuCBqTdV01SwZDO1kFSB3oIl5QPLfbvwlTUl2l8Uf9V2Uxc1IP0KvVJzgWGfCOPtN61vauuxFMG0kWke+ALPYRPfht44IM8g/QqNXkF6R7kHLhzwG3MrcXXwCEH7hq0I71KUxpcRgrwrAVfFonzOlRWi/fW3N1BBulVRuXz68BL4Dpym+eRWqINKUwGEEdfEb5hdcTxdvImDCGRwXdB8x0PL2xcdCDtPn3ZJRmbyKmfSEt8NQpIx6wYU2z1KCLpwRkXAT4/s/YifZs+pHvQRe1n1hISfmeQdsksB+AzaxNN/Ov4C9Zw3msDrOdOAAAAAElFTkSuQmCC" />
+                      
+                        </details>
+                        @*Applicant Language*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.Language</summary>
+                            <div id="Applicant_Language">
+                                <div id="ApplicantLanguageModal" class="modalDialog">
+                                    <div>
+                                        <div class="Upload_document_line">
+                                            <a onclick="closeModal('ApplicantLanguageModal')" class="close">X</a>
+                                            <h2>@Res.ApplicantProfile.Education </h2>
+
+                                        </div>
+                                        <div id="ApplicantLanguageAddUpdate">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="ApplicantLanguageListDiv">
+                                @await Html.PartialAsync("_ApplicantLanguageList",Model.ApplicantLanguages)
+                            </div>
+                         
+                            <img class="insertButton" onclick="getEntity(0,'GetApplicantLanguage','ApplicantLanguageAddUpdate','ApplicantLanguageModal','@Res.ApplicantProfile.cantFetchData')" alt="#" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADJ0lEQVRoge2Zv08UQRTHP+CJ4c6oiGfiYWVDIzaA2Ir/gSHSQkLUktCqnUrrD9R/QBPt/BVLYi+QWIFYXbhDDTEBJAc2YvEWcvd29tjZmVsw3jeZYo6Z7/u+YffNe2+hiSb+b7R44mkFLgKDQC/QDRSAo8HfN4BlYAGYBaaBT8AfT/YT4ywwCSwB25ZjCbgPdKWuGugEngK/Y4qtN7aAJ8DJtMQPAysehOuxAlxrpPAMcupRAlaB58AY0A/kgcPByAe/jQEvgLU6PFOBLa9oB95FGJwHRoI1NnyjyEtt4nxryVcXGcziK8A4bqeVASYCLs3/xpF7F88M5CWgzwd5gH6gbLDz2JV42EA6h8R43ygE3NreUFLCTsLRpkRjxO8gDywqmz+AjiRkOuJUsHts9EnGxXnC78Qji/2A3LBbimTckiOpAwC31N5NLP/zk4pgHvuI4OJAjvBLfS/u5lbCuc2IpQBwcwDghtpfDLTtiUtq4yrJLhVXB7LAuuLo14tMHl1W8/fIM5g2KsAH9dugXmRyQEeaj74UJcC0moeioMmBbjX/7E2OPbRtrc2In9Q+d6ci1vlOp004rdasxHFAFylt++jAEbVmSy+IFZYOMkwObKj5sTSEROC4mv/SC0wOfFPzcxHkLXsM1/Um21qb0YEvan4hgjwNaNtam9GBGTXXF1uauKLmWpsRA9S++WvsTyqRQ575ao5Y6bwpmRtNIMDVgZtqf+xkDqRjVr15gfTT6WW1/64NQRfhgmbCUoSLA3fUXuuCBqTdV01SwZDO1kFSB3oIl5QPLfbvwlTUl2l8Uf9V2Uxc1IP0KvVJzgWGfCOPtN61vauuxFMG0kWke+ALPYRPfht44IM8g/QqNXkF6R7kHLhzwG3MrcXXwCEH7hq0I71KUxpcRgrwrAVfFonzOlRWi/fW3N1BBulVRuXz68BL4Dpym+eRWqINKUwGEEdfEb5hdcTxdvImDCGRwXdB8x0PL2xcdCDtPn3ZJRmbyKmfSEt8NQpIx6wYU2z1KCLpwRkXAT4/s/YifZs+pHvQRe1n1hISfmeQdsksB+AzaxNN/Ov4C9Zw3msDrOdOAAAAAElFTkSuQmCC" />
+                       
+                        </details>
+                        @*Applicant AdditionalSection*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.Additionalsection</summary>
+                            <div id="ApplicantAdditionalSection">
+                                @await Html.PartialAsync("_AdditionalSection",Model)
+                            </div>
+                        </details>
+                    </section>
+                </div>
+            </section>
+            <div id="Delete_Modal">
+                <div id="DeleteModal" class="modalDialog">
+                    <div>
+                        <div class="Upload_document_line">
+                            <a onclick="closeModal('DeleteModal')" class="close">X</a>
+                            <h2>@Res.ApplicantProfile.Delete </h2>
+                        </div>
+                        <div class="profile-flex-container">
+                            <div class="box">
+                                @Res.ApplicantProfile.DoYouWandDeleteThisRecord
+                            </div>
+                        </div>
+                        <div class="box buttonLeft">
+                            <input type="button" class="applicant-Cancel-button" value="@Res.ApplicantProfile.ButtonCancel" onclick="closeModal('DeleteModal')" />
+                            <input type="button" class="applicant-Delete-button" id="btnDeleteModal" value="@Res.ApplicantProfile.ButtonOk" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@section Script{
+    <script src="~/js/internal/applicantprofile.js"></script>
+    <script src="~/js/layout-lazy/MessageShow.js"></script>
+    <script src="~/js/internal/countrycity.js"></script>
+    <script>
+        if('@Model.StateName'.length>0){
+            getStates('@Model.CountryName');
+            getCitiesByState('@Model.StateName');
+        }else if('@Model.CityMainName'.length>0){
+            getCities('@Model.CountryName');
+        }
+        
+    </script>
+    }
+    

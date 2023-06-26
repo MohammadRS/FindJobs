@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes"
+               xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:Res="clr-namespace:Res;assembly=FindJobs.Resources" 
+             x:Class="FindJobs.App.Pages.CompanyProfile"
+                 Title="{x:Static Res:CompanyProfile.Company_Profile}"
+               
+               >
+    <ContentPage.Content>
+      
+                <WebView HorizontalOptions="FillAndExpand" WidthRequest="100"
+                         HeightRequest="700"  VerticalOptions="FillAndExpand" 
+                         x:Name="CompanyWebView"  />
+
+           
+         
+    </ContentPage.Content>
+</themes:MainTheme>

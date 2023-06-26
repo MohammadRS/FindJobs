@@ -1,0 +1,282 @@
+﻿@using FindJobs.Domain.Dtos;
+@model ApplicantDto
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width" name="viewport" />
+    <!--[if !mso]><!-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <!--<![endif]-->
+    <title></title>
+    <!--[if !mso]><!-->
+    <!--<![endif]-->
+    <style type="text/css">
+
+        .st-elements {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .st-image {
+            width: 60px;
+            border-radius: 136px;
+            margin: 10px 3px !important;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        .st-sidenav {
+            position: unset;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(127, 161, 255);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .st-personal-information {
+            display: block;
+            padding: 10px;
+            line-height: 0;
+            color: white;
+        }
+
+        .st-header {
+            font-weight: bold;
+        }
+
+        .st-left-box {
+            margin-top: 40px;
+        }
+
+        .st-right-side {
+            margin-left: 35px;
+        }
+
+        .st-hr-line {
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+            border: 1px solid lightgray;
+        }
+
+        .st-hr-line-max {
+            margin-right: 10%;
+            width: 80%;
+            border: 1px solid lightgray;
+        }
+
+        .st-header-text {
+            color: gray;
+        }
+
+        .st-description {
+            max-width: 80%;
+        }
+
+        .st-text-color-whire {
+            padding: 10px;
+            color: white;
+        }
+
+        .st-table td {
+            text-align: left;
+            max-width: 200px;
+            min-width: 170px;
+            margin: 5px 0;
+        }
+
+        .st-table .st-table-min-td {
+            min-width: 430px;
+        }
+
+        .st-table {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .st-table tr {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .st-table td:last-child {
+                text-align: left;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="st-elements">
+        <div class="st-sidenav">
+
+            <img src="@Model.ApplicantImage" alt="Applicant-Image" class="st-image" />
+
+
+
+            <h3 class="st-text-color-whire">@Res.Cv.Personal</h3>
+            <div class="st-hr-line"></div>
+            <div class="st-personal-information">
+                <div class="st-left-box">
+                    <p class="st-header">@Res.Cv.FullName</p>
+                    <p>@Model.FirstName  @Model.LastName</p>
+                </div>
+
+
+                <div class="st-left-box">
+                    <p class="st-header">@Res.Cv.Address</p>
+                    <p>@Model.Address</p>
+                    <p>@Model.CountryName</p>
+                    <p>@Model.CityName</p>
+                </div>
+
+
+                <div class="st-left-box">
+                    <p class="st-header">@Res.Cv.PhoneNumber</p>
+                    <p>@Model.Phone</p>
+                </div>
+
+                <div class="st-left-box">
+                    <p class="st-header">@Res.Cv.Email</p>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="st-right-side">
+
+
+            @if (Model.ApplicantEducations.Count > 0 && Model != null)
+            {
+                <div id="Education">
+                    <h3>@Res.Cv.Education</h3>
+                    <div class="st-hr-line-max"></div>
+                    <table class="st-table">
+                        <tbody>
+                            @foreach (var item in Model.ApplicantEducations)
+                            {
+                                <tr>
+                                    <td class="st-header-text">
+                                        <p>@item.StartEducation  - @item.EndEducation</p>
+                                    </td>
+                                    <td>
+                                        <p>@item.InstituteName</p>
+                                        <p>@item.CourseName</p>
+                                        <p>@item.EducationLevel</p>
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+
+            @if (Model.ApplicantWorkExperiences.Count > 0 && Model != null)
+            {
+                <div id="exp">
+                    <h3>@Res.Cv.WorkExperincees</h3>
+                    <div class="st-hr-line-max"></div>
+                    <table class="st-table">
+                        <tbody>
+                            @foreach (var item in Model.ApplicantWorkExperiences)
+                            {
+                                <tr>
+                                    <td class="st-header-text">
+                                        <p>@item.StartWork - @item.EndWork</p>
+                                    </td>
+                                    <td>
+                                        <p>@item.JobPosition</p>
+                                        <p>@item.JobTitle</p>
+                                        @if (item.IsCurrentlyWorking)
+                                        {
+                                            <p>@Res.Cv.StillWokring</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@Res.Cv.notemployed</p>
+                                        }
+
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+
+            @if (Model.ApplicantKnowledges.Count > 0 && Model != null)
+            {
+                <div id="knowledge">
+                    <h3>@Res.Cv.Knowledges</h3>
+                    <div class="st-hr-line-max"></div>
+                    <table class="st-table">
+                        <tbody>
+                            @foreach (var item in Model.ApplicantKnowledges)
+                            {
+                                <tr>
+                                    <td class="st-header-text">
+                                        <p>@item.KnowledgeName</p>
+                                    </td>
+                                    <td>
+                                        <p>@item.KnowledgeLevel</p>
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            }
+
+            @if (Model.ApplicantLanguages.Count > 0 && Model != null)
+            {
+                <div id="lang">
+                    <h3>@Res.Cv.Languages</h3>
+                    <div class="st-hr-line-max"></div>
+                    <table class="st-table">
+                        <tbody>
+                            @foreach (var item in Model.ApplicantLanguages)
+                            {
+                                <tr>
+                                    <td class="st-header-text">
+                                        <p>@item.LanguageName</p>
+                                    </td>
+                                    <td>
+                                        <p>@item.LanguageLevel</p>
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</body>
+
+</html>

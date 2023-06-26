@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes" xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+              xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+             xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources" xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="FindJobs.App.Pages.ApplicantPages.WorkExperiencePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label  Text="{x:Static res:ApplicantProfile.JobTitle}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.JobTitle}" x:Name="txtjobTitle"/>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label  Text="{x:Static res:ApplicantProfile.Employer}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.Employer}" x:Name="txtemployer"/>
+                </power:PowerLayout>
+
+
+                <StackLayout Orientation="Horizontal">
+
+                    <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                        <Label Text="{x:Static res:ApplicantProfile.From}"/>
+                        <DatePicker BackgroundColor="Transparent" Format="MMM_yyyy" x:Name="txtFrom"/>
+                    </power:PowerLayout>
+
+
+                    <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                        <Label Text="{x:Static res:ApplicantProfile.To}"/>
+                        <DatePicker BackgroundColor="Transparent" Format="MMM_yyyy" x:Name="txtTo" />
+                    </power:PowerLayout>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent">
+                        <CheckBox x:Name="chboxwork" />
+                    </power:PowerLayout>
+
+                    <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent" VerticalOptions="Center">
+                        <Label Text="{x:Static res:ApplicantProfile.Icurrentlyworkhere}"/>
+                    </power:PowerLayout>
+
+                </StackLayout>
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Button Text="{x:Static res:ApplicantProfile.Save}"></Button>
+                </power:PowerLayout>
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</themes:MainTheme>

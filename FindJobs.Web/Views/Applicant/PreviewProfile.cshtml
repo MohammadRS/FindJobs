@@ -1,0 +1,476 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantDto
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    }
+
+
+
+    <div class="container">
+        <main class="main-flexbox">
+            <div style="padding:20px">
+
+                <section class="profile ">
+                    <div class="applicant-header-card">
+
+                    @if (Model.ApplicantImage != null)
+                    {
+                        <input type="image" onclick="imageClicked()" id="applicant-image" src="@Model.ApplicantImage" alt="Applicant-Image" class="applicant-profile-image" />
+                    }
+                    <div class="profile-flex-container">
+                        <table class="applicantProfiletable" style="padding:20px">
+
+                            @*****PersonalInformation*****@
+
+
+                            <tr>
+                                <td>
+                                    <label>@Res.ApplicantProfile.FirstName:</label>
+
+                                    <label>@Model.FirstName</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>@Res.ApplicantProfile.LastName:</label>
+
+                                    <label>@Model.LastName</label>
+                                </td>
+                            </tr>
+                            @{
+                                if (Model.ShowGender == true)
+                                {
+                                                <tr>
+
+                                                    <td>
+                                                        <label>@Res.ApplicantProfile.Gender:</label>
+
+                                                        <label>@Model.Gender</label>
+                                                    </td>
+                                                </tr>
+                                }
+                            }
+                            @{
+                                if (Model.ShowAge == true)
+                                {
+                                                <tr>
+                                                    <td>
+                                                        <label>@Res.ApplicantProfile.BirthDate:</label>
+                                                        @if (Model.DateOfBirth != null)
+                                            {
+
+                                                            <label>@Model.DateOfBirth?.ToString("yyyy-MM-dd")</label>
+                                            }
+                                                    </td>
+                                                </tr>
+                                }
+                            }
+                            <tr>
+                                <td>
+                                    <label>@Res.ApplicantProfile.AvailableDate:</label>
+
+                                    @if (Model.AvailableDate != null)
+                                    {
+                                        <label>@Model.AvailableDate?.ToString("yyyy-MM-dd")</label>
+                                    }
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="profile">
+                    <section class="profile">
+
+                        @*Contact Information*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.ContactDetail</summary>
+
+                            <div id="ApplicantContactDetailDiv">
+                                <div class="profile-flex-container">
+                                    <table class="applicantProfiletable">
+                                        @{
+                                            if (Model.ShowPhone == true)
+                                            {
+
+                                                            <tr>
+                                                                <td class="applicant-min-td">
+                                                                    <label>@Res.ApplicantProfile.Phone:</label>
+                                                                    <label>@Model.Phone</label>
+                                                                </td>
+                                                            </tr>
+                                            }
+                                        }
+                                        @{
+                                            if (Model.ShowCountryOrCity == true)
+                                            {
+                                                            <tr>
+                                                                <td class="applicant-min-td">
+                                                                    <label>@Res.ApplicantProfile.CityName:</label>
+
+                                                                    <label>@Model.CityName</label>
+                                                                </td>
+                                                            </tr>
+                                            }
+                                        }
+                                        @{
+                                            if (Model.ShowCountryOrCity == true)
+                                            {
+                                                            <tr>
+                                                                <td class="applicant-min-td">
+                                                                    <label>@Res.ApplicantProfile.Country:</label>
+
+                                                                    @if (Model.CountryCode != null)
+                                                        {
+                                                                        <label>@Model.CountryCode</label>
+                                                        }
+                                                                </td>
+                                                            </tr>
+                                            }
+                                        }
+                                        <tr>
+                                            <td class="applicant-min-td">
+                                                <label>@Res.ApplicantProfile.PostCode_Zip:</label>
+
+                                                <label>@Model.PostalCode</label>
+                                            </td>
+                                        </tr>
+                                        @{
+                                            if (Model.ShowAddress == true)
+                                            {
+                                                            <tr>
+                                                                <td class="applicant-min-td">
+                                                                    <label>@Res.ApplicantProfile.StreetAddress:</label>
+
+                                                                    <label>@Model.Address</label>
+                                                                </td>
+                                                            </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+
+                        </details>
+
+                        @*  Work Experience*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.WorkExperience</summary>
+                            <div id="work_experience">
+                                <table class="applicantProfiletable">
+                                    @if (Model.ApplicantWorkExperiences.Count() == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="6">@Res.ApplicantProfile.ThereIsNoWorkExperience</td>
+
+                                        </tr>
+                                    }
+                                    else
+                                    {
+
+                                    <tr>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.JobTitle</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.JobPosition</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.Start</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.End</label>
+                                        </td>
+
+                                    </tr>
+
+                                 
+                                        @foreach (var item in Model.ApplicantWorkExperiences)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    <label>@item.JobTitle</label>
+                                                </td>
+
+                                                <td>
+                                                    <label>@item.JobPosition</label>
+                                                </td>
+                                                @if (item.StartWork != null)
+                                                {
+
+                                                    <td>
+                                                        <label>@item.StartWork?.ToShortDateString()</label>
+                                                    </td>
+                                                }
+                                                @if (item.EndWork != null)
+                                                {
+
+                                                    <td>
+                                                        <label>@item.EndWork?.ToShortDateString()</label>
+                                                    </td>
+                                                }
+                                            </tr>
+
+                                        }
+                                    }
+                                </table>
+                            </div>
+                        </details>
+
+
+                        @*Application educations*@
+
+                        <details>
+                            <summary>@Res.ApplicantProfile.Education</summary>
+                            <div id="Applicant_Education">
+                                <table class="applicantProfiletable">
+                                    @if (Model.ApplicantEducations.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="6">@Res.ApplicantProfile.ThereIsNoEducation</td>
+
+                                        </tr>
+                                    }else
+                                    {
+                                    <tr>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.EducationLevel</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.CourseName</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.University</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.Start</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.End</label>
+                                        </td>
+                                    </tr>
+
+                                    @foreach (var item in Model.ApplicantEducations)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                <label>@item.EducationLevel</label>
+                                            </td>
+                                            <td>
+                                                <label>@item.CourseName</label>
+                                            </td>
+                                            <td>
+                                                <label>@item.InstituteName</label>
+                                            </td>
+                                            <td>
+                                                <label>@item.StartEducation?.ToShortDateString()</label>
+                                            </td>
+                                            <td>
+                                                <label>@item.EndEducation?.ToShortDateString()</label>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                    }
+                                </table>
+                            </div>
+                        </details>
+
+                        @*Applicant knowledge*@
+
+                        <details>
+                            <summary>@Res.ApplicantProfile.Knowledge</summary>
+                            <div id="Applicant_Knowledge">
+                                <table class="applicantProfiletable">
+                                    @if (Model.ApplicantKnowledges.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="2">@Res.ApplicantProfile.ThereIsNoKnowledge</td>
+
+                                        </tr>
+                                    }else
+                                    {
+                                    <tr>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.Knowledge</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.KnowledgeLevel</label>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in Model.ApplicantKnowledges)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <label>@item.KnowledgeName</label>
+                                            </td>
+
+                                            <td>
+                                                <label>@item.KnowledgeLevel</label>
+                                            </td>
+                                        </tr>
+                                    }
+                                    }
+                                </table>
+
+                            </div>
+
+
+                        </details>
+                        @*Applicant Language*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.Language</summary>
+                            <div id="Applicant_Language">
+                                <table class="applicantProfiletable">
+                                    @if (Model.ApplicantLanguages.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="2">@Res.ApplicantProfile.ThereIsNoLanguage</td>
+
+                                        </tr>
+                                    }else
+                                    {
+                                    <tr>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.Language</label>
+                                        </td>
+                                        <td class="headers-table-preview">
+                                            <label>@Res.ApplicantProfile.languageLevel</label>
+                                        </td>
+                                    </tr>
+                                    @foreach (var item in Model.ApplicantLanguages)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <label>@item.LanguageName</label>
+                                            </td>
+
+                                            <td>
+                                                <label>@item.LanguageLevel</label>
+                                            </td>
+                                        </tr>
+                                    }
+                                    }
+                                </table>
+                            </div>
+
+
+
+                        </details>
+
+                        @*Applicant AdditionalSection*@
+                        <details>
+                            <summary>@Res.ApplicantProfile.Additionalsection</summary>
+                            <div id="ApplicantAdditionalSection">
+                                <table class="applicantProfiletable">
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Driving:</label>
+
+                                            @((Model.IsDrivingLicense) ? "Yes" : " ")
+
+                                            <label>@((Model.IsDrivingLicense) ? Res.ApplicantProfile.Drivinglicense : " ")</label>
+                                            <label>@((Model.IsDrivingLicense) ? Model.LicenseType : " ")</label>
+                                        </td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Work_Permit:</label>
+                                            @((Model.IsEuropeanUnion) ? Res.ApplicantProfile.EuropeanUnion : " ")
+                                            @if (Model.IsEuropeanUnion)
+                                                @((Model.IsEuropeanUnion) ? " , " : " ")
+
+
+
+
+
+
+
+
+
+
+                                            @((Model.IsSwitzerland) ? "," : " ")
+                                            @((Model.IsSwitzerland) ? Res.ApplicantProfile.Switzerland : " ")
+                                            @((Model.IsSwitzerland) ? " , " : " ")
+                                            @((Model.IsUnitedStatesofAmerica) ? Res.ApplicantProfile.UnitedStates : " ")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Rate:</label>
+                                            @((Model.IsHourlyRate) ? Res.ApplicantProfile.Hourly : " ")
+                                            <label>@Model.RateType</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Currency:</label>
+
+                                            @Model.Currency
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Prefered_place_of_work:</label>
+                                            @((Model.IsWorkPlace) ? Res.ApplicantProfile.OnSite : "")
+                                            @if (Model.IsWorkPlace)
+                                                @((Model.IsPartialworkfromhome) ? " , " : " ")
+
+
+
+
+
+
+
+
+
+
+                                            @((Model.IsPartialworkfromhome) ? Res.ApplicantProfile.WorkFromHome : "")
+                                            @((Model.IsWorkFromHome) ? " , " : " ")
+                                            @((Model.IsWorkFromHome) ? Res.ApplicantProfile.Hybrid : "")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="applicant-min-td">
+                                            <label>@Res.ApplicantProfile.Prefered_type_of_work:</label>
+                                            @((Model.IsFullTime) ? Res.ApplicantProfile.Full_time : "")
+                                            @if (Model.IsFullTime)
+                                                @((Model.IsPartTime) ? " , " : " ")
+
+
+
+
+
+
+
+
+
+
+                                            @((Model.IsPartTime) ? Res.ApplicantProfile.Part_time : "")
+                                            @((Model.IsFreelancer) ? " , " : " ")
+                                            @((Model.IsFreelancer) ? Res.ApplicantProfile.Freelancer : "")
+                                            @((Model.IsInternShip) ? " , " : " ")
+                                            @((Model.IsInternShip) ? Res.ApplicantProfile.Internship : "")
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </details>
+                    </section>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>

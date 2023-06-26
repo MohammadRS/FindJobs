@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+             xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+             xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources" xmlns:helper="clr-namespace:FindJobs.App.Helper"
+             x:Class="FindJobs.App.Pages.ApplicantProfilePage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ScrollView>
+            <Grid Padding="10" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="40*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <power:PowerLayout  Grid.Column="0" Grid.Row="0"   BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Clicked="Contact_Clicked" Padding="10"  >
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.contacts.svg}"    >
+                    </ffsvg:SvgCachedImage>
+                    <Label  Text="{x:Static res:XTabbar.ContactDetails}" HorizontalTextAlignment="Center" ></Label>
+                </power:PowerLayout>
+                <power:PowerLayout  Clicked="Upload_Clicked" Grid.Column="1" Grid.Row="0"     BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10">
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.upload.svg}"   >
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.UploadDocuments}"  HorizontalTextAlignment="Center"></Label>
+                </power:PowerLayout>
+                    <power:PowerLayout  Grid.Column="2" Grid.Row="0" Clicked="WorkExperience_Clicked"   BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10">
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.work.svg}"  >
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.WorkExp}" HorizontalTextAlignment="Center" ></Label>
+                </power:PowerLayout>
+
+
+
+
+                <power:PowerLayout   Grid.Column="0" Grid.Row="1"  Clicked="Education_Clicked"   BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10">
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.education.svg}"   >
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.education}"  HorizontalTextAlignment="Center" ></Label>
+                </power:PowerLayout>
+                <power:PowerLayout   Grid.Column="1" Grid.Row="1"  Clicked="Knowledge_Clicked"   BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10"  >
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.know.svg}">
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.knowLedge}"    HorizontalTextAlignment="Center"></Label>
+                </power:PowerLayout>
+                <power:PowerLayout   Grid.Column="2" Grid.Row="1"  Clicked="Language_Clicked"  BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10" >
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.language.svg}"     >
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.Language}"  HorizontalTextAlignment="Center"></Label>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout   Grid.Column="0" Grid.Row="2"  Clicked="AdditionalSection_Clicked"   BorderColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" Padding="10" >
+                    <ffsvg:SvgCachedImage  Source="{re:AppResources SharedIcons.Additional.svg}" >
+                    </ffsvg:SvgCachedImage>
+                    <Label Text="{x:Static res:XTabbar.Additionalsection}" HorizontalTextAlignment="Center" ></Label>
+                </power:PowerLayout>
+
+            </Grid>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</themes:MainTheme>

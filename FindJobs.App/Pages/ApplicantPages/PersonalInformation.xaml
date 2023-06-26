@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme   xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:themes="clr-namespace:FindJobs.App.Themes"
+                xmlns:Res="clr-namespace:Res;assembly=FindJobs.Resources"
+                xmlns:Power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+                x:Class="FindJobs.App.Pages.ApplicantPages.PersonalInformation"
+                Title="Personal Information"
+             >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Power:PowerLayout BorderColor="Transparent" >
+                    <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.Gender}" />
+                    <Picker  x:Name="GenderPicker">
+
+                    </Picker>
+                </Power:PowerLayout>
+
+                <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.FirstName}" />
+                <Power:PowerEntry PlaceHolder="{x:Static Res:ApplicantProfile.FirstName}" x:Name="firstName"/>
+
+                <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.LastName}" />
+                <Power:PowerEntry PlaceHolder="{x:Static Res:ApplicantProfile.LastName}" x:Name="lastName" />
+
+                <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.BirthDate}" />
+                <DatePicker Format="yyyy-MM-dd" x:Name="birtOfDate"/>
+
+                <Power:PowerLayout BorderColor="Transparent" >
+                    <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.Availability}" />
+                    <Picker x:Name="readyToWorkStatusPicker" SelectedIndexChanged="readyToWorkStatusPicker_SelectedIndexChanged" >
+                    </Picker>
+                </Power:PowerLayout>
+
+                <Power:PowerLayout x:Name="plAvalableDate">
+                    <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.AvailableDate}" />
+                    <DatePicker Format="yyyy-MM-dd" x:Name="availableDate" />
+                </Power:PowerLayout>
+
+                <Power:PowerLabel Text="{x:Static Res:ApplicantProfile.JobPosition}" />
+                <Power:PowerEntry PlaceHolder="{x:Static Res:ApplicantProfile.JobPosition}" Margin="0,0,0,10" x:Name="jobPosition" />
+
+                <Button Text="{x:Static Res:ApplicantProfile.Save}" Clicked="SaveButton_Clicked" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</themes:MainTheme>

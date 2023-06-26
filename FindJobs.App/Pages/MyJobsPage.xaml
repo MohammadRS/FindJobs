@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources"
+             Title="{x:Static res:ApplicantProfile.MyJob}"
+             x:Class="FindJobs.App.Pages.MyJobsPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</themes:MainTheme>

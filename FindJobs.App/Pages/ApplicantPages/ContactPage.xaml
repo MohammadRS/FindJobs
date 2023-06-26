@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+              xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+             xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources" xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="FindJobs.App.Pages.ApplicantPages.ContactPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label  Text="{x:Static res:ApplicantProfile.Phone}"></Label>
+                    <power:PowerEntry x:Name="txtphone" PlaceHolder="{x:Static res:ApplicantProfile.Phone}"  BoxShadow="True"></power:PowerEntry>
+                    <power:PowerLabel Text="{x:Static res:Validation.RequireFeild}" TextColor="red" x:Name="phonevalidation" IsVisible="false"/>
+                </power:PowerLayout>
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.Country}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.Country}" x:Name="txtcountry"  BoxShadow="True"  ></power:PowerEntry>
+                    <power:PowerLabel Text="{x:Static res:Validation.RequireFeild}" TextColor="red" x:Name="counteryvalidation" IsVisible="false"/>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label  Text="{x:Static res:ApplicantProfile.City}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.City}"  BoxShadow="True" x:Name="txtcity"  ></power:PowerEntry>
+                    <power:PowerLabel Text="{x:Static res:Validation.RequireFeild}" TextColor="red" x:Name="cityvalidation" IsVisible="false"/>
+                </power:PowerLayout>
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.PostCode_Zip}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.PostCode_Zip}"  BoxShadow="True" x:Name="txtZip"   ></power:PowerEntry>
+                    <power:PowerLabel Text="{x:Static res:Validation.RequireFeild}" TextColor="red" x:Name="zipvalidation" IsVisible="false"/>
+                </power:PowerLayout>
+
+
+                <power:PowerLayout  BorderColor="Transparent">
+                    <Label Text="{x:Static res:ApplicantProfile.StreetAddress}"></Label>
+                    <power:PowerEntry PlaceHolder="{x:Static res:ApplicantProfile.StreetAddress}"  BoxShadow="True"  x:Name="txtstreetAddress" ></power:PowerEntry>
+                    <power:PowerLabel Text="{x:Static res:Validation.RequireFeild}" TextColor="red" x:Name="streetvalidation" IsVisible="false"/>
+                </power:PowerLayout>
+
+
+
+                <Button x:Name="SignInButtonCompany"  Text="{x:Static res:ApplicantProfile.Save}"
+                        TextTransform="None"  
+                        TextColor="White" HorizontalOptions="FillAndExpand"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</themes:MainTheme>

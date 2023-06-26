@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+                  xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+                 xmlns:Res="clr-namespace:Res;assembly=FindJobs.Resources"
+                  xmlns:helper="clr-namespace:FindJobs.App.Helper"
+                  x:Class="FindJobs.App.Pages.Offers.FilterOffersPage">
+
+    <ContentPage.Content >
+        <ScrollView>
+            <StackLayout BackgroundColor="{helper:GetColorAppSetting Source=UISettings:WhiteSmoke }" Margin="10" Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="ClearFilterButton" Text="{x:Static Res:CompanyOffer.ClearFilters}" IsVisible="false" HorizontalOptions="Start" Clicked="OnClearButtonCliced" VerticalOptions="Start" FontAttributes="Bold"  Padding="10,0,10,0" BackgroundColor="Transparent" TextColor="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" />
+                    <ffimageloadingsvg:SvgCachedImage Grid.Row="0"
+                                                          Source="{re:AppResources SharedIcons.close.svg}"
+                                                          WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="onCloseButtonClicked"></TapGestureRecognizer>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </StackLayout>
+                <Frame HeightRequest="250"  MinimumHeightRequest="250"  Grid.Row="0" HasShadow="True"  Padding="10" BackgroundColor="White" >
+
+                    <CollectionView x:Name="jobCategoryFilterCollectionView"   >
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="auto" >
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{x:Static Res:CompanyOffer.JobPosition}" FontSize="18"  />
+
+
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="Black" Margin="5"  />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*"  >
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"  />
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding CategoryName }" FontSize="18"  />
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+                <Frame HeightRequest="250" IsClippedToBounds="True" MinimumHeightRequest="250" Grid.Row="0" HasShadow="True"  Padding="10" BackgroundColor="White" >
+
+                    <CollectionView x:Name="EmployeeTypeFilterCollectionView"   >
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*" >
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{x:Static Res:CompanyOffer.Typeofemployment}" FontSize="18"  />
+
+
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="Black" Margin="5"  />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*"  >
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}" />
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Type }" FontSize="18"  />
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+                <Frame HeightRequest="250" IsClippedToBounds="True" MinimumHeightRequest="250" Grid.Row="0" HasShadow="True"  Padding="10" BackgroundColor="White" >
+
+                    <CollectionView x:Name="CompanyFilterCollectionView"   >
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*" >
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{x:Static Res:CompanyOffer.Companies}" FontSize="18"  />
+
+
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="Black" Margin="5"  />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*"  >
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding ComapnyName }" FontSize="18"  />
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+                <Frame HeightRequest="250" IsClippedToBounds="True" MinimumHeightRequest="250" Grid.Row="0" HasShadow="True"  Padding="10" BackgroundColor="White" >
+
+                    <CollectionView x:Name="LanguageFilterCollectionView"   >
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*" >
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{x:Static Res:CompanyOffer.LanguageSkills}" FontSize="18"  />
+
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="Black" Margin="5"  />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*"  >
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding LanguageName }" FontSize="18"  />
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+                <Frame HeightRequest="250" IsClippedToBounds="True" MinimumHeightRequest="250" Grid.Row="0" HasShadow="True"  Padding="10" BackgroundColor="White" >
+
+                    <CollectionView x:Name="WorkAreaFilterCollectionView"   >
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*" >
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{x:Static Res:CompanyOffer.placeofwork}" FontSize="18"  />
+
+
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="Black" Margin="5"  />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,3*,*" RowDefinitions="*"  >
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding WorkAreaName }" FontSize="16"  />
+
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+                <Grid ColumnDefinitions="*,*">
+                    <Button x:Name="FilterBtn" Text="Done" Clicked="FilterBtn_Clicked" />
+                    <Button x:Name="CancelBtn" Grid.Column="1" Text="Cancel" Clicked="CancelBtn_Clicked" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</pages:PopupPage>

@@ -1,0 +1,146 @@
+﻿@using FindJobs.Domain.Dtos;
+@model ApplicantDto
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-details/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    }
+<div class="container">
+    <div class="flex-box">
+            <table class="table">
+
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h4>@Res.ApplicantProfile.WorkExperience</h4>
+                        </div>
+                    </td>
+                </tr>
+                @foreach (var item in Model.ApplicantWorkExperiences)
+                {
+                    <tr>
+                        <td >
+                            @if (item.IsCurrentlyWorking)
+                            {
+                                <img width="20" height="33" src="/dsvg/SharedIcons/warning">
+                            }
+                            else
+                            {
+                                <img width="20" height="33" src="/dsvg/SharedIcons/progress">
+
+                            }
+                        </td>
+                        <td >
+                            <span><b>@Res.ApplicantProfile.JobTitle:&nbsp;</b></span>
+                            <span>@item.JobTitle </span>
+                        </td>
+
+                        <td >
+                            <span><b>@Res.ApplicantProfile.JobPosition:&nbsp;</b></span>
+                            <span> @item.JobPosition</span>
+
+                        </td>
+
+                        <td >
+                            @if (item.IsCurrentlyWorking)
+                            {
+                                <span>@item.StartWork?.ToString("yyyy-MM") ~</span>
+                                <span>@Res.ApplicantProfile.Icurrentlyworkhere</span>
+                            }
+                            else
+                            {
+                                <span>@item.StartWork?.ToString("yyyy-MM") ~</span>
+                                <span>@item.EndWork?.ToString("yyyy-MM")</span>
+                            }
+                        </td>
+
+
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <div class="title">
+                            <h4>@Res.ApplicantProfile.Knowledge</h4>
+                        </div>
+                    </td>
+                </tr>
+
+
+                @foreach (var item in Model.ApplicantKnowledges)
+                {
+                    <tr>
+                        <td >
+                            <img width="20" height="33" src="/dsvg/SharedIcons/warning">
+
+                        </td>
+                        <td>
+                            <span><b>@Res.ApplicantProfile.Knowledge :&nbsp</b></span>
+                            <span>@item.KnowledgeName</span>
+                        </td>
+
+
+                    <td class="lg-flex">
+                            <span><b>@Res.ApplicantProfile.KnowledgeLevel :&nbsp</b></span>
+                            <span>@item.KnowledgeLevel</span>
+                        </td>
+
+                    </tr>
+                }
+            </table>
+
+  
+
+      
+        <div class="title">
+            <h4>@Res.ApplicantProfile.PersonalInformation</h4>
+        </div>
+
+
+        <table class="table">
+            <tr>
+                <td class="bottom-table">
+                    <span><b>@Res.ApplicantProfile.FirstName & @Res.ApplicantProfile.LastName : </b> </span>
+                    <p>@Model.FirstName @Model.LastName</p>
+                </td>
+                <td>
+                    <h4>@Res.ApplicantProfile.Language</h4>
+                    @foreach (var item in Model.ApplicantLanguages)
+                    {
+                        <p>@item.LanguageName</p>
+                    }
+                </td>
+
+            </tr>
+            <tr>
+                <td class="bottom-table">
+                    <b>@Res.ApplicantProfile.BirthDate :</b>
+                    <p>@Model.DateOfBirth?.ToString("yyyy-MM")</p>
+                </td>
+
+                @if (Model.ShowGender)
+                {
+                    <td>
+                        <span><b>@Res.ApplicantProfile.Gender : </b></span>
+                        <p>@Model.Gender</p>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td class="bottom-table">
+                    @if (Model.ShowAddress)
+                    {
+                        <span><b>@Res.ApplicantProfile.Address</b></span>
+                        <p>@Model.Address</p>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="bottom-table">
+                    <input type="button" value="@Res.CompanyProfile.ContactPerson" class="contact-button" />
+                </td>
+            </tr>
+        </table>
+
+        <div>
+        </div>
+    </div>
+</div>

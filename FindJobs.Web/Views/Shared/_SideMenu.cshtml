@@ -1,0 +1,79 @@
+﻿@using System.Threading;
+@using DotNek.WebComponents.Areas.Auth.Enums
+@using FindJobs.Domain.Enums
+@using FindJobs.Web.Helper
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@inject IHttpContextAccessor HttpContextAccessor;
+@model MenuType
+
+@{
+    var token = HttpContextAccessor.HttpContext.Request.Cookies["AuthToken"];
+    string ControllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+@if (ControllerName == "Applicant" || ControllerName == "Company")
+{
+    <style>
+       
+
+        .sidemenu-general {
+            position:relative;
+            width: 400px;
+            margin-top: -5px;
+        }
+
+        .sidemenu-general-main {
+            position: fixed;
+            width: 165px;
+            margin-top: 100px;
+        }
+    </style>
+}
+<ul class="item-menu-sidebar">
+    <div class="top-menu-background">
+        @if (
+        Model == MenuType.Top && await CheckUserAccess.IsUserHasAccess(token, ClientType.Applicant, Configuration) ||
+        Model == MenuType.Side && ControllerName == "Applicant"
+        )
+        {
+        <li><a asp-controller="Applicant" asp-action="Profile">@Res.Menu.Profile</a></li>
+        <li><a asp-controller="Applicant" asp-action="AppliedJobs">@Res.Menu.Dashboard</a></li>
+        <li><a asp-action="Privacy" asp-controller="Applicant">@Res.Menu.Privacy</a></li>
+        <li> <a asp-controller="Applicant" asp-action="EmailPreferences">@Res.Menu.EmailPreferences</a></li>
+        <li><a asp-controller="Applicant" asp-action="CV">@Res.Menu.CV</a></li>
+        <li><a href="/@Thread.CurrentThread.CurrentCulture.Name.ToString()/Auth/LogOut">@Res.Menu.Logout </a> </li>
+
+        }
+        else
+    if (
+    Model == MenuType.Top && await CheckUserAccess.IsUserHasAccess(token, ClientType.Company, Configuration) ||
+    Model == MenuType.Side && ControllerName == "Company"
+    )
+        {
+
+        <li class="active"><a asp-controller="Company" asp-action="Profile">@Res.Menu.Profile</a></li>
+        <li><a asp-controller="Company" asp-action="Offer">@Res.Menu.Offer</a></li>
+        <li><a asp-controller="Company" asp-action="List">@Res.Menu.findApplicant</a></li>
+        <li><a href="/@Thread.CurrentThread.CurrentCulture.Name.ToString()/Auth/LogOut">@Res.Menu.Logout </a> </li>
+        }
+    </div>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

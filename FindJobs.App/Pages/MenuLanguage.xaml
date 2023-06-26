@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+                 x:Class="FindJobs.App.Pages.MenuLanguage"
+                 xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+    <AbsoluteLayout BackgroundColor="#f0f0f0" Margin="0,0,0,-40">
+        <Image Margin="-10,-10,-10,-10" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Source="{re:AppResources Content.map.webp}" />
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand" Padding="10,10,10,10" Margin="20,20,20,20"    >
+                <Grid RowDefinitions="40,*">
+                    <ffimageloadingsvg:SvgCachedImage Source="{re:AppResources SharedIcons.close-teal.svg}"
+                                                      WidthRequest="40" HeightRequest="40" Grid.Row="0" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_Clicked"></TapGestureRecognizer>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <ListView Grid.Row="1" ItemsSource="{Binding  LanguageItem}"
+                          IsGroupingEnabled="true">
+                        <ListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding ContinentName}" TextColor="#666666" Padding="10,10,0,0"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.GroupHeaderTemplate>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid x:Name="MainGrid" ColumnDefinitions="60,*">
+                                        <ffimageloadingsvg:SvgCachedImage Grid.Column="0" WidthRequest="40" HeightRequest="40" HorizontalOptions="CenterAndExpand"
+                                                                          Source="{Binding Flag}" Margin="0,2,0,0">
+                                        </ffimageloadingsvg:SvgCachedImage>
+                                        <Label Grid.Column="1" Text="{Binding Name}" Padding="5,10,0,0"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </AbsoluteLayout>
+</pages:PopupPage>

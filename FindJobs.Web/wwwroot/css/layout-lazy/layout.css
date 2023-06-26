@@ -1,0 +1,36 @@
+﻿footer { background-color: #b9b9b9; }
+
+.clear { clear: both; }
+
+.nav_footer {
+    float: left;
+    margin-right: 100px;
+}
+
+.btn-sigin { width: 95%; }
+
+.nav_footer_item {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+.nav_footer_item > li { margin-top: 20px; }
+
+.caption-social_menu {
+    
+    text-align: center;
+    color: black;
+}
+
+.social_menu { float: right; }
+
+.mright-3 { margin-right: 20px; }
+
+@media screen and (max-width: 320px) {
+    .nav_footer { display: none; }
+
+    .mright-3 { margin-right: 0; }
+}
+
+

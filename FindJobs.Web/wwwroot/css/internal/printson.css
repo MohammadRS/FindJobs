@@ -1,0 +1,38 @@
+.p-container{
+    display: flex;
+    flex-direction: column;
+}
+.p-image {
+    width: 5rem;
+    border-radius: 136px;
+    margin: 10px 3px !important;
+    height: 5rem;
+    object-fit: cover;
+    border: 0px;
+}
+.p-info{
+    display: block;
+    padding: 10px;
+}
+.p-flex-row{
+    flex-direction: row;
+    flex-basis: 15%;
+    margin-left: 20px;
+}
+.p-flex-coulmn{
+    flex-direction: column;
+    margin-left: 20px;
+}
+.p-hr{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.p-table{
+    max-width: 100%;
+    overflow-x: auto;
+    min-width: 40%;
+    border-spacing:20px;
+}
+.p-header-text{
+    color: gray;
+}

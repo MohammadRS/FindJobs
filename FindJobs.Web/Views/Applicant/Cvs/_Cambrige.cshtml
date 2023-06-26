@@ -1,0 +1,152 @@
+﻿@using FindJobs.Domain.Dtos;
+@model ApplicantDto
+<div class="ca-elements">
+    <div class="ca-cv-container">
+
+        <input type="image" src="@Model.ApplicantImage" alt="Applicant-Image" class="st-image" />
+
+        <div class="ca-personal-information">
+            <h4>@Res.Cv.Personal</h4>
+            <div class="ca-left-box">
+                <p class="ca-header">@Res.Cv.FullName</p>
+                <p>@Model.FirstName @Model.LastName</p>
+            </div>
+
+
+            <div class="ca-left-box">
+                <p class="ca-header">@Res.Cv.Address</h4>
+                <p>@Model.CountryName</p>
+                <p>@Model.CityName</p>
+            </div>
+
+            <div class="ca-left-box">
+                <p class="ca-header">@Res.Cv.Email</h4>
+                <p>@Model.Email</p>
+            </div>
+        </div>
+
+
+        <div class="ca-right-side">
+
+
+            @if (Model.ApplicantEducations.Count > 0)
+            {
+                <div class="ca-right-box">
+                    <div class="ca-header-right-box">
+                        <h3 class="">@Res.Cv.Education</h3>
+                        <div class="ca-line"></div>
+                    </div>
+                    @foreach (var item in Model.ApplicantEducations)
+                    {
+                        <div class="ca-header-right-box">
+                            <div class="ca-sm-line-v"></div>
+                            <div class="ca-sm-line-h"></div>
+
+                        </div>
+                        <div class="ca-items-h">
+                            <p>@item.StartEducation ~ @item.EndEducation</p>
+                            <div class="ca-flex-v">
+                                <p>@item.InstituteName</p>
+                                <p>@item.CourseName</p>
+                                <p>@item.EducationLevel</p>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+
+            }
+            @if (Model.ApplicantWorkExperiences.Count > 0)
+            {
+                <div class="ca-right-box">
+                    <div class="ca-header-right-box">
+                        <h3 class="">@Res.Cv.WorkExperincees</h3>
+                        <div class="ca-line"></div>
+                    </div>
+                    @foreach (var item in Model.ApplicantWorkExperiences)
+                    {
+                        <div class="ca-header-right-box">
+                            <div class="ca-sm-line-v"></div>
+                            <div class="ca-sm-line-h"></div>
+
+                        </div>
+                        <div class="ca-items-h">
+                            <p>@item.StartWork ~ @item.EndWork</p>
+                            <div class="ca-flex-v">
+                                <p>@item.JobTitle</p>
+                                <p>@item.JobPosition</p>
+                                @if (item.IsCurrentlyWorking)
+                                {
+                                    <p>@Res.Cv.StillWokring</p>
+                                }
+                                else
+                                {
+                                    <p>@Res.Cv.notemployed</p>
+                                }
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            }
+
+
+            @if (Model.ApplicantKnowledges.Count > 0)
+            {
+                <div class="ca-right-box">
+                    <div class="ca-header-right-box">
+                        <h3>@Res.Cv.Knowledges</h3>
+                        <div class="ca-line"></div>
+                    </div>
+                    @foreach (var item in Model.ApplicantKnowledges)
+                    {
+                        <div class="ca-header-right-box">
+                            <div class="ca-sm-line-v"></div>
+                            <div class="ca-sm-line-h"></div>
+
+                        </div>
+                        <div class="ca-items-h">
+                            <p>@item.KnowledgeName</p>
+                            <div class="ca-flex-v">
+                                <p>@item.KnowledgeLevel</p>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            }
+
+            @if (Model.ApplicantLanguages.Count > 0)
+            {
+                <div class="ca-right-box">
+                    <div class="ca-header-right-box">
+                        <h3>@Res.Cv.Languages</h3>
+                        <div class="ca-line"></div>
+                    </div>
+
+                    @foreach (var item in Model.ApplicantLanguages)
+                    {
+                        <div class="ca-header-right-box">
+                            <div class="ca-sm-line-v"></div>
+                            <div class="ca-sm-line-h"></div>
+
+                        </div>
+                        <div class="ca-items-h">
+                            <p>@item.LanguageName</p>
+                            <div class="ca-flex-v">
+                                <p>@item.LanguageLevel</p>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>

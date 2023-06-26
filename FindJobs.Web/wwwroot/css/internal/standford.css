@@ -1,0 +1,100 @@
+.st-elements {
+    display: flex;
+    flex-direction: row;
+}
+.st-image {
+    width: 10rem;
+    border-radius: 136px;
+    margin: 10px 3px !important;
+    height: 10rem;
+    object-fit: cover;
+}
+.st-sidenav {
+    position: unset;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(127, 161, 255);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.st-personal-information {
+    display: block;
+    padding: 10px;
+    line-height: 0;
+    color: white;
+}
+
+.st-header {
+    font-weight: bold;
+}
+
+.st-left-box {
+    margin-top: 40px;
+}
+
+.st-right-side {
+    margin-left: 35px;
+}
+
+.st-hr-line {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    border: 1px solid lightgray;
+}
+
+.st-hr-line-max {
+    margin-right: 10%;
+    width: 80%;
+    border: 1px solid lightgray;
+}
+
+.st-header-text {
+    color: gray;
+}
+
+.st-description {
+    max-width: 80%;
+}
+
+.st-text-color-whire {
+    padding: 10px;
+    color: white;
+}
+
+.st-table td {
+    text-align: left;
+    max-width: 200px;
+    min-width: 170px;
+    margin: 5px 0;
+}
+
+.st-table .st-table-min-td {
+    min-width: 430px;
+}
+
+.st-table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .st-table tr {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .st-table td:last-child {
+        text-align: left;
+    }
+
+@media (max-width: 768px) {
+    .st-table tr td {
+        display: block;
+        align-self: center;
+        margin: 5px 0;
+    }
+}

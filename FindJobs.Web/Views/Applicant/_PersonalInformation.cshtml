@@ -1,0 +1,69 @@
+﻿@using FindJobs.Domain.Dtos
+
+@model ApplicantDto
+
+
+<form id="personalInformationForm" onsubmit="return SavePersonalInformation('@Res.ApplicantProfile.UpdateSuccessfully','@Res.ApplicantProfile.NotSuccessfullyUpdate')">
+    <div class="profile-flex-container">
+        <div class="box">
+            <label>@Res.ApplicantProfile.Gender</label>
+           
+            <select class="applicantGender" asp-for="Gender" value="@Model.Gender">
+                <option value="0">@Res.ApplicantProfile.male</option>
+                <option value="1">@Res.ApplicantProfile.female</option>
+                <option value="2">@Res.ApplicantProfile.RatherNotToSay</option>
+            </select>
+
+        </div>
+        <div class="box">
+            <label> @Res.ApplicantProfile.FirstName</label>
+
+            <input class="applicantFirstName" required asp-for="FirstName" type="text" value="@Model.FirstName" />
+        </div>
+        <div class="box">
+            <label>  @Res.ApplicantProfile.LastName</label>
+
+            <input class="applicantLastName" required type="text" asp-for="LastName" value="@Model.LastName" />
+        </div>
+
+
+        <div class="box">
+            <label> @Res.ApplicantProfile.BirthDate</label>
+            @if (Model.DateOfBirth != null)
+            {
+                <input class="applicantDateOfBirth" type="date" asp-for="DateOfBirth" value="@Model.DateOfBirth.Value.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input class="applicantDateOfBirth" type="date" asp-for="DateOfBirth" value="" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            }
+        </div>
+        <div class="box">
+
+            <label>@Res.ApplicantProfile.Availability</label>
+
+            <select class="applicantStatusWork" asp-for="ReadyToWorkStatus" value="@Model.ReadyToWorkStatus" onchange="availabilityChange()">
+                <option value="0">@Res.ApplicantProfile.NotAvailabeUntil</option>
+                <option value="1">@Res.ApplicantProfile.ASAP</option>
+            </select>
+        </div>
+        <div class="box" id="availability">
+            <label> @Res.ApplicantProfile.AvailableDate</label></>
+            @if (Model.AvailableDate != null)
+            {
+                <input class="applicantWorkDate" type="date" asp-for="AvailableDate" value="@Model.AvailableDate.Value.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input class="applicantWorkDate" type="date" asp-for="AvailableDate" value="" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            }
+        </div>
+        <div class="box">
+            <label> @Res.ApplicantProfile.JobPosition</label>
+
+            <input class="applicantJobPosition" required asp-for="JobPosition" type="text" value="@Model.JobPosition" />
+        </div>
+
+    </div>
+    <input type="submit" id="btnSaveForm" value="@Res.ApplicantProfile.Save" class="applicant-save-button" />
+</form>

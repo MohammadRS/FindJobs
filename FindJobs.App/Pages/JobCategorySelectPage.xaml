@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+    xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    x:Class="FindJobs.App.Pages.JobCategorySelectPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="30,120,30,30"  >
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="10,10,10,10"     >
+                <StackLayout Orientation="Horizontal" Margin="10">
+
+                    <Entry WidthRequest="200" x:Name="serchJobPosition" Placeholder="{x:Static res:Messages.SearchJobPosition}" HorizontalOptions="Start" BackgroundColor="White" TextChanged="serchJobPosition_TextChanged" />
+                    <ffimageloadingsvg:SvgCachedImage Grid.Row="0"
+                                                          Source="{re:AppResources SharedIcons.close.svg}"
+                                                          WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand"
+                                                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_Clicked"></TapGestureRecognizer>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </StackLayout>
+                <ListView x:Name="jobSearchListView"   Margin="0,0,0,0"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox  x:Name="jobCategoryCheckbox" IsChecked="{Binding IsChecked,Mode=TwoWay}"  Grid.Row="0" Grid.Column="0" CheckedChanged="jobCategoryCheckbox_CheckedChanged" />
+
+                                        <Label TextColor="Black" Text="{Binding JobCategory}"  Grid.Column="1" Grid.Row="0" VerticalOptions="Center" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="cancel" x:Name="Cancel_Jobcategory" HorizontalOptions="StartAndExpand" BackgroundColor="Gray" Clicked="Cancel_Jobcategory_Clicked" CornerRadius="5" TextColor="White" />
+                    <Button Text="Done" x:Name="Done_JobCategories" BackgroundColor="Gray" TextColor="White" CornerRadius="5" Clicked="Done_JobCategories_Clicked"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

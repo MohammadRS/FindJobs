@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+    xmlns:themes="clr-namespace:FindJobs.App.Themes"
+    xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources"
+    x:Class="FindJobs.App.Pages.ApplicantProfile"
+              Title="{x:Static res:ApplicantProfile.Profile}"
+              NavigationPage.HasBackButton="True"
+              >
+    
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightGray">
+            <StackLayout Padding="0,20,0,0" BackgroundColor="White">
+                <Frame CornerRadius="100"
+                   HeightRequest="100"
+                   WidthRequest="100" 
+                   HorizontalOptions="Center"
+                   Padding="0"
+                   IsClippedToBounds="True">
+                    <ImageButton x:Name="profileImage" Clicked="profileImage_Clicked" Aspect="AspectFill" WidthRequest="100" HeightRequest="100"  />
+                </Frame>
+                <Label  Text="Mansour Bagheri" x:Name="fullName" Margin="0" Padding="0" HorizontalOptions="Center" FontSize="20"/>
+                <Label Text="mans@gmail.com" x:Name="email" HorizontalOptions="Center" TextColor="Gray" FontSize="18" Margin="0" Padding="0" />
+                <Button Text="{x:Static res:ApplicantProfile.Edit}" Clicked="Edit_Clicked" TextColor="Red" Padding="0,10,0,0" BackgroundColor="White" FontSize="20" />
+            </StackLayout>
+            <Label Text="{x:Static res:ApplicantProfile.General}" Padding="10,5,0,5" FontSize="20" TextColor="Gray"/>
+            <power:PowerLayout Clicked="ProfileDetail_Clicked" BorderRadius="0">
+                <StackLayout  Orientation="Horizontal" Padding="0,5,5,0"  BackgroundColor="White" HorizontalOptions="FillAndExpand" >
+                    <Label Text="{x:Static res:ApplicantProfile.ProfileDetail}"  FontSize="20" HorizontalOptions="StartAndExpand"    Padding="10,5,0,5"  />
+                    <Label Text=">"  FontSize="20" Padding="0,5,10,5" HorizontalOptions="EndAndExpand"  />
+                </StackLayout>
+            </power:PowerLayout>
+            <StackLayout >
+                <WebView HorizontalOptions="FillAndExpand" WidthRequest="100"
+                         HeightRequest="700"  VerticalOptions="FillAndExpand" 
+                         x:Name="ApplicantWebView"  />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</themes:MainTheme>

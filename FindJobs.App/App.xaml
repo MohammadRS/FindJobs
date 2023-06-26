@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power" 
+             xmlns:helper="clr-namespace:FindJobs.App.Helper;assembly=FindJobs.App"
+               xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+              xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="FindJobs.App.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="power:PowerEntry">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderRadius" Value="4" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="Silver" />
+            </Style>
+            <Style TargetType="power:PowerLayout">
+                <Setter Property="BorderRadius" Value="6"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="1" />
+            </Style>
+
+            <Style TargetType="Button" >
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" />
+            </Style>
+            <Style TargetType="Button" x:Key="disabled">
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{helper:GetColorAppSetting Source=UISettings:ColorLightGray}" />
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <Style x:Key="BtnGoogleFacebook" TargetType="Label">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"></Setter>
+            </Style>
+            <Style TargetType="StackLayout" x:Key="StLayoutGoogleFacebook" >
+                <Setter Property="Orientation" Value="Horizontal"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextTransform" Value="None"/>
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Color" Value="Black"/>
+                <Setter Property="Margin" Value="0, 10, 0, 10"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <Style TargetType="ffsvg:SvgCachedImage" >
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="Color" Value="{helper:GetColorAppSetting Source=UISettings:ColorTeal}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

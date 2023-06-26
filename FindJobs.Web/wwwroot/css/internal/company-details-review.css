@@ -1,0 +1,101 @@
+.title > h4 {
+    color: gray;
+}
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.table {
+    width: 100%;
+}
+    .table tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+.table-no-wrap{
+    flex-wrap:nowrap !important;
+}
+
+.mg-top-lg {
+    margin-top:100px;
+}
+.flex-no-basis {
+    flex-basis:0px !important;
+}
+.flex-sm-basis{
+    flex-basis:40px !important;
+}
+.table td {
+    flex-basis: 260px;
+}
+.split-flex{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.center-text {
+    text-align: center;
+}
+.lg-flex{
+    flex-basis:600px !important;
+}
+.table-split{
+    width:50%;
+}
+
+.small-padding{
+    padding:17px;
+}
+.bottom-table{
+    flex-basis:350px !important;
+}
+
+.detailsbox {
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0px 0px 8px #bbb;
+    padding: 23px;
+    border-radius: 10px;
+}
+.mg-top{
+    margin-top:15px
+}
+.contact-button {
+    background-color: #$0$;
+    border-radius: 5px;
+    border: 0px none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 200px;
+}
+
+    .contact-button:hover {
+        background-color: #$1$;
+        cursor: pointer;
+    }
+
+
+    .right-table{
+        width:360px !important;
+    }
+    
+
+   .mg-left{
+       margin-left:15px;
+   }
+
+   .right-table-width{
+       width:840px;
+   }

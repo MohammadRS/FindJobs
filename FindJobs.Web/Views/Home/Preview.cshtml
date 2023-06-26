@@ -1,0 +1,441 @@
+﻿@using FindJobs.Domain.Dtos
+@using FindJobs.Domain.Enums;
+@using FindJobs.Web.Controllers;
+@model OfferViewModel
+
+@section Css{
+    <link rel="stylesheet" href="/dcss/internal/company-details-review/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+}
+@section Script{
+    <script src="~/js/internal/publicJs.js" async defer></script>
+}
+
+
+<div class="container">
+
+
+    <div class="split-flex">
+        <div id="Review" class="mg-top right-table-width">
+            <div>
+                <details class="detailsbox" open>
+                    <summary>@Res.CompanyOffer.Review</summary>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h4>
+                                            <span id="jobTitleSpan">@Model.offerDto.JobTitle</span>/<span id="companyNameSpan">@Model.offerDto.CompanyDto.Name</span>
+                                        </h4>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <tbody>
+                            <tr class="justify-between">
+                                <td>
+                                    <div class="center-text">
+                                        <img style="height:50px;width:50px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACtElEQVRogeWazYuNURzHPzNoyCWJxmSKRAnlWelaWthosLOh/ANWLCw1kyZbbrqGBVsbJVlIibxLpCzIQiQ1eRu5V/cyXhbnPN1x5758z3PPOU/41K+m7u/5nu93nuc559znufCP0OdZbxEwAmwDEmA1sMR+NgW8BJ4A14DLwBfP4/fMEFAGqsAvsarAGWBtDn5nMQCMARX0AM31DThmtXJhGXCjg0HXugOsiJoA2AS87tF4q3pltaMwGCjEzDCDoUPMx1wCoUKkdZvA98xYhBBpjYcKMURvs5Nr1YE1IYKUI4ZIa8J3iAJmFY4dpGLH7kq/GGSnKmipAyeAoj2uYP8u2c9UFgI7HPq7chr9v/gG2NxBK7E9qt4pn0EeiIPWuoRISWyvonnPYw7eiYMed9AsiZqTXhJY6uKgWxw0i6JmzUsCi3oZuEwIBVHzqyKmzlpTDgZVvI6tin0S+zaIfS69H5UmNcgLsW+f2AewV+x77qDZlXH0GzMR9BL0CWTUYw72iIOmC2KnMK4L4i6fQZYDPxwGr2PWiZlblK00tiiqzndgsc8gAI8dDPiqm6o59WYHuOTQ64uLIUTXE/ds/ARWhQgC8ChikOsuxlwuLTBPBmNRDilewGwZQp+Nt8A8F2OuZ6QCnHU8JgsnMVNvUIbRd8NZ6jONJ/gyrmcEzKp8LsNxKiXC7LZbspIwz7g+AEtjhUgZ9WC8uQ5ETWBZgN+H2c9wnKl8sl8wqNZIZO9/0A88bGHKta7GNt6KBPP6LGuIKrAuuus2qN8gW9XBHPy2ZQB4inuI+8CcHPx2pAhMo4eoARtzcSpwFD3IoZw8SswFbtE9xBWybY+iMgy8p32IScxrvL+C3Zivqs0hpoHtOfrKxBFmBzmcq6OM9AHnaYS4gP9fI0WjgHnjdBe3Vw7/L78ByP0EVSkVHdcAAAAASUVORK5CYII=">
+                                        <div>
+                                            <div>
+                                                <div class="image-offer-text-title">  @Res.CompanyOffer.AddressOfWork </div>
+                                            </div>
+                                            <div id="addressOfWorkP"> @Model.offerDto.WorkPlaceAddress </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="center-text">
+                                        <img style="height:50px;width:50px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAADwElEQVR4nO3dy4scRRwH8M+aaEggMYEwKjvrY0Hi86AoxEOI4k0QQRAvnvSgJxX8AxTESyAIevFxEk++EC+iGNSDiIqgCGqMyQZFjMRXUBHduI6HmhAPK1uzTnV19/w+0JelZurX9Z3ure6drSaEEEIIIYQQQgghzIq52gVM2VZchWtwBYbjbYAN2D5u9zNWcBzHxtthHBpvn+KPJgvvsnNxLw5gGaMpbMv4GE80uB+dcx2eM71BX2070tjedMguvKzcoP97O9DQPnXCHO6Tzs1NDP4IT5feqY2lO5iSHXgBNzbc79HSHXQhgAvwKi6r0PfMBzCPt3HhOl//Jw7iK3yHk+OfnylNSQfSNHUBm1Z5ffEA2my7NB+f9Ly9hEewG2dl9rUBl+MOPIbPxu91znR2pZteMtnAH8Jt0mBOw1D/LlSz3S1/4P/GPqufQsI6DPCT/CvW2+uU2V9Pyhv8FemUE6ZoXpq55ATwYKUae22fvMH/UPun0J2zUZqr5wTQ9BXxTLhJ3uB/ZIanhyU9JS+AmPUUcsTag/87NtcqsM8W5H36X6tVYCln1C5g7OrMdq8XraKCtgRwZWa7d4tWUUFbAtiV2W6paBUVtCWAhYw2v+L70oU0rS0BzGe06eUfR5q4oBk10Mf/UfWiri1HwMyKACqLACqLACqLACqLAALybsQ9VK26guIIqCwCqCwCqCwCqCwCqCwCqCzuhsbd0NkWAVQWAVQWAVQWAVQWAQRwwtp3Q1+pVl1BbTkCfshoMyxeRQVdCiDnu0Od05YAvs5oM9DDf0VtSwBfZLSZw6WlC2laWwI4mNnuhqJVVNCWAD7IbNe7ANrkmLWnoieklU56oy1HALyV0eZs3Fy6kFl1q7yvp7xZq8C+24xf5IVwfaUae+9xeQF8rofXBG1wsbQKSk4I+yvV2HvPygtghLsq1dhrQ/wmL4AV3FOnzH57QP5RMJLWmdhapdKempOWJZgkhG9wp/yVEteyY0rv01kDfGmyEEb4Fo9iL7ZM0N/5uAUP4z38Na6hqLavu7OId3DeOl9/UlrO8qi0GNSy9HtjE7ZJn/JTC7duW+X1u/H+OvvujUXpdvWkR8I0tuJrE7XpXtB/WcIe6Uho2mLpDroQAOlRI3txv3QaacpFDfbVGZfgec2cgt5oaJ86aQ9elH7RlgrgcGN702Hz0pM1pvkQn1OD/0zp4ts+DZ3UFukxVtdKy9EPpfn9TqefGTAnPcaK9HWY49I6REtOP8bqE/zYZOEhhBBCCCGEEEIIof/+ARP4E7ThdtrrAAAAAElFTkSuQmCC">                                                <div>
+                                            <div>
+                                                <div class="image-offer-text-title">   @Res.CompanyOffer.WageConditions </div>
+                                            </div>
+                                            @Res.CompanyOffer.BasicSalary : <span id="baseOfSalarySapn"> @Model.offerDto.BasicSalary</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="center-text">
+                                        <img style="height:50px;width:50px" src="data:image/png;base64,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">                                                <div>
+                                            <div>
+                                                <div>   @Res.CompanyOffer.TypeOfContract </div>
+                                            </div>
+                                            @{
+                                                var contracts = HomeController.GetTypeOfContractList(Model.offerDto);
+                                            }
+                                            @foreach (var item in contracts)
+                                            {
+                                                <span>@item</span>
+                                                if (contracts.Last() != item)
+                                                {
+                                                    <span>,</span>
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <table class="table">
+
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h3>@Res.CompanyOffer.JobDescription</h3>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <p>@Model.offerDto.JobDescription</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.Benifits</h3>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <p>@Model.offerDto.Benifits</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h3>   @Res.CompanyOffer.RequirementsPerEmployee</h3>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.Education</h3>
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    @{
+                                        var educationList = HomeController.GetEducationList(Model.offerDto);
+                                    }
+                                    @foreach (var item in educationList)
+                                    {
+                                        <span>@item</span>
+                                        if (educationList.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.LanguageSkills</h3>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3>  @Res.CompanyOffer.RequiredLanguageSkills</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var offdto = Model.offerDto.OfferLanguageDtos.Where(x => x.LanguageLevel == (int)OfferLanguageType.Required);
+                                    }
+                                    @foreach (var item in offdto)
+                                    {
+                                        <span>@item.LanguageDto.Name </span>
+                                        if (offdto.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.OptionalLanguageSkills</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var latdto = Model.offerDto.OfferLanguageDtos.Where(x => x.LanguageLevel == (int)OfferLanguageType.Optional);
+                                    }
+                                    @foreach (var item in latdto)
+                                    {
+                                        <span>@item.LanguageDto.Name</span>
+                                        if (latdto.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.OtherKnowledge</h3>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.RequiredJuniorKnowledge</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var kndto = Model.offerDto.OfferKnowledgeDtos.Where(x => x.KnowledgeLevel == (int)KnowledgeLevel.RequiredJuniorKnowledge);
+                                    }
+                                    @foreach (var item in kndto)
+                                    {
+                                        <span>@item.KnowledgeDto.Name</span>
+                                        if (kndto.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.RequiredSeniorknowledge</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var knsdto = Model.offerDto.OfferKnowledgeDtos.Where(x => x.KnowledgeLevel == (int)KnowledgeLevel.RequiredSeniorknowledge);
+                                    }
+                                    @foreach (var item in knsdto)
+                                    {
+                                        <span>@item.KnowledgeDto.Name</span>
+                                        if (knsdto.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div>
+                                        <h3>  @Res.CompanyOffer.Advantage_OptionalKnowledge</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var akndto = Model.offerDto.OfferKnowledgeDtos.Where(x => x.KnowledgeLevel == (int)KnowledgeLevel.AdvantageOrOptionalKnowledge);
+                                    }
+                                    @foreach (var item in akndto)
+                                    {
+                                        <span>@item.KnowledgeDto.Name</span>
+                                        if (akndto.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h3> @Res.CompanyOffer.DrivingLicence</h3>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        var licence = HomeController.GetLicenceType(Model.offerDto);
+                                    }
+                                    @foreach (var item in licence)
+                                    {
+                                        <span>@item</span>
+                                        @if (licence.Last() != item)
+                                        {
+                                            <span>,</span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h3>  @Res.CompanyProfile.NumberOfEmployee</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <span id="numberEmploymentSpan">@Model.offerDto.CompanyDto.NumberOfEmployee</span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                    
+
+
+
+
+                </details>
+            </div>
+        </div>
+        <div class="mg-top mg-left right-table">
+            <details class="detailsbox" open>
+                <table class="table  mg-top-lg">
+                    <tbody>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/returnsicon">
+
+                            </td>
+                            <td>
+                                <p>@Res.CompanyProfile.SendYourResume</p>
+                            </td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/notepad">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.RecommandTheOffer</p></td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/facebookcolored">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.Recommandfacebook</p></td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/printer">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.Push</p></td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/locationmap">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.ShowPlaceOnMap</p></td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/stars">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.SaveOffer</p></td>
+                        </tr>
+                        <tr class="table-no-wrap">
+                            <td class="flex-sm-basis">
+                                <img width="20" height="33" src="/dsvg/SharedIcons/stars">
+
+                            </td>
+                            <td><p>@Res.CompanyProfile.ViewSavedJobs</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </details>
+        </div>
+    </div>
+
+
+        
+    
+</div>
+
+
+<div id="documentModal" class="modalDialog">
+    <div>
+        <div class="Upload_document_line">
+            <a onclick="closeModal('documentModal')" class="close">X</a>
+            <h2>@Res.ApplicantProfile.ChoiceYourDocument </h2>
+        </div>
+        <div class="profile-flex-container">
+            <br />
+            @if (Model.applicantDocumentsDtos != null && Model.applicantDocumentsDtos.Count > 0)
+            {
+                @foreach (var item in Model.applicantDocumentsDtos)
+                {
+                    <div>
+                        <input type="checkbox" id="@item.Id">
+                        <span>@Res.ApplicantProfile.DocumentType :  @item.Type.ToString() ~ @item.CreateDate </span>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                }
+            }
+
+            else
+            {
+                @*<p>@Res.ApplicantProfile.ThereIsfDocumentUploaded</p>*@
+            }
+
+
+        </div>
+        <br />
+        <input type="button" class="btn-offer-Save" value="@Res.Cv.SendCv" />
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" 
+                  xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+                  x:Class="FindJobs.App.Pages.Offers.ShowOfferPage">
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="White" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="10,0,10,0">
+            <ffimageloadingsvg:SvgCachedImage 
+                                                          Source="{re:AppResources SharedIcons.close.svg}"
+                                                          WidthRequest="40" HeightRequest="40" HorizontalOptions="EndAndExpand"
+                                                          BackgroundColor="Transparent">
+            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="onCloseButtonClicked"></TapGestureRecognizer>
+            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+        </ffimageloadingsvg:SvgCachedImage>
+
+            <WebView HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"  x:Name="ShowOfferDetailView"  />
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

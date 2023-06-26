@@ -1,0 +1,45 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@model EmailPreferenceViewModel
+
+@section Css {
+    <link rel="stylesheet" href="/dcss/internal/email-pref/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]"/>
+}
+
+<div class="container">
+    <form method="post" asp-action="UpdateEmailPreferences">
+        <div class="emailpreference-content">
+            <div class="emailpreference-header">
+                <h1>@Res.EmailPref.Title</h1>
+                <p>
+                    @Res.EmailPref.Description
+                </p>
+            </div>
+            <div class="emailpreference-items">
+                <p type="text" class="emailpreference-input">@Model.ApplicantEmail</p>
+                <hr class="emailpreference-hr"/>
+                <div class="emailpreference-item">
+                    <div class="emailpreference-checkbox-div">
+                        <input type="checkbox" checked="@Model.JobNotification" id="JobNotification" name="JobNotification" class="emailpreference-checkbox">
+                        <label class="emailpreference-checkbox-text">@Res.EmailPref.Header1</label>
+                    </div>
+                    <p class="emailpreference-detials">@Res.EmailPref.SendNotif</p>
+                </div>
+                <hr class="emailpreference-hr"/>
+                <div class="emailpreference-item">
+                    <div class="emailpreference-checkbox-div">
+                        <input type="checkbox" checked="@Model.NewsLetter" id="NewsLetter" name="NewsLetter" class="emailpreference-checkbox">
+                        <label class="emailpreference-checkbox-text">@Res.EmailPref.Header2</label>
+
+                    </div>
+                    <p class="emailpreference-detials">@Res.EmailPref.Management</p>
+                </div>
+                <hr class="emailpreference-hr"/>
+                <div style="width: 100%; text-align: center;">
+                    <input id="btnsubmit" type="submit" value="@Res.EmailPref.btnText" class="btn">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

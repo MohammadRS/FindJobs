@@ -1,0 +1,41 @@
+﻿.menu-top-down-side {
+   
+    font-size: 18px;
+    float: left;
+    width: 160px;
+    margin-right: 40px !important;
+}
+
+.sidemenu-general-main li{
+    padding: 10px;
+    margin: 0 !important;
+    width: 160px;
+    font-size:20px;
+}
+.sidemenu-general-main li a{
+   display:block;
+}
+
+.sidemenu-general-main ul {
+    list-style: none;
+    padding: 0px;
+    background-color: gray;
+    color: white;
+    border-radius: 7px;
+    margin-left: 3px;
+    width: 160px;
+}
+
+.sidemenu-general-main li:hover {
+    background-color: lightgray;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+

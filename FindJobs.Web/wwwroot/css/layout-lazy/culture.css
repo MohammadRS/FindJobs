@@ -1,0 +1,55 @@
+﻿#culturelist {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    z-index: 9999;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    min-height: calc(70vh);
+    box-shadow: rgba(0,0,0,.4) 0 0px 20px;
+    background: #F0F0F0;
+}
+
+#culturelist .container {
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+#culturelist a {
+    line-height: 29px;
+    display: block;
+}
+
+#culturelist a img {
+    vertical-align: middle;
+    margin-right: 7px;
+    border: 0px none;
+}
+
+#culturelist a span {
+    vertical-align: middle;
+    font-size: 13px;
+    color: #000;
+    text-decoration: none;
+}
+
+#culturelist a span:hover, #culturelist a:hover {
+    text-decoration: none;
+    color: #d13566;
+}
+
+.flagmenu a, .flagmenu a:hover {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .flagmenu a {
+        margin-top: 0px !important;
+    }
+
+    .flagicon {
+        width: 38px;
+    }
+}

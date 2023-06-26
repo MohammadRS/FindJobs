@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes:MainTheme  xmlns:themes="clr-namespace:FindJobs.App.Themes" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:power="clr-namespace:DotNek.AppComponents.Power;assembly=DotNek.AppComponents.Power"
+              xmlns:re="clr-namespace:FindJobs.Resources;assembly=FindJobs.Resources"
+             xmlns:res="clr-namespace:Res;assembly=FindJobs.Resources" xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="FindJobs.App.Pages.ApplicantPages.UploadDocumentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+
+            <power:PowerLayout BackgroundColor="Transparent" BorderColor="Transparent"  >
+                <Label Text="{x:Static res:ApplicantProfile.DocumentType}"/>
+                <power:PowerPicker BorderRadius="5"  x:Name="typepicker" />
+            </power:PowerLayout>
+            <power:PowerLayout  BorderColor="Transparent">
+                <Button Text="{x:Static res:ApplicantProfile.SelectDocumentFile}" ></Button>
+            </power:PowerLayout>
+
+            <power:PowerLayout  BorderColor="Transparent">
+                <Button Text="{x:Static res:ApplicantProfile.Save}" ></Button>
+            </power:PowerLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</themes:MainTheme>

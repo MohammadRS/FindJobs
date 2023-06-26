@@ -1,0 +1,314 @@
+﻿@using FindJobs.Domain.Dtos
+@using FindJobs.Domain.Global
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Configuration
+@model CompanyDto
+@inject IConfiguration configure
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/company-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/company/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/wizard-steps/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+}
+    @{
+    var allCountries = await Global.GetCountryList(configure["GlobalSettings:ApiUrl"]);
+    var allCities = Model.CountryCode != null ? (await Global.GetCityList(configure["GlobalSettings:ApiUrl"])).Where(x => x.CountryCode == Model.CountryCode) : null;
+
+    List<string> NumberOfCompany = new List<string> { "1-10", "10-50", "50-100", "150-200", "200-300", "300-400", "400-600", "600-800", "1000-1500", "1500-2000" };
+
+}
+<div class="container">
+    <form onsubmit="return saveCompany('@Res.CompanyProfile.PhoneNotValid','@Res.CompanyProfile.UpdateSuccessfully','@Res.CompanyProfile.NotUpdate')">
+        <fieldset>
+            <legend>@Res.CompanyProfile.CompanyData</legend>
+            <table class="companyProfiletable">
+                <tbody>
+                    <tr class="companyProfiletable-custom-td">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required"> @Res.CompanyProfile.Company</label>
+                                    <input id="Name" value="@Model.Name" class="input" placeholder="@Res.CompanyProfile.Company" type="text" />
+                                    <span class="validate" id="validateName"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label> @Res.CompanyProfile.CompanyRegistration</label>
+                                    <input id="CompanyRegistrationId" class="input" value="@Model.CompanyRegistrationId" placeholder="@Res.CompanyProfile.CompanyRegistration" type="number" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label> @Res.CompanyProfile.VatNumber</label>
+                                    <input id="VatNumber" class="input" value="@Model.VatNumber" placeholder="@Res.CompanyProfile.VatNumber" type="number" />
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label> @Res.CompanyProfile.TaxNumber</label>
+                                    <input id="TaxNumber" class="input" value="@Model.TaxNumber" placeholder="@Res.CompanyProfile.TaxNumber" type="number" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>@Res.CompanyProfile.BusinessAddress</legend>
+            <table class="companyProfiletable">
+                <tbody>
+                    <tr class="companyProfiletable-custom-td">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required"> @Res.CompanyProfile.Street</label>
+                                    <input id="Street" class="input" value="@Model.Street" placeholder="@Res.CompanyProfile.Street" type="text" />
+                                    <span class="validate" id="validateStreet"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required"> @Res.CompanyProfile.PostalCode</label>
+                                    <input id="PostalCode" class="input" value="@Model.PostalCode" placeholder="@Res.CompanyProfile.PostalCode" type="text" />
+                                    <span class="validate" id="validatePostalCode"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required">@Res.CompanyProfile.Country</label>
+
+                                    <select id="ContactCountry" value="@Model.CountryCode" onchange="selectCity()">
+                                        @if (Model.CountryCode == null)
+                                        {
+                                            <option value="">@Res.ApplicantProfile.ChoiceTheCountry</option>
+                                        }
+                                        @foreach (var item in allCountries.OrderBy(x => x.Name))
+                                        {
+                                            @if (item.Code == Model.CountryCode)
+                                            {
+                                                <option value="@item.Code" selected="selected">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Code">@item.Name</option>
+                                            }
+
+                                        }
+                                    </select>
+                                    <span class="validate" id="validateContactCountry"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label id="ContactCityLabel required">@Res.ApplicantProfile.City</label>
+                                    <select id="ContactCity" asp-for="CityId" value="@Model.CityId">
+                                        @if (allCities != null)
+                                        {
+                                            <option value="">@Res.ApplicantProfile.ChoiceTheCity</option>
+                                            @foreach (var item in allCities.OrderBy(x => x.Name))
+                                            {
+
+                                                @if (item.Id == Model.CityId)
+                                                {
+                                                    <option value="@item.Id" selected="selected">@item.Name</option>
+                                                }
+                                                else
+                                                {
+
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label> @Res.CompanyProfile.Website</label>
+                                    <input id="WebSite" class="input" value="@Model.WebSite" placeholder="@Res.CompanyProfile.Website" type="url" />
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required"> @Res.CompanyProfile.Phone</label>
+                                    <input id="Phone" value="@Model.Phone" class="input" placeholder="@Res.CompanyProfile.Phone" type="text" />
+                                    <span class="validate" id="validatePhone"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label> @Res.CompanyProfile.UploadLogo</label>
+                                    <input id="ImageLogo" class="input" placeholder="@Res.CompanyProfile.UploadLogo" type="file" accept="image/*" />
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+                                <div class="box">
+
+                                    @if (Model.Logo != null)
+                                    {
+                                        <label id="imgLogoLebel">Image Logo</label>
+                                        <img  id="imgLogo" src="@Model.Logo" width="120" />
+                                    }else{
+                                        <label style="visibility: hidden" id="imgLogoLebel">Image Logo</label>
+                                        <img style="visibility: hidden" id="imgLogo" src="@Model.Logo" width="120" />
+                                    }
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>@Res.CompanyProfile.ContactPerson</legend>
+            <table class="companyProfiletable">
+                <tbody>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required">@Res.CompanyProfile.FirstName</label>
+                                    <input id="FirstName" value="@Model.FirstName" class="input" placeholder="@Res.CompanyProfile.FirstName" type="text" />
+                                    <span class="validate" id="validatefirstName"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required">@Res.CompanyProfile.LastName</label>
+                                    <input id="LastName" value="@Model.LastName" class="input" placeholder="@Res.CompanyProfile.LastName" type="text" />
+                                    <span class="validate" id="validateLastName"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required">@Res.CompanyProfile.Email</label>
+                                    <input id="ContactPersonEmail" value="@Model.ContactPersonEmail" class="input" placeholder="@Res.CompanyProfile.Email" type="email" />
+                                    <span class="validate" id="validateContactPersonEmail"></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label class="required">@Res.CompanyProfile.Phone</label>
+                                    <input class="input" id="ContactPhone" value="@Model.ContactPersonPhone" placeholder="@Res.CompanyProfile.Phone" type="text" />
+                                    <span class="validate" id="validateContactPhone"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="companyProfiletable-custom-td" style="margin-top: 10px">
+                        <td>
+                            <div class="profile-flex-container">
+
+                                <div class="box">
+                                    <label>@Res.CompanyProfile.NumberOfEmployee</label>
+
+                                    <select id="NumberOfEmployee" selected="@Model.NumberOfEmployee">
+                                        @foreach (var item in NumberOfCompany)
+                                        {
+                                            @if (item == Model.NumberOfEmployee)
+                                            {
+                                                <option value="@item" selected="selected">@item</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>@Res.CompanyProfile.AdditionalInformation</legend>
+            <table class="companyProfiletable">
+                <tbody>
+                    <tr class="companyProfiletable-custom-td">
+                        <td>
+                            <div class="profile-flex-container">
+                                <div class="box">
+                                    <label>@Res.CompanyProfile.AboutCompany:</label>
+                                    <textarea id="AboutCompany" type="text" placeholder="@Res.CompanyProfile.AboutCompany">@Model.AboutCompany</textarea>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="profile-flex-container">
+                                <div class="box">
+                                    <input type="submit" id="company-save-button" value="@Res.ApplicantProfile.Save">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>
+
+
+
+@section Script{
+    <script src="/djs/internal/company/~@Res.Validation.RequireFeild~@Res.Validation.notMatch~@Res.Validation.ValidPhone"></script>
+
+    <script src="~/js/layout-lazy/MessageShow.js"></script>
+}

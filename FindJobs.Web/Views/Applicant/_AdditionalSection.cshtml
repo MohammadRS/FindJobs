@@ -1,0 +1,262 @@
+﻿@using FindJobs.Domain.Dtos
+@using FindJobs.Domain.Global
+@model ApplicantDto
+@using Microsoft.Extensions.Configuration
+@using System.Threading
+@inject IConfiguration configure
+@{
+    var allCountries = await Global.GetCountryList(configure["GlobalSettings:ApiUrl"]);
+    var currentCountryCode = Thread.CurrentThread.CurrentCulture.ToString().Substring(3);
+    var currentCountryDto = allCountries.Where(x => x.Code.ToLower().Equals(currentCountryCode.ToLower())).SingleOrDefault();
+    var allCurrencies = await Global.GetCurrencyList(configure["GlobalSettings:ApiUrl"]);
+    var currentCurrencyCode = (allCurrencies.Select(x => x.Code).Contains(currentCountryDto.CurrencyCode)) ? currentCountryDto.CurrencyCode : "USD";
+}
+
+
+<form id="additionalSectionForm" onsubmit="return SaveAdditionalSection('@Res.ApplicantProfile.UpdateSuccessfully','@Res.ApplicantProfile.NotSuccessfullyUpdate')">
+    <table class="AdditionalSectionTable">
+        <tr>
+            <td>
+                <div>
+                    <h4>@Res.ApplicantProfile.Driving </h4>
+                    <input type="hidden" value="@Model.Id" asp-for="@Model.Id" />
+                </div>
+            </td>
+            <td>
+                <div class="insideDivProfile">
+                    <label>
+                        @if (Model.IsDrivingLicense ==true){
+                            <input id="DrivingLicenseCheckBox" asp-for="IsDrivingLicense" type="checkbox" checked="@Model.IsDrivingLicense" onchange="changeLicenseType()" />
+                            @Res.ApplicantProfile.Drivinglicense
+                        }else{
+                            <input id="DrivingLicenseCheckBox" asp-for="IsDrivingLicense" type="checkbox" onchange="changeLicenseType()" />
+                            @Res.ApplicantProfile.Drivinglicense
+                        }
+                      
+                    </label>
+                </div>
+            </td>
+            <td>
+                <div class="insideDivProfile">
+                    <select id="SelectLicenseType" asp-for="LicenseType" value="@Model.LicenseType" >
+                        @if (Model.LicenseType == null)
+                        {
+                            <option selected="selected">@Res.ApplicantProfile.ChoiceTheLicence</option>
+                        }else{
+                            <option >@Res.ApplicantProfile.ChoiceTheLicence</option>
+                        }
+                     
+                        <option value="0">@Res.ApplicantProfile.Motorcycles</option>
+                        <option value="1">@Res.ApplicantProfile.Cars</option>
+                        <option value="2">@Res.ApplicantProfile.LargeVehicles</option>
+                        <option value="3">@Res.ApplicantProfile.Minibus</option>
+                        <option value="4">@Res.ApplicantProfile.Bus</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>@Res.ApplicantProfile.Work_Permit</h4>
+            </td>
+            <td>
+                <label>
+                    <input id="EuropeanUnionCheckbox" asp-for="IsEuropeanUnion" type="checkbox" class="applicant-profile-checkbox" checked="@Model.IsEuropeanUnion" />
+                    @Res.ApplicantProfile.EuropeanUnion
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input id="SwitzerlandCheckbox" asp-for="IsSwitzerland" type="checkbox" class="applicant-profile-checkbox" checked="@Model.IsSwitzerland" />
+                    @Res.ApplicantProfile.Switzerland
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input id="UnitedStatesCheckbox" asp-for="IsUnitedStatesofAmerica" type="checkbox" class="applicant-profile-checkbox" checked="@Model.IsUnitedStatesofAmerica" />
+                    @Res.ApplicantProfile.UnitedStates
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <h4> @Res.ApplicantProfile.Rate  </h4>
+
+            </td>
+            <td>
+                <div>
+                    <label></label>
+                </div>
+
+
+                <label>
+                    <input id="HourlyrateCheckbox" asp-for="IsHourlyRate" type="checkbox" checked="@Model.IsHourlyRate">
+                    @Res.ApplicantProfile.EnterRange
+                </label>
+
+            </td>
+            <td id="rateAvarage">
+
+                <div class="box">
+
+                    <label>
+                        @Res.ApplicantProfile.Average
+                    </label>
+
+                    <input id="AverageInput" asp-for="HourlyAverage" type="number" value="@Model.HourlyAverage" />
+                </div>
+
+            </td>
+            <td class="tdHourly">
+
+                <div class="box">
+                    <label>@Res.ApplicantProfile.From</label>
+
+
+                    <input type="number" asp-for="HourlyFrom" value="@Model.HourlyFrom" />
+
+                </div>
+            </td>
+            <td class="tdHourly">
+                <div class="box">
+                    <label>@Res.ApplicantProfile.To</label>
+
+
+                    <input type="number" asp-for="HourlyUntil" value="@Model.HourlyUntil" />
+                </div>
+
+            </td>
+
+            <td>
+                <div class="box">
+                    <label>@Res.ApplicantProfile.RateType</label>
+
+                    <select asp-for="RateType" value="@Model.RateType">
+                        <option value="0">@Res.ApplicantProfile.Hourly</option>
+                        <option value="1">@Res.ApplicantProfile.Monthly</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="box">
+                    <label>@Res.ApplicantProfile.Currency</label>
+
+                    <select asp-for="Currency" value="@Model.Currency">
+                        @if (Model.Currency == null)
+                        {
+                            @foreach (var item in allCurrencies)
+                            {
+                                if (item.Code.ToLower().Equals(currentCurrencyCode.ToLower()))
+                                {
+                                    <option value="@item.Code" selected="selected">@item.Code</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Code">@item.Code</option>
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            @foreach (var item in allCurrencies)
+                            {
+                                if (Model.Currency != null && item.Code.ToLower().Equals(Model.Currency.ToLower()))
+                                {
+                                    <option value="@item.Code" selected="selected">@item.Code</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Code">@item.Code</option>
+                                }
+
+                            }
+                        }
+                    </select>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+
+                <h4>@Res.ApplicantProfile.Prefered_place_of_work</h4>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="WorkPlace" type="checkbox" asp-for="IsWorkPlace" class="applicant-profile-checkbox" checked="@Model.IsWorkPlace" />
+                    @Res.ApplicantProfile.OnSite
+                </label>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="Partialworkfromhome" type="checkbox" asp-for="IsPartialworkfromhome" class="applicant-profile-checkbox" checked="@Model.IsPartialworkfromhome" />
+                    @Res.ApplicantProfile.WorkFromHome
+                </label>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="WorkFromHome" type="checkbox" asp-for="IsWorkFromHome" class="applicant-profile-checkbox" checked="@Model.IsWorkFromHome" />
+                    @Res.ApplicantProfile.Hybrid
+                </label>
+
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <h4>@Res.ApplicantProfile.Prefered_type_of_work</h4>
+            </td>
+            <td>
+
+                <label>
+                    <input id="FullTimeCheckBox" type="checkbox" asp-for="IsFullTime" class="applicant-profile-checkbox" checked="@Model.IsFullTime" />
+                    @Res.ApplicantProfile.Full_time
+                </label>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="ParttimeCheckBox" type="checkbox" asp-for="IsPartTime" class="applicant-profile-checkbox" checked="@Model.IsPartTime" />
+                    @Res.ApplicantProfile.Part_time
+                </label>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="FreelancerCheckBox" type="checkbox" asp-for="IsFreelancer" class="applicant-profile-checkbox" checked="@Model.IsFreelancer" />
+                    @Res.ApplicantProfile.Freelancer
+                </label>
+
+            </td>
+            <td>
+
+                <label>
+                    <input id="InternshipCheckBox" type="checkbox" asp-for="IsInternShip" class="applicant-profile-checkbox" checked="@Model.IsInternShip" />
+                    @Res.ApplicantProfile.Internship
+                </label>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+                <input type="submit" class="applicant-save-button" value="@Res.ApplicantProfile.Save" />
+
+            </td>
+        </tr>
+
+    </table>
+</form>
+

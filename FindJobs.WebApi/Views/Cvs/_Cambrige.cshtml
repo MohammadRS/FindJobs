@@ -1,0 +1,270 @@
+﻿@using FindJobs.Domain.Dtos;
+@model ApplicantDto
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width" name="viewport" />
+    <!--[if !mso]><!-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <!--<![endif]-->
+    <title></title>
+    <!--[if !mso]><!-->
+    <!--<![endif]-->
+    <style type="text/css">
+        .ca-elements {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .ca-topheader {
+            background-color: rgb(91, 126, 190);
+            height: 55px;
+            display: flex;
+            place-items: center;
+            padding: 10px;
+        }
+
+        .ca-image {
+            width: 5rem;
+            border-radius: 136px;
+            margin: 10px 3px !important;
+            height: 5rem;
+            object-fit: cover;
+            border: 0px;
+        }
+
+        .ca-topheader-text {
+            text-align: center;
+            color: white;
+        }
+
+        .ca-cv-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .ca-personal-information {
+            display: block;
+            padding: 10px;
+        }
+
+        .ca-header {
+            font-weight: bold;
+        }
+
+        .ca-left-box {
+            margin-top: 40px;
+            overflow-wrap: break-word;
+        }
+
+            .ca-left-box > p {
+                line-height: 0px;
+            }
+
+        .ca-right-side {
+            display: block;
+            flex-wrap: wrap;
+            flex-direction: column !important;
+            width: 60%;
+        }
+
+        .ca-right-box {
+            flex-direction: column;
+        }
+
+        .ca-header-right-box {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .ca-flex-v {
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin-left: 18px;
+        }
+
+        .ca-line {
+            display: flex;
+            flex-grow: 1;
+            height: 1px;
+            align-self: center;
+            margin: 0 20px;
+            background-color: grey;
+        }
+
+        .ca-sm-line-h {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-bottom: 1px solid black;
+        }
+
+        .ca-sm-line-v {
+            position: absolute;
+            height: 50px;
+            border-right: 1px solid gray;
+        }
+
+        .ca-items-h {
+            margin-left: 55px;
+            margin-top: 26px;
+            flex-direction: row;
+            display: flex;
+        }
+
+    </style>
+</head>
+<body style="margin:0;padding:0;display:flex">
+    
+    <div class="ca-elements">
+        <div class="ca-cv-container">
+
+            <img src="@Model.ApplicantImage" alt="Applicant-Image" class="ca-image" />
+
+            <div class="ca-personal-information">
+                <h4>@Res.Cv.Personal</h4>
+                <div class="ca-left-box">
+                    <p class="ca-header">@Res.Cv.FullName</p>
+                    <p>@Model.FirstName @Model.LastName</p>
+                </div>
+
+
+                <div class="ca-left-box">
+                    <p class="ca-header">@Res.Cv.Address</h4>
+                    <p>@Model.CountryName</p>
+                    <p>@Model.CityName</p>
+                </div>
+
+                <div class="ca-left-box">
+                    <p class="ca-header">@Res.Cv.Email</h4>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+
+
+            <div class="ca-right-side">
+
+
+                @if (Model.ApplicantEducations.Count > 0 && Model !=null)
+                {
+                    <div class="ca-right-box">
+                        <div class="ca-header-right-box">
+                            <h3 class="">@Res.Cv.Education</h3>
+                            <div class="ca-line"></div>
+                        </div>
+                        @foreach (var item in Model.ApplicantEducations)
+                        {
+                            <div class="ca-header-right-box">
+                                <div class="ca-sm-line-v"></div>
+                                <div class="ca-sm-line-h"></div>
+
+                            </div>
+                            <div class="ca-items-h">
+                                <p>@item.StartEducation ~ @item.EndEducation</p>
+                                <div class="ca-flex-v">
+                                    <p>@item.InstituteName</p>
+                                    <p>@item.CourseName</p>
+                                    <p>@item.EducationLevel</p>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+
+                }
+                @if (Model.ApplicantWorkExperiences.Count > 0 && Model != null)
+                {
+                    <div class="ca-right-box">
+                        <div class="ca-header-right-box">
+                            <h3 class="">@Res.Cv.WorkExperincees</h3>
+                            <div class="ca-line"></div>
+                        </div>
+                        @foreach (var item in Model.ApplicantWorkExperiences)
+                        {
+                            <div class="ca-header-right-box">
+                                <div class="ca-sm-line-v"></div>
+                                <div class="ca-sm-line-h"></div>
+
+                            </div>
+                            <div class="ca-items-h">
+                                <p>@item.StartWork ~ @item.EndWork</p>
+                                <div class="ca-flex-v">
+                                    <p>@item.JobTitle</p>
+                                    <p>@item.JobPosition</p>
+                                    @if (item.IsCurrentlyWorking)
+                                    {
+                                        <p>@Res.Cv.StillWokring</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@Res.Cv.notemployed</p>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                }
+                @if (Model.ApplicantKnowledges.Count > 0 && Model != null)
+                {
+                    <div class="ca-right-box">
+                        <div class="ca-header-right-box">
+                            <h3>@Res.Cv.Knowledges</h3>
+                            <div class="ca-line"></div>
+                        </div>
+                        @foreach (var item in Model.ApplicantKnowledges)
+                        {
+                            <div class="ca-header-right-box">
+                                <div class="ca-sm-line-v"></div>
+                                <div class="ca-sm-line-h"></div>
+
+                            </div>
+                            <div class="ca-items-h">
+                                <p>@item.KnowledgeName</p>
+                                <div class="ca-flex-v">
+                                    <p>@item.KnowledgeLevel</p>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                }
+                @if (Model.ApplicantLanguages.Count > 0 && Model != null)
+                {
+                    <div class="ca-right-box">
+                        <div class="ca-header-right-box">
+                            <h3>@Res.Cv.Languages</h3>
+                            <div class="ca-line"></div>
+                        </div>
+
+                        @foreach (var item in Model.ApplicantLanguages)
+                        {
+                            <div class="ca-header-right-box">
+                                <div class="ca-sm-line-v"></div>
+                                <div class="ca-sm-line-h"></div>
+
+                            </div>
+                            <div class="ca-items-h">
+                                <p>@item.LanguageName</p>
+                                <div class="ca-flex-v">
+                                    <p>@item.LanguageLevel</p>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

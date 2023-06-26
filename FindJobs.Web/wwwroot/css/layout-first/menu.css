@@ -1,0 +1,353 @@
+﻿*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+.zmenu {
+    margin-top: 6px;
+    z-index: 200;
+    position: relative;
+}
+
+
+.zmenu__btn {
+    display: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 10px;
+    height: 50px;
+    width: 60px;
+}
+
+    .zmenu__btn:hover {
+        background-color: transparent;
+    }
+
+.zmenu__btn__bar {
+    display: block;
+    margin-bottom: 9px;
+    width: 38px;
+    height: 3px;
+    background-color: #fff;
+    transition: 0.15s cubic-bezier(0.75, -0.55, 0.25, 1.55);
+    outline: 0;
+}
+
+    .zmenu__btn__bar + .zmenu__btn__bar {
+        margin-top: 4px;
+    }
+
+.zmenu__btn--active {
+    float: right;
+}
+
+    .zmenu__btn--active .zmenu__btn__bar {
+        margin: 0px;
+        position: absolute;
+    }
+
+        .zmenu__btn--active .zmenu__btn__bar:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .zmenu__btn--active .zmenu__btn__bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .zmenu__btn--active .zmenu__btn__bar:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+.zmenu {
+    display: flex;
+    flex-direction: row-reverse
+}
+
+    .zmenu ul {
+        padding: 0;
+        list-style: none;
+        font: 0 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    .zmenu li, .zmenu a {
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .zmenu a {
+        color: #fff;
+        text-decoration: none;
+        border-right: 1px solid #000;
+    }
+
+    .zmenu a:last-child{
+        border-right: none;
+        font-size: 14px !important;
+        cursor:pointer;
+    }
+
+.zmenu__nav > li.login-btn > a {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+
+    .zmenu__nav > li.login-btn > a:hover {
+        background-color: white;
+        color: gray;
+    }
+
+.zmenu__nav > li.logout-btn > a {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+
+    .zmenu__nav > li.logout-btn > a:hover {
+        background-color: white;
+        color: gray;
+    }
+
+.zmenu__nav {
+}
+
+    .zmenu__nav > li {
+        padding: 20px 0px;
+        position: relative;
+    }
+
+        .zmenu__nav > li > a {
+            padding: 0px 20px;
+            text-transform: uppercase;
+        }
+
+        .zmenu__nav > li:hover > ul {
+            opacity: 1;
+            visibility: visible;
+            margin: 0;
+        }
+
+        .zmenu__nav > li:hover > a {
+            color: #fff;
+        }
+
+        .zmenu__nav > li:focus-within > ul {
+            opacity: 1;
+            visibility: visible;
+            margin: 0;
+        }
+
+        .zmenu__nav > li:focus-within > a {
+            color: #fff;
+        }
+
+        .zmenu__nav > li:hover > ul > li > a {
+            font-size: 15px;
+        }
+
+.zmenu__nav__hasDropdown:before {
+    content: "";
+    position: absolute;
+    border: 4px solid transparent;
+    border-bottom: 0;
+    border-top-color: currentColor;
+    top: 50%;
+    margin-top: -2px;
+    right: 10px;
+}
+
+.zmenu__nav__dropdown {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-height: 430px !important;
+    min-width: 160px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    margin: 20px 0 0 0;
+    background-color: #373737;
+    transition: margin 0.15s, opacity 0.15s;
+}
+
+.zmenu__nav > li:last-child ul {
+    right: 0;
+    left: auto;
+}
+
+    .zmenu__nav > li:last-child ul > li:first-child > a:after {
+        right: 1em;
+        left: auto;
+    }
+
+.zmenu__nav__dropdown > li {
+    width: 100%;
+}
+
+    .zmenu__nav__dropdown > li > a {
+        color: #ccc;
+    }
+
+    .zmenu__nav__dropdown > li:first-child > a:after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        left: 1em;
+        top: -6px;
+        border: 6px solid transparent;
+        border-top: 0;
+        border-bottom-color: inherit;
+    }
+
+    .zmenu__nav__dropdown > li:last-child {
+        border: 0;
+    }
+
+.zmenu__nav__dropdown a {
+    padding: 10px 30px;
+    width: 160px;
+    border-color: #373737;
+    border-width: 0px;
+}
+
+    .zmenu__nav__dropdown a:hover {
+        background-color: #777;
+        border-color: #777;
+        color: #fff;
+    }
+
+    .zmenu__nav__dropdown a:focus {
+        background-color: #777;
+        border-color: #777;
+        color: #fff;
+    }
+
+.zmenu__nav--active {
+    display: block !important;
+}
+
+    .zmenu__nav--active .zmenu__nav__dropdown {
+        display: block;
+    }
+
+
+
+@media screen and (max-width: 1000px) {
+    .zmenu > ul {
+        min-height: 100vh;
+    }
+
+    .zmenu {
+        top: 0;
+        right: 0;
+        margin-top: 0px;
+        width: 100px;
+    }
+
+    .zmenu--active {
+        position: fixed;
+        overflow: scroll;
+        height: 100vh;
+       width: 73% !important;
+        min-width: 160px;
+        display:block;
+    }
+
+    .zmenu ul {
+        background-color: #444;
+    }
+
+    .zmenu__nav > li {
+        padding: 0px;
+    }
+
+        .zmenu__nav > li > a {
+            font-weight: bold;
+        }
+
+        .zmenu__nav > li:last-child > a {
+            width: auto;
+            margin: 15px 20px;
+        }
+
+    .zmenu__btn {
+        display: inline-block;
+        outline: 0;
+        margin-top: 18px;
+        margin-bottom: 20px;
+        float: right;
+    }
+
+    .zmenu__nav__dropdown {
+        position: static;
+        overflow-x: initial !important;
+        overflow-y: initial !important;
+        max-height:none !important;
+    }
+
+    .zmenu__nav {
+        display: none;
+    }
+
+        .zmenu__nav > li {
+            width: 100%;
+            border-right: 0;
+        }
+
+            .zmenu__nav > li:last-child {
+                border: 0;
+                position: absolute;
+                top: 50px;
+                left: 0px;
+                width: auto;
+            }
+            .zmenu__nav > li:first-child{
+                margin-top:30px;
+            }
+
+            .zmenu__nav > li:first-child > a:after {
+                content: '';
+                position: absolute;
+            }
+
+            .zmenu__nav > li > a {
+                width: 100%;
+                padding: 10px 20px;
+                border-color: #111;
+                position: relative;
+                border-width: 0px;
+            }
+
+        .zmenu__nav a:hover {
+            background-color: #777;
+            border-color: #777;
+            color: #fff;
+        }
+
+    .zmenu__nav__dropdown {
+        background-color: #373737;
+        margin: 0;
+        transition: none;
+        visibility: visible;
+        opacity: 1;
+    }
+
+        .zmenu__nav__dropdown > li:first-child > a:after {
+            content: none;
+        }
+
+        .zmenu__nav__dropdown a {
+            padding-left: 60px;
+            width: 100%;
+            color: #ccc;
+        }
+
+
+}

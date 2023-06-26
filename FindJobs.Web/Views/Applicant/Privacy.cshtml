@@ -1,0 +1,63 @@
+﻿@using FindJobs.Domain.Dtos
+@model ApplicantPrivacyDto
+@{
+    ViewData["Title"] = "Privacy";
+}
+
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]~@ViewData["ColorLightGray"]" />
+    }
+<meta name="robots" content="noindex" />
+<meta name="robots" content="nofollow" />
+
+<form asp-action="UpdatePrivacy" style="display:flex;
+    justify-content:center;"> 
+
+<table class="tablePrivacy">
+    <tr>
+        <td>
+            <h3>Privacy</h3>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td><label>@Res.ApplicantProfile.Profile_Visible</label></td>
+        <td>
+            <select asp-for="ProfileVisible" class="ProfileVisible" value="@Model.ProfileVisible">
+                <option value="0">@Res.ApplicantProfile.ForAllUsers</option>
+                <option value="1">@Res.ApplicantProfile.OnlyForRegistered</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.SearchEngines</label></td>
+        <td><input type="checkbox" asp-for="AllowSearchEngines" checked="@Model.AllowSearchEngines" /><label>@Res.ApplicantProfile.TextSearchEngines</label></td>
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.Phone</label></td>
+        <td><input type="checkbox" asp-for="ShowPhone" checked="@Model.ShowPhone" /><label>@Res.ApplicantProfile.TextPhone</label></td>
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.Gender</label></td>
+        <td><input type="checkbox" asp-for="ShowGender" checked="@Model.ShowGender" /><label>@Res.ApplicantProfile.TextGender</label></td>
+
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.Age</label></td>
+        <td><input type="checkbox" asp-for="ShowAge" checked="@Model.ShowAge" /><label>@Res.ApplicantProfile.TextAge</label></td>
+
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.Address</label></td>
+        <td><input type="checkbox" asp-for="ShowAddress" checked="@Model.ShowAddress" /><label>@Res.ApplicantProfile.TextAddress</label></td>
+
+    </tr>
+    <tr>
+        <td><label>@Res.ApplicantProfile.Country</label></td>
+        <td><input type="checkbox" asp-for="ShowCountryOrCity" checked="@Model.ShowCountryOrCity" /><label>@Res.ApplicantProfile.TextCountryOrCity</label></td>
+        <td><input type="submit" value="Save" class="applicant-save-button"></td>
+    </tr>
+</table>
+</form>

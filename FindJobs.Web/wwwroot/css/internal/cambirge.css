@@ -1,0 +1,98 @@
+.ca-elements {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.ca-topheader {
+    background-color: rgb(91, 126, 190);
+    height: 55px;
+    display: flex;
+    place-items: center;
+    padding: 10px;
+}
+.ca-image {
+    width: 5rem;
+    border-radius: 136px;
+    margin: 10px 3px !important;
+    height: 5rem;
+    object-fit: cover;
+    border: 0px;
+}
+
+.ca-topheader-text {
+    text-align: center;
+    color: white;
+}
+
+.ca-cv-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.ca-personal-information {
+    display: block;
+    padding: 10px;
+}
+
+.ca-header {
+    font-weight: bold;
+}
+
+.ca-left-box {
+    margin-top: 40px;
+    overflow-wrap: break-word;
+}
+
+    .ca-left-box > p {
+        line-height: 0px;
+    }
+
+.ca-right-side {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 60%;
+}
+
+.ca-right-box {
+    flex-direction: column;
+}
+
+.ca-header-right-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.ca-flex-v {
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-left: 18px;
+}
+
+.ca-line {
+    display: flex;
+    flex-grow: 1;
+    height: 1px;
+    align-self: center;
+    margin: 0 20px;
+    background-color: grey;
+}
+
+.ca-sm-line-h {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+
+.ca-sm-line-v {
+    position: absolute;
+    height: 50px;
+    border-right: 1px solid gray;
+}
+
+.ca-items-h {
+    margin-left: 55px;
+    margin-top: 26px;
+    flex-direction: row;
+    display: flex;
+}

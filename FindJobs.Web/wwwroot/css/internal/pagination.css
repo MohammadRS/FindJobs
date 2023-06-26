@@ -1,0 +1,24 @@
+﻿.pagination {
+    display: flex;
+    place-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 300px;
+    margin-bottom: 8px;
+}
+
+    .pagination span {
+        margin-left: 6px
+    }
+
+    .pagination input {
+        margin-left: 4px;
+        background: #cbcbcb;
+        width: 40px;
+    }
+
+        .pagination input:hover {
+            cursor: pointer;
+            background: #b5b3b3;
+        }
+}

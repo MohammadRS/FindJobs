@@ -1,0 +1,183 @@
+﻿@using FindJobs.Domain.Dtos
+@using FindJobs.Web.Controllers;
+@model PaginationDto<OfferDto>
+@section Css
+    {
+    <link rel="stylesheet" href="/dcss/internal/applicant-profile/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/company/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/advance-search/@ViewData["DarkBlue"]~@ViewData["ColorAqua"]" />
+    <link rel="stylesheet" href="/dcss/internal/pagination/@ViewData["ColorTeal"]~@ViewData["ColorAqua"]" />
+}
+
+@{
+    var listUrl = Url.Action("ListOfferAjax", "Home");
+    string imageDown = "data:image/svg+xml;utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDE1YTEsMSwwLDAsMS0uNzEtLjI5bC00LTRBMSwxLDAsMCwxLDguNzEsOS4yOUwxMiwxMi41OWwzLjI5LTMuMjlhMSwxLDAsMCwxLDEuNDEsMS40MWwtNCw0QTEsMSwwLDAsMSwxMiwxNVoiLz48L3N2Zz4=";
+}
+
+
+    
+        <div class="advance-search column">
+            <nav class="sidebar show">
+                <ul>
+                    <li class="wrapper">
+                        <a class="salaryTitle">@Res.AdvanceSearch.Salary</a>
+                        <div class="price-input">
+                            <div class="field">
+                                <span>@Res.AdvanceSearch.Min</span>
+                                <input type="number" class="input-min" value="2500">
+                            </div>
+                            <div class="separator">-</div>
+                            <div class="field">
+                                <span>@Res.AdvanceSearch.Max</span>
+                                <input type="number" class="input-max" value="7500">
+                            </div>
+                        </div>
+                        <div class="slider">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="range-input">
+                            <input type="range" class="range-min" min="0" max="10000" value="2500" id="min" step="100">
+                            <input type="range" class="range-max" min="0" max="10000" value="7500" id="max" step="100">
+                        </div>
+                    </li>
+                    <li class="title" id="position">
+                        <div class="row" id="position-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.Position
+                                <span class="fas fa-caret-down fourth"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+
+                        </div>
+                        <ul class="position-show">
+                            @if (Model.Data.Select(x => x.OfferJobCategoryDtos) != null)
+                            {
+                                foreach (var result in HomeController.GetJobCategoryList(Model.Data))
+                                {
+                                    <li class="row">
+                                        <label id="position" class="item-search">
+                                            @result.JobCategory
+                                        </label>
+                                        <label>@result.Count</label>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                    <li class="title" id="employer">
+                        <div class="row" id="employ-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.TypeOfEmployment
+                                <span class="fas fa-caret-down fifth"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+
+                        </div>
+                        <ul class="employ-show">
+                            @foreach (var item in HomeController.GetEmployTypeList(Model.Data))
+                            {
+                                <li class="row"><label class="item-search">@item.Name</label><label>@item.Count</label></li>
+
+                            }
+                        </ul>
+                    </li>
+                    <li class="title" id="company">
+                        <div class="row" id="company-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.CompanyOffer
+                                <span class="fas fa-caret-down seventh"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+                        </div>
+                        <ul class="company-show">
+
+                            @foreach (var result in HomeController.GetCompanyList(Model.Data))
+                            {
+                                <li class="row"><label class="item-search">@result.Name</label><label>@result.Count</label></li>
+
+                            }
+                        </ul>
+                    </li>
+                    <li class="title" id="language">
+                        <div class="row" id="language-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.LanguageSkills
+                                <span class="fas fa-caret-down seventh"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+                        </div>
+                        <ul class="language-show">
+                           
+                            @foreach (var result in HomeController.GetLanguageList(Model.Data))
+                            {
+                                <li class="row"><label class="item-search">@result.Name</label><label>@result.Count</label></li>
+
+                            }
+                        </ul>
+                    </li>
+                    <li class="title" id="jobOffer">
+                        <div class="row" id="jobOffer-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.JobOffersFor
+                                <span class="fas fa-caret-down eighth"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+                        </div>
+                        <ul class="jobOffer-show">
+
+                            @foreach (var result in HomeController.GetPackageList(Model.Data))
+                            {
+                                <li class="row"><label class="item-search">@result.Name</label><label>@result.Count</label></li>
+
+                            }
+                        </ul>
+                    </li>
+                    <li class="title" id="work-from-home">
+                        <div class="row" id="serv-btn">
+                            <a class="column-a">
+                                @Res.AdvanceSearch.WorkPlace
+                                <span class="fas fa-caret-down second"></span>
+                            </a>
+                            <img class="column-image" width="50" height="60" src="@imageDown" alt="drop-down" style="display: block;">
+                        </div>
+
+                        <ul class="serv-show">
+                            @foreach (var result in HomeController.GetWorkingAreaList(Model.Data))
+                            {
+                                <li class="row"><label class="item-search">@result.Name</label><label>@result.Count</label></li>
+
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="column">
+            <div id="offerListDiv">
+                @await Html.PartialAsync("_ListOffer.cshtml",Model)
+            </div>
+
+            <div class="pagination">
+                <span>@Model.ItemsCount</span>
+                <span>Items</span>
+                <input type="button" value="<<" id="start" onclick="start('@listUrl')" />
+                <input type="button" value="<" id="back" onclick="back('@listUrl')" />
+                <span id="pagenumber">1</span>
+                <span>@Res.CompanyOffer.Of</span>
+                <span>@Model.PageCount</span>
+                <input type="button" value=">" id="next" onclick="next(@Model.PageCount,'@listUrl')" />
+                <input type="button" value=">>" id="end" onclick="end(@Model.PageCount,'@listUrl')" />
+
+
+            </div>
+        </div>
+    
+
+
+
+@section Script{
+    <script src="~/js/internal/advance-search.js"></script>
+    <script src="~/js/internal/pagination.js"></script>
+
+
+}

@@ -1,0 +1,594 @@
+﻿.profile section {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.profile-flex-container {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .profile-flex-container .box {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .profile-flex-container .box-right {
+        width: 370px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .profile-flex-container .box input {
+        width: 200px;
+    }
+
+    .profile-flex-container .box select {
+        width: 200px;
+    }
+.box-right{
+    width:400px;
+}
+.left-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.applicant-save-button {
+    background-color: #$0$;
+    padding: 10px 0px;
+    border-radius: 5px;
+    border: 0px none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 200px;
+    margin: 20px 10px;
+}
+
+    .applicant-save-button:hover {
+        background-color: #$1$;
+        cursor: pointer;
+    }
+
+.insertButton:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    accent-color: #$0$;
+}
+
+.applicant-Delete-button {
+    background-color: #$0$;
+    padding: 10px 0px;
+    border-radius: 5px;
+    border: 0px none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 100px;
+}
+
+.linkColumn {
+    width: 200px;
+}
+
+.applicant-Cancel-button {
+    background-color: #$1$;
+    padding: 10px 0px;
+    border-radius: 5px;
+    border: 0px none;
+    outline: 0;
+    color: white !important;
+    font-family: Arial;
+    font-size: 13.3px;
+    margin: 5px 0;
+    min-width: 100px;
+}
+
+.profile {
+    margin-top: 20px;
+}
+
+.sm-mg-left{
+    margin-left:10px;
+}
+    .profile table {
+        padding: 10px;
+    }
+
+        .profile table:after {
+            display: inline-block !important;
+        }
+
+profile table tr td:first-child {
+    max-width: 160px;
+}
+
+aside {
+    font-size: 18px;
+    width: 260px;
+    margin-right: 10px;
+}
+
+    aside li {
+        padding: 10px;
+        margin: 0 !important;
+    }
+
+    aside > ul {
+        list-style: none;
+        padding: 0px;
+    }
+
+    aside li:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+
+    aside li.active {
+        background-color: #ddd;
+    }
+
+.main-flexbox {
+    height: fit-content;
+    min-height: 200px;
+    padding: 1rem;
+    row-gap: 1rem;
+    column-gap: 0.5rem;
+    display: flex;
+}
+
+.upload-document {
+    align-self: center;
+    display: flex;
+}
+
+.applicant-header-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 15rem;
+    box-shadow: 0px 0px 8px #bbb;
+    border-radius: 0.5rem;
+    padding: 0 0 0 0.5rem;
+    outline: 0.05rem solid transparent;
+    transition: outline 0.5s;
+}
+
+
+.secondary-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.applicantProfiletable {
+    width: 100%;
+    margin-top: 10px;
+}
+
+    .applicantProfiletable tr {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .applicantProfiletable td:last-child {
+        text-align: left;
+    }
+
+.AdditionalSectionTable input[type="text"], input[type="number"] {
+    width: 100px;
+}
+
+.AdditionalSectionTable select {
+    width: 100px;
+}
+
+
+
+.AdditionalSectionTable .box {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.AdditionalSectionTable tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.AdditionalSectionTable td {
+    width: 170px;
+}
+
+.applicantProfiletable td {
+    text-align: left;
+    max-width: 200px;
+    min-width: 170px;
+    margin: 5px 0;
+}
+
+.educationTable td {
+    text-align: left;
+    max-width: 200px;
+    min-width: 150px;
+    margin: 5px 0;
+}
+
+.applicantKnowledgeTable td {
+    max-width: 230px;
+    min-width: 220px;
+}
+
+.ApplicantProfileIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.ButtonToLink {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
+    color: #$1$;
+}
+
+
+
+.applicant-profile-image {
+    width: 10rem;
+    border-radius: 8px;
+    margin: 10px 3px !important;
+    height: auto;
+    object-fit: cover;
+}
+
+
+.download-profile {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    display: inline-grid;
+}
+
+
+
+summary {
+    cursor: pointer;
+}
+
+details {
+    margin-bottom: 20px;
+    width: 100%;
+    font-family: sans-serif;
+    box-shadow: 0px 0px 8px #bbb;
+    padding: 23px;
+    border-radius: 10px;
+}
+
+    details p {
+        padding: 20px;
+    }
+
+summary {
+    padding: 0px;
+    background-color: #fff;
+    outline: none;
+    border-radius: 5px;
+}
+
+
+
+details[open] summary {
+    font-size: 20px;
+    padding: 0px;
+    color: #$1$;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+
+
+.applicant-save-button:hover {
+    background-color: #$1$;
+    cursor: pointer;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #$0$;
+}
+
+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/*ApplicantPrivacy*/
+
+.tablePrivacy {
+    box-shadow: 0px 0px 8px #bbb;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+    .tablePrivacy tr {
+        min-height: 45px;
+        display:flex;
+        flex-wrap:wrap;
+    }
+        .tablePrivacy tr:nth-of-type(1) {
+            background: lightgray;
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 14px;
+        }
+
+        .tablePrivacy tr td {
+            padding: 0px 25px 0px 25px;
+        }
+
+    .tablePrivacy td:nth-of-type(1) {
+        flex-basis: 150px
+    }
+
+    .ProfileVisible {
+        width: 200px;
+        padding: 5px;
+    }
+
+    .ProfileVisible option {
+        width: 200px;
+    }
+
+.title-privacy-page {
+    background-color: #$2$;
+    height: 50px;
+}
+
+    .title-privacy-page p {
+        color: white;
+        padding: 15px;
+    }
+/*ApplicantPreviewPage*/
+
+.applicantProfiletable .applicant-min-td {
+    min-width: 430px;
+}
+
+.img-profile-preview {
+    width: 150px;
+    height: 160px;
+    margin: 20px;
+}
+
+.applicant-header-card-preview{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    min-height: 15rem;
+    box-shadow: 0px 0px 8px #bbb;
+    border-radius: 0.5rem;
+    padding: 0 0 0 0.5rem;
+    outline: 0.05rem solid transparent;
+    transition: outline 0.5s;
+}
+.headers-table-preview {
+    font-weight: bold;
+}
+/*ApplicantSearch*/
+.main-search-applicant {
+    display: flex;
+    min-height: 166px;
+    box-shadow: 0px 0px 8px #bbb;
+    margin-top: 20px;
+}
+
+.sm-header-margin-top {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.applicant-search {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-left-items span {
+    background: #cbcbcb;
+    border-radius: 5px;
+    border: 0px solid white;
+}
+
+.applicant-search .item-box {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 20vh;
+}
+
+.applicant-search .row-left-items {
+    flex-direction: column;
+}
+
+.applicant-search .row-items {
+    flex-direction: row;
+    margin-top: 38px;
+    max-width: 130vh;
+    min-width: 50vh;
+}
+
+.applicant-search .row-items-right {
+    flex-direction: row;
+    margin-top: 38px;
+    max-width: 130vh;
+}
+
+.applicant-search .row-items .item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+
+.img-search-applicant {
+    max-width: 150px;
+    min-width: 140px;
+    margin: 12px 0px 0px 35px;
+}
+
+.information-box-search-applicant {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-left: 195px;
+}
+
+.icon-search-table {
+    margin: 26px 32px;
+}
+
+    .icon-search-table img:not(.img-search-applicant) {
+        min-width: 16px;
+        max-width: 30px;
+    }
+
+.searchboxApplicant {
+    margin: 10px 10px;
+    font-size: 20px;
+    padding: 8px;
+    z-index: 100;
+    position: relative;
+    outline: 0;
+    border-radius: 7px;
+    border: solid 1px black;
+    width: calc(40% - 20px);
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    color: black;
+    padding-left: 25px;
+}
+
+.btn-search-appicant {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px;
+    background: rgba(256,256,256,0.2);
+    font-size: 15px;
+    width: 100%;
+    max-width: 160px;
+    z-index: 100;
+    position: relative;
+}
+
+@media (max-width:1024px) {
+    .personal-information-preview {
+        width: 70%;
+    }
+}
+
+@media (max-width:768px) {
+    .personal-information-preview {
+        width: 61%;
+    }
+
+    .img-profile-preview {
+        width: 125px;
+        height: 135px;
+        margin: 40px 17px;
+    }
+}
+
+@media(max-width: 480px) {
+    .applicant-search {
+        flex-direction: column;
+    }
+    .box-right{
+        width:283px;
+    }
+}
+
+@media (max-width: 768px) {
+    .applicantProfiletable tr td {
+        display: block;
+        align-self: center;
+        margin: 5px 0;
+    }
+
+    .AdditionalSectionTable td {
+        display: block;
+        align-self: center;
+        margin: 5px 0;
+    }
+
+    aside {
+        display: none;
+    }
+
+    .details {
+        padding: 16px;
+    }
+
+    .applicant-header-card {
+        flex-direction: column !important;
+        height: unset !important;
+    }
+
+    .main-flex-insidebox {
+        padding: 20px;
+        min-width: 294px;
+    }
+
+    .applicant-profile-image {
+        align-self: center;
+    }
+
+    .personal-information-preview {
+        width: 80%;
+        margin: 10px 40px
+    }
+
+    .img-profile-preview {
+        width: 80px;
+        height: 90px;
+        margin: 61px 5px;
+    }
+
+    .personal-information-preview input {
+        width: 87px;
+    }
+
+    .applicantpreviewprofile {
+        margin: 30px 40px;
+    }
+}
+
+.applicant-preview-td{
+    width:400px !important;
+}

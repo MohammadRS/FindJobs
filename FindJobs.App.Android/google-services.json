@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "664291530906",
+    "project_id": "findjobs-354615",
+    "storage_bucket": "findjobs-354615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664291530906:android:43562464613258e3852723",
+        "android_client_info": {
+          "package_name": "com.dotnek.jobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664291530906-53r8cbfgou1krcekr2v7fdtvo9cbvvv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dotnek.jobs",
+            "certificate_hash": "998aa84fd540a1492d4d113001765936ecdd6cc6"
+          }
+        },
+        {
+          "client_id": "664291530906-shvdql5kjfgvc6reqgp27nej6rqsukig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ6jAx-3OSc261eWsJ-DAHrt4shwn_RRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664291530906-shvdql5kjfgvc6reqgp27nej6rqsukig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
